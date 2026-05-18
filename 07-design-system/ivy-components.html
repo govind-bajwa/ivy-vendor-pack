@@ -10,7 +10,201 @@
    Ivy Design System  ·  Tokens
    Source of truth for every Ivy artifact.
    Link this file from any HTML you build for Ivy:
+     <style>
+/* ── inlined from ivy-tokens.css ── */
+/* ──────────────────────────────────────────────────────────────
+   Ivy Design System  ·  Tokens
+   Source of truth for every Ivy artifact.
+   Link this file from any HTML you build for Ivy:
      <link rel="stylesheet" href="ivy-tokens.css">
+   v0.2 · May 2026
+   ────────────────────────────────────────────────────────────── */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,450;0,500;0,600;0,700;1,400;1,500;1,600&display=swap");
+
+:root {
+  /* ─── Brand · emerald ────────────────────────────────────── */
+  --ivy-primary:        #10B981;   /* brand · primary */
+  --ivy-primary-bright: #059669;   /* punchier emerald · headlines, highlights */
+  --ivy-primary-light:  #34D399;   /* tint / hover */
+  --ivy-primary-dark:   #064E3B;   /* on-emerald · text */
+  --ivy-700:            #047857;   /* deep brand · text-on-light */
+  --ivy-50:             #d1fae5;   /* avatar / chip wash */
+
+  /* ─── Ink (neutrals, warm-leaning) ──────────────────────── */
+  --ink:    #0a0a0a;   /* primary text */
+  --ink-2:  #4a4a4a;   /* secondary text */
+  --ink-3:  #7a7a7a;   /* tertiary / labels */
+  --ink-4:  #b8b8b8;   /* placeholder / disabled */
+  --ink-5:  #d8d8d8;   /* subtle separators */
+
+  /* ─── Hairlines & surfaces ──────────────────────────────── */
+  --hair:    rgba(0,0,0,.04);
+  --hair-2:  rgba(0,0,0,.08);
+  --canvas:  #f5f3ee;   /* page · warmer wash */
+  --canvas-2:#efece4;   /* sunk surface */
+  --paper:   #ffffff;   /* card / panel surface */
+
+  /* ─── Semantic stage colors (pipeline) ──────────────────── */
+  /* Use ONLY for pipeline stage signaling — never decorative. */
+  --stage-new-bg:        #f1f5f9; --stage-new-fg:        #475569;
+  --stage-qualified-bg:  #d1fae5; --stage-qualified-fg:  #047857;
+  --stage-quoted-bg:     #fef3c7; --stage-quoted-fg:     #b45309;
+  --stage-booked-bg:     #dbeafe; --stage-booked-fg:     #1d4ed8;
+  --stage-converted-bg:  #d1fae5; --stage-converted-fg:  #065f46;
+  --stage-lost-bg:       rgba(254,226,226,.8); --stage-lost-fg: #dc2626;
+
+  /* ─── Radii ─────────────────────────────────────────────── */
+  --r-sm:  6px;
+  --r-md:  8px;
+  --r-lg:  12px;
+  --r-xl:  16px;
+  --r-2xl: 22px;
+  --r-pill: 999px;
+
+  /* ─── Shadows · warm-tinted, not gray ───────────────────── */
+  --shadow-warm-sm: 0 1px 3px rgba(120,80,40,.06), 0 1px 2px rgba(120,80,40,.03);
+  --shadow-warm:    0 4px 16px rgba(120,80,40,.07), 0 1px 3px rgba(120,80,40,.04);
+  --shadow-warm-lg: 0 24px 60px -12px rgba(120,80,40,.18), 0 8px 24px -6px rgba(120,80,40,.10);
+  --shadow-glow:    0 4px 20px -2px rgba(16,185,129,.30);
+
+  /* ─── Type ──────────────────────────────────────────────── */
+  --sans:  "Inter", system-ui, -apple-system, sans-serif;
+  --mono:  "Inter", system-ui, -apple-system, sans-serif;   /* numbers use Inter w/ tabular-nums, NOT a mono font */
+  --num-feat: "tnum", "cv11", "ss01";
+
+  /* ─── Spacing · 4px grid ────────────────────────────────── */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-7: 28px; --s-8: 32px;
+  --s-10: 40px; --s-12: 48px; --s-16: 64px; --s-20: 80px;
+
+  /* ─── Density floor ─────────────────────────────────────── */
+  /* 13px is the smallest readable size. 11/10px ONLY in mono labels. */
+  --text-xs:  11px;   /* eyebrow labels, mono caps */
+  --text-sm:  13px;   /* body floor */
+  --text-md:  15px;   /* lede, primary body */
+  --text-lg:  22px;   /* h1 in cards */
+  --text-xl:  32px;   /* section title */
+  --text-2xl: 56px;   /* hero / display */
+  --text-3xl: 64px;   /* editorial display */
+}
+
+/* ─── Base ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: var(--num-feat);
+}
+
+/* Tabular numerals on anything numeric-looking */
+.mono, .num, [class*="num-"], .hex, .tok, .v, .ts, .kbd {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: var(--num-feat);
+  letter-spacing: -.005em;
+}
+
+/* ─── Glass surfaces ──────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(120,80,40,.04), 0 0 0 1px rgba(255,255,255,.6) inset;
+}
+.glass-elevated {
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-warm), 0 0 0 1px rgba(255,255,255,.7) inset;
+}
+
+/* ─── Editorial display ─ italic emerald `<em>` ─────────── */
+.display {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: var(--text-3xl);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.display em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ivy-primary-bright);
+  letter-spacing: -.05em;
+}
+
+/* ─── Eyebrow / mono caps ─────────────────────────────────── */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ─── Atmospheric hero background ─────────────────────────── */
+/* Apply to a hero section. Adds emerald wash + faint grid. */
+.atmosphere {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 600px at 88% -10%, rgba(16,185,129,.18), transparent 60%),
+    radial-gradient(600px 400px at 0% 0%, rgba(16,185,129,.07), transparent 60%),
+    var(--canvas);
+}
+.atmosphere::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(10,10,10,.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10,10,10,.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(1100px 700px at 50% 30%, #000 35%, transparent 80%);
+          mask-image: radial-gradient(1100px 700px at 50% 30%, #000 35%, transparent 80%);
+  pointer-events: none;
+}
+
+/* ─── Pipeline stage pill ─────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px; border-radius: var(--r-pill);
+  background: var(--bg, var(--ivy-50));
+  color: var(--fg, var(--ivy-700));
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+
+/* ─── Frontispiece (numbered section header) ──────────────── */
+.frontispiece {
+  display: flex; align-items: baseline; gap: 24px;
+  padding: 80px 0 32px;
+  border-top: 1px solid var(--hair);
+}
+.frontispiece .num {
+  font-family: var(--mono); font-size: 12px; color: var(--ink-4);
+  letter-spacing: .12em;
+}
+.frontispiece .title {
+  font-family: var(--sans); font-weight: 600;
+  font-size: var(--text-xl); line-height: 1.1; letter-spacing: -.025em;
+  margin: 0; color: var(--ink);
+}
+.frontispiece .blurb {
+  margin-left: auto; max-width: 380px;
+  font-size: 14px; line-height: 1.55; color: var(--ink-2);
+}
+
+/* ─── Layout helpers ──────────────────────────────────────── */
+.wrap       { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+.wrap-tight { max-width:  920px; margin: 0 auto; padding: 0 48px; }
+
+</style>
    v0.2 · May 2026
    ────────────────────────────────────────────────────────────── */
 
