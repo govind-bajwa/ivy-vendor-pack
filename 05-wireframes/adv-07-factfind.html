@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADV-07 Live FactFind (HEADLINE)</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADV-07 · /cases/MR-2026/factfind · HEADLINE SCREEN">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Adviser</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li class="active"><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page" style="padding-bottom:20px">
+      <!-- Live call banner -->
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:10px 14px;background:rgba(207,231,212,.3);border:1.5px solid var(--green);border-radius:8px 10px 7px 9px / 9px 7px 10px 8px">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)"></span>
+        <b style="font-family:'Caveat';font-size:22px">Live FactFind</b>
+        <span style="font-family:'Kalam';font-size:13px">·</span>
+        <b>Mark Roberts</b>
+        <span class="pill amber"><span class="dot"></span>Recording 47:23 / ~90 min</span>
+        <span class="meta">Zoom · CallCabinet · A2 streaming · C1 linked</span>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button class="btn">⏸ Pause</button>
+          <button class="btn danger">End FactFind</button>
+        </div>
+      </div>
+
+      <!-- 3-column FactFind layout -->
+      <div class="ff-grid card" style="padding:0;margin-bottom:0">
+
+        <!-- LEFT: transcript -->
+        <div class="ff-col">
+          <div class="ff-h"><span>Transcript · live</span><span style="font-family:'Inter';color:var(--ink-4)">↓ auto-scroll</span></div>
+          <div class="transc-line"><span class="who sarah">Sarah</span><span>…and your income then?</span><span class="t">47:18</span></div>
+          <div class="transc-line"><span class="who">Mark</span><span>£62k last year, gross.</span><span class="t">47:22</span></div>
+          <div class="transc-line"><span class="who sarah">Sarah</span><span>Self-employed?</span><span class="t">47:26</span></div>
+          <div class="transc-line"><span class="who">Mark</span><span>Yeah, 6 years now.</span><span class="t">47:28</span></div>
+          <div class="transc-line"><span class="who sarah">Sarah</span><span>SA302 to evidence?</span><span class="t">47:30</span></div>
+          <div class="transc-line"><span class="who">Mark</span><span>Got the screenshots.</span><span class="t">47:34</span></div>
+          <div class="transc-line"><span class="who sarah">Sarah</span><span>Family — Sophie's your wife?</span><span class="t">47:38</span></div>
+          <div class="transc-line"><span class="who">Mark</span><span>Yes, two kids 4 and 7.</span><span class="t">47:42</span></div>
+          <div class="transc-line"><span class="who sarah">Sarah</span><span>Health stuff — anything in the family?</span><span class="t">47:50</span></div>
+          <div class="transc-line" style="font-weight:700"><span class="who">Mark</span><span>My brother just got diagnosed, bowel cancer.</span><span class="t">47:58</span></div>
+          <div class="transc-line" style="opacity:.5"><span class="who sarah">Sarah</span><span>(thinking…)</span><span class="t">48:01</span></div>
+        </div>
+
+        <!-- MIDDLE: FactFind sections -->
+        <div class="ff-col">
+          <div class="ff-h"><span>FactFind · auto-populated by A2</span><span>5/8 · 87% conf</span></div>
+
+          <div class="ff-sec">
+            <h4><span class="status done">✓</span>1 · Personal</h4>
+          </div>
+
+          <div class="ff-sec">
+            <h4><span class="status done">✓</span>2 · Employment &amp; income</h4>
+            <div class="fields">
+              <div><span class="label">Status</span> Self-employed</div>
+              <div><span class="label">Trade</span> Graphic design</div>
+              <div><span class="label">Years</span> 6</div>
+              <div><span class="label">Income</span> £62,000 (SA302)</div>
+            </div>
+          </div>
+
+          <div class="ff-sec">
+            <h4><span class="status done">✓</span>3 · Family &amp; dependants</h4>
+            <div class="fields">
+              <div><span class="label">Partner</span> Sophie</div>
+              <div><span class="label">Children</span> 2 (ages 4, 7)</div>
+            </div>
+          </div>
+
+          <div class="ff-sec">
+            <h4><span class="status done">✓</span>4 · Existing cover</h4>
+          </div>
+
+          <div class="ff-sec" style="background:rgba(201,138,29,.05);margin:0 -18px;padding:10px 18px">
+            <h4><span class="status prog">●</span>5 · Health &amp; lifestyle <span style="margin-left:auto;font-family:'Inter';font-size:10px;color:var(--amber);font-weight:600">IN PROGRESS</span></h4>
+            <div class="fields">
+              <div><span class="label">Smoker</span> Stopped 4yr ago</div>
+              <div><span class="label">Family hx</span> <b style="color:var(--green)">Brother · bowel CA · age 45</b></div>
+              <div><span class="label">Personal hx</span> Clean — no disclosures</div>
+            </div>
+          </div>
+
+          <div class="ff-sec">
+            <h4><span class="status pending">○</span><span style="color:var(--ink-4)">6 · Hazardous occupations</span></h4>
+          </div>
+          <div class="ff-sec">
+            <h4><span class="status pending">○</span><span style="color:var(--ink-4)">7 · Financial situation</span></h4>
+          </div>
+          <div class="ff-sec">
+            <h4><span class="status pending">○</span><span style="color:var(--ink-4)">8 · Risk attitude</span></h4>
+          </div>
+        </div>
+
+        <!-- RIGHT: Ivy Live sidebar -->
+        <div class="ff-col">
+          <div class="ff-h">
+            <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);display:inline-block"></span>Ivy Live</span>
+            <span style="font-family:'Inter';font-size:10px">updated 2s ago</span>
+          </div>
+
+          <div class="ff-prompt">
+            <div class="t">⚡ Probe</div>
+            <div>Family history of bowel cancer — probe own screening hx<br><span class="meta">FCA suitability + Vitality CI</span></div>
+            <div style="display:flex;gap:6px;margin-top:8px">
+              <button class="btn primary" style="font-size:11px;padding:4px 9px">Acknowledge</button>
+              <button class="btn" style="font-size:11px;padding:4px 9px">Dismiss</button>
+            </div>
+          </div>
+
+          <div class="ff-prompt warn">
+            <div class="t">⚠ Compliance gap</div>
+            <div>Hazardous occupations section not yet asked<br><span class="meta">required by firm QA · Section 6</span></div>
+            <div style="display:flex;gap:6px;margin-top:8px">
+              <button class="btn" style="font-size:11px;padding:4px 9px">Acknowledge</button>
+            </div>
+          </div>
+
+          <div style="margin-top:24px;padding-top:14px;border-top:1px dashed var(--hair-2)">
+            <p style="font-family:'Inter';font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3);margin:0 0 6px;font-weight:600">Live scores</p>
+
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;margin:8px 0 4px"><span>Coverage</span><b>91 / 100</b></div>
+            <div class="bar"><i style="width:91%"></i></div>
+
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;margin:14px 0 4px"><span>Vulnerability (C6)</span><b style="color:var(--green)">None</b></div>
+            <p class="meta" style="font-size:11px;margin:0">No indicators across 5 sections · re-checks every 10s</p>
+          </div>
+
+          <div style="margin-top:18px;padding:10px 12px;background:rgba(255,255,255,.6);border-radius:6px 8px 6px 8px;font-size:11px;color:var(--ink-3);line-height:1.5">
+            <b>Acknowledged prompts</b> stay visible struck-through for the rest of the call (audit trail).
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:14px">Question: when call ends, this collapses to ADV-08 FactFind review. Should the transcript become a collapsible rail or disappear?</p>
+    </main>
+  </div>
+</div>
+
+<!-- Co-pilot compressed during call -->
+<div class="copilot" style="width:60px;height:60px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center">
+  <span style="width:14px;height:14px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)"></span>
+</div>
+
+</body>
+</html>

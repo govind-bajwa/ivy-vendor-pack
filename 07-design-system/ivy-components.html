@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ivy · Components Kit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="ivy-tokens.css" />
+<style>
+  body { padding: 0; }
+
+  /* Kit chrome */
+  .kit-top {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 32px;
+    background: rgba(245,243,238,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .kit-top .stamp {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .kit-top .stamp .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ivy-primary); box-shadow: 0 0 0 3px rgba(16,185,129,.18);
+  }
+  .kit-top .ver { color: var(--ink-3); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin-left: auto; }
+
+  .kit-cover {
+    padding: 80px 48px 56px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .kit-cover h1 {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 96px; line-height: .95; letter-spacing: -.05em;
+    margin: 8px 0 16px; color: var(--ink); text-wrap: balance;
+  }
+  .kit-cover h1 em { font-style: italic; font-weight: 600; color: var(--ivy-primary-bright); letter-spacing: -.055em; }
+  .kit-cover p { max-width: 60ch; font-size: 15px; line-height: 1.6; color: var(--ink-2); margin: 0; }
+
+  /* Component card */
+  .comp {
+    border-top: 1px solid var(--hair);
+    padding: 56px 48px;
+    display: grid; grid-template-columns: 220px 1fr; gap: 48px;
+  }
+  .comp-meta h2 {
+    font-family: var(--sans); font-weight: 600;
+    font-size: 22px; line-height: 1.15; letter-spacing: -.02em;
+    margin: 0 0 8px; color: var(--ink);
+  }
+  .comp-meta .num {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-4); margin-bottom: 16px;
+    display: block;
+  }
+  .comp-meta p {
+    margin: 0 0 12px; font-size: 13px; line-height: 1.55; color: var(--ink-2);
+  }
+  .comp-meta .tag {
+    display: inline-block; padding: 3px 8px; border-radius: var(--r-pill);
+    background: var(--ivy-50); color: var(--ivy-700);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+    text-transform: uppercase; margin-right: 4px;
+  }
+
+  .comp-body { display: grid; gap: 16px; }
+  .preview {
+    border: 1px solid var(--hair-2); border-radius: var(--r-2xl);
+    padding: 32px; background: var(--paper);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+    box-shadow: var(--shadow-warm-sm);
+  }
+  .preview.dense { padding: 20px; }
+  .preview.tinted { background: var(--canvas); }
+
+  pre.code {
+    margin: 0;
+    background: #0a0a0a;
+    color: #e5e7eb;
+    border-radius: var(--r-lg);
+    padding: 18px 20px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px; line-height: 1.65;
+    overflow-x: auto;
+    border: 1px solid #1f1f1f;
+  }
+  pre.code .k { color: #34D399; }
+  pre.code .s { color: #fde68a; }
+  pre.code .c { color: #6b7280; font-style: italic; }
+  pre.code .a { color: #a5b4fc; }
+
+  /* ── Component styles (copy these into your own files OR just rely on tokens.css when possible) ── */
+
+  /* Buttons */
+  .btn {
+    appearance: none; border: 0; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    border-radius: var(--r-md);
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    letter-spacing: -.005em;
+    transition: transform .06s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--ivy-primary); color: white; box-shadow: var(--shadow-glow); }
+  .btn-primary:hover { background: var(--ivy-primary-bright); }
+  .btn-secondary { background: white; color: var(--ink); border: 1px solid var(--hair-2); }
+  .btn-ghost { background: transparent; color: var(--ink-2); }
+  .btn-ghost:hover { color: var(--ink); background: var(--hair); }
+
+  /* Stat tile */
+  .stat-tile {
+    width: 240px; padding: 18px; border-radius: var(--r-xl);
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-warm), 0 0 0 1px rgba(255,255,255,.7) inset;
+  }
+  .stat-tile .l { margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
+  .stat-tile .v { font-size: 32px; font-weight: 500; margin-top: 4px; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+  .stat-tile .t { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12px; color: var(--ivy-700); font-variant-numeric: tabular-nums; }
+  .stat-tile .t small { color: var(--ink-3); font-size: 11px; }
+
+  /* Lead card */
+  .lead-card {
+    width: 320px; padding: 14px;
+    border-radius: var(--r-xl);
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-warm), 0 0 0 1px rgba(255,255,255,.7) inset;
+  }
+  .lead-card .row { display: flex; align-items: center; gap: 10px; }
+  .lead-card .row + .row { margin-top: 10px; }
+  .lead-card .av {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--ivy-50); color: var(--ivy-700);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600;
+  }
+  .lead-card .name { font-size: 13px; font-weight: 500; }
+  .lead-card .score {
+    margin-left: auto; padding: 2px 8px; border-radius: var(--r-pill);
+    background: rgba(16,185,129,.15); color: var(--ivy-700);
+    font-size: 11px; font-variant-numeric: tabular-nums; font-weight: 600;
+  }
+
+  /* Ivy widget */
+  .ivy-widget {
+    width: 380px;
+    border-radius: var(--r-2xl); overflow: hidden;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-warm), 0 0 0 1px rgba(255,255,255,.7) inset;
+  }
+  .ivy-w-head {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px; border-bottom: 1px solid var(--hair);
+  }
+  .ivy-w-head .av {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--ivy-50); color: var(--ivy-700);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ivy-w-head h4 { margin: 0; font-size: 13px; font-weight: 600; }
+  .ivy-w-head p  { margin: 0; font-size: 11px; color: var(--ink-3); }
+  .ivy-w-head .live {
+    margin-left: auto; padding: 4px 10px; border-radius: var(--r-pill);
+    background: rgba(16,185,129,.12); color: var(--ivy-700);
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .ivy-w-head .live .pulse {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--ivy-primary);
+    box-shadow: 0 0 0 0 rgba(16,185,129,.7);
+    animation: ivy-pulse 1.6s ease-out infinite;
+  }
+  @keyframes ivy-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(16,185,129,.6); }
+    100% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+  }
+  .ivy-w-msgs { padding: 14px 16px; display: grid; gap: 10px; }
+  .ivy-w-msgs .b {
+    max-width: 80%; padding: 10px 14px; border-radius: 16px;
+    font-size: 13px; line-height: 1.45;
+  }
+  .ivy-w-msgs .b.bot  { background: var(--canvas-2); color: var(--ink); }
+  .ivy-w-msgs .b.user { background: var(--ivy-primary); color: white; margin-left: auto; }
+  .ivy-w-input {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px; border-top: 1px solid var(--hair);
+    background: rgba(255,255,255,.6);
+  }
+  .ivy-w-input input {
+    flex: 1; appearance: none; border: 0; background: transparent;
+    font: inherit; font-size: 13px; color: var(--ink);
+    padding: 6px 4px;
+  }
+  .ivy-w-input input::placeholder { color: var(--ink-4); }
+  .ivy-w-input button {
+    appearance: none; border: 0; cursor: pointer;
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--ivy-primary); color: white;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Tag/chip */
+  .chip {
+    display: inline-flex; align-items: center;
+    padding: 3px 10px; border-radius: var(--r-pill);
+    background: var(--ivy-50); color: var(--ivy-700);
+    font-size: 11px; font-weight: 500; letter-spacing: .005em;
+  }
+</style>
+</head>
+<body>
+
+<header class="kit-top">
+  <div class="stamp"><span class="dot"></span> Ivy / Components</div>
+  <span class="ver">v0.2 · May 2026</span>
+</header>
+
+<section class="kit-cover atmosphere">
+  <p class="eyebrow" style="position: relative; z-index: 1;">Copy-paste components</p>
+  <h1 style="position: relative; z-index: 1;">Components <em>that compose</em>.</h1>
+  <p style="position: relative; z-index: 1;">Pair every snippet with <code>ivy-tokens.css</code>. The styles below are inline so the kit is self-contained — for production, lift the patterns into your own stylesheet and reference the tokens.</p>
+</section>
+
+<!-- ─── Buttons ─── -->
+<article class="comp">
+  <div class="comp-meta">
+    <span class="num">01 / Buttons</span>
+    <h2>Button</h2>
+    <p>Three intents. Primary uses the brand emerald + soft glow. Secondary is paper. Ghost is for in-row actions.</p>
+    <span class="tag">btn</span><span class="tag">primary</span><span class="tag">secondary</span><span class="tag">ghost</span>
+  </div>
+  <div class="comp-body">
+    <div class="preview">
+      <button class="btn btn-primary">Review draft</button>
+      <button class="btn btn-secondary">Tweak tone</button>
+      <button class="btn btn-ghost">Skip</button>
+    </div>
+<pre class="code"><span class="k">&lt;button</span> <span class="a">class</span>=<span class="s">"btn btn-primary"</span><span class="k">&gt;</span>Review draft<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="a">class</span>=<span class="s">"btn btn-secondary"</span><span class="k">&gt;</span>Tweak tone<span class="k">&lt;/button&gt;</span>
+<span class="k">&lt;button</span> <span class="a">class</span>=<span class="s">"btn btn-ghost"</span><span class="k">&gt;</span>Skip<span class="k">&lt;/button&gt;</span></pre>
+  </div>
+</article>
+
+<!-- ─── Pipeline stage pill ─── -->
+<article class="comp">
+  <div class="comp-meta">
+    <span class="num">02 / Stage</span>
+    <h2>Pipeline pill</h2>
+    <p>Stage colors are <b>semantic</b>, not decorative. Use only for pipeline state.</p>
+    <span class="tag">pill</span><span class="tag">semantic</span>
+  </div>
+  <div class="comp-body">
+    <div class="preview">
+      <span class="pill" style="--bg:var(--stage-new-bg); --fg:var(--stage-new-fg);">New</span>
+      <span class="pill" style="--bg:var(--stage-qualified-bg); --fg:var(--stage-qualified-fg);">Qualified</span>
+      <span class="pill" style="--bg:var(--stage-quoted-bg); --fg:var(--stage-quoted-fg);">Quoted</span>
+      <span class="pill" style="--bg:var(--stage-booked-bg); --fg:var(--stage-booked-fg);">Booked</span>
+      <span class="pill" style="--bg:var(--stage-converted-bg); --fg:var(--stage-converted-fg);">Converted</span>
+      <span class="pill" style="--bg:var(--stage-lost-bg); --fg:var(--stage-lost-fg);">Lost</span>
+    </div>
+<pre class="code"><span class="k">&lt;span</span> <span class="a">class</span>=<span class="s">"pill"</span> <span class="a">style</span>=<span class="s">"--bg:var(--stage-qualified-bg); --fg:var(--stage-qualified-fg);"</span><span class="k">&gt;</span>Qualified<span class="k">&lt;/span&gt;</span></pre>
+  </div>
+</article>
+
+<!-- ─── Stat tile ─── -->
+<article class="comp">
+  <div class="comp-meta">
+    <span class="num">03 / Stat</span>
+    <h2>Stat tile</h2>
+    <p>Glass surface. Number uses Inter with tabular-nums — never a separate mono font.</p>
+    <span class="tag">stat-tile</span><span class="tag">glass</span>
+  </div>
+  <div class="comp-body">
+    <div class="preview tinted">
+      <div class="stat-tile">
+        <p class="l">This week</p>
+        <div class="v">€42,180</div>
+        <div class="t"><span>↑ 12.4%</span><small>booked premium</small></div>
+      </div>
+    </div>
+<pre class="code"><span class="k">&lt;div</span> <span class="a">class</span>=<span class="s">"stat-tile"</span><span class="k">&gt;</span>
+  <span class="k">&lt;p</span> <span class="a">class</span>=<span class="s">"l"</span><span class="k">&gt;</span>This week<span class="k">&lt;/p&gt;</span>
+  <span class="k">&lt;div</span> <span class="a">class</span>=<span class="s">"v"</span><span class="k">&gt;</span>€42,180<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;div</span> <span class="a">class</span>=<span class="s">"t"</span><span class="k">&gt;&lt;span&gt;</span>↑ 12.4%<span class="k">&lt;/span&gt;&lt;small&gt;</span>booked premium<span class="k">&lt;/small&gt;&lt;/div&gt;</span>
+<span class="k">&lt;/div&gt;</span></pre>
+  </div>
+</article>
+
+<!-- ─── Lead card ─── -->
+<article class="comp">
+  <div class="comp-meta">
+    <span class="num">04 / Lead</span>
+    <h2>Lead card</h2>
+    <p>Lead summary with avatar, score, stage chip, and premium. Glass surface again.</p>
+    <span class="tag">lead-card</span>
+  </div>
+  <div class="comp-body">
+    <div class="preview tinted">
+      <div class="lead-card">
+        <div class="row">
+          <div class="av">NO</div>
+          <span class="name">Niamh O'Connor</span>
+          <span class="score">9</span>
+        </div>
+        <div class="row">
+          <span class="chip" style="background:var(--ivy-50); color:var(--ivy-700);">Life Cover</span>
+          <span style="margin-left:auto; font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 500;">€2,450</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ─── Ivy widget ─── -->
+<article class="comp">
+  <div class="comp-meta">
+    <span class="num">05 / Agent</span>
+    <h2>Ivy widget</h2>
+    <p>The agent's primary surface. Live status uses an emerald pulse, not a generic green dot.</p>
+    <span class="tag">ivy-widget</span><span class="tag">agent</span>
+  </div>
+  <div class="comp-body">
+    <div class="preview tinted">
+      <div class="ivy-widget">
+        <div class="ivy-w-head">
+          <div class="av">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          </div>
+          <div>
+            <h4>Ivy</h4>
+            <p>AI Copilot · active</p>
+          </div>
+          <div class="live"><span class="pulse"></span> live</div>
+        </div>
+        <div class="ivy-w-msgs">
+          <div class="b bot">Niamh's quote expires Friday. Want me to draft a follow-up in plain English?</div>
+          <div class="b user">Yes — gentle nudge, mention the Aviva benefit.</div>
+          <div class="b bot">Drafted. Ready for your review before it sends.</div>
+        </div>
+        <div class="ivy-w-input">
+          <input placeholder="Ask Ivy anything..." />
+          <button>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ─── Editorial display ─── -->
+<article class="comp">
+  <div class="comp-meta">
+    <span class="num">06 / Type</span>
+    <h2>Editorial display</h2>
+    <p>Big modern Inter with italic emerald <code>&lt;em&gt;</code> for emphasis. Use sparingly — heroes, section openers.</p>
+    <span class="tag">display</span><span class="tag">italic-emerald</span>
+  </div>
+  <div class="comp-body">
+    <div class="preview tinted">
+      <h3 class="display" style="font-size: 56px;">Quotes that <em>land</em>.<br>Renewals that <em>show up</em>.</h3>
+    </div>
+<pre class="code"><span class="k">&lt;h3</span> <span class="a">class</span>=<span class="s">"display"</span><span class="k">&gt;</span>
+  Quotes that <span class="k">&lt;em&gt;</span>land<span class="k">&lt;/em&gt;</span>.<span class="k">&lt;br&gt;</span>
+  Renewals that <span class="k">&lt;em&gt;</span>show up<span class="k">&lt;/em&gt;</span>.
+<span class="k">&lt;/h3&gt;</span></pre>
+  </div>
+</article>
+
+<!-- ─── Frontispiece header ─── -->
+<article class="comp">
+  <div class="comp-meta">
+    <span class="num">07 / Section</span>
+    <h2>Frontispiece</h2>
+    <p>Numbered section opener. Sets editorial rhythm across long documents.</p>
+    <span class="tag">frontispiece</span>
+  </div>
+  <div class="comp-body">
+    <div class="preview tinted" style="padding: 0;">
+      <div class="wrap" style="padding: 0 32px;">
+        <header class="frontispiece" style="padding: 32px 0;">
+          <span class="num">03 / 09</span>
+          <h2 class="title">Type</h2>
+          <p class="blurb">Inter does everything — UI, copy, headlines. Tabular numerals carry every number.</p>
+        </header>
+      </div>
+    </div>
+  </div>
+</article>
+
+</body>
+</html>

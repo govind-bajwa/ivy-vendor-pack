@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADM-02 Card Drawer</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADM-02 · /kanban?case=MR-2026 · Mark Roberts card drawer">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Admin</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li class="active"><span class="ic"></span>Kanban <span class="count">18</span></li>
+        <li><span class="ic circ"></span>Email feed <span class="count">4</span></li>
+        <li><span class="ic"></span>Portal guides</li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page" style="position:relative">
+      <div class="pg-head">
+        <div>
+          <h1 class="pg-title">Kanban</h1>
+          <p class="pg-sub">Today · 18 in flight · M2 prevented 2 NIGOs this week</p>
+        </div>
+      </div>
+
+      <!-- Faded kanban behind drawer -->
+      <div class="kanban" style="opacity:.35;pointer-events:none">
+        <div class="lane">
+          <h4>AI Verified Pending Review <span class="ct">14</span></h4>
+          <div class="k-card green" style="outline:2px solid var(--green);outline-offset:2px"><div class="nm">Mark Roberts</div><div class="ins">Vitality UK · £245k DTL+CI</div><div class="st">✓ M2 green</div></div>
+          <div class="k-card green"><div class="nm">Priya Shah</div><div class="ins">Vitality UK · £180k LIFE</div><div class="st">✓ M2 green</div></div>
+        </div>
+        <div class="lane warn"><h4>⚠ Not Matching <span class="ct">3</span></h4><div class="k-card warn"><div class="nm">Tom Harris</div><div class="ins">RL UK · Address mismatch</div><div class="st">⚠ ping Sarah</div></div></div>
+        <div class="lane"><h4>Portal Processing <span class="ct">8</span></h4><div class="k-card info"><div class="nm">Anna Klein</div><div class="ins">Aviva UK · Day 3 UW</div></div></div>
+        <div class="lane"><h4>Sent to Client <span class="ct">5</span></h4><div class="k-card green"><div class="nm">Sarah Lee</div><div class="ins">Vitality UK · sent today</div></div></div>
+      </div>
+
+      <!-- Drawer overlay -->
+      <aside class="card" style="position:absolute;top:80px;right:28px;width:520px;background:#fff;box-shadow:-8px 12px 30px -8px #00000028;z-index:10;padding:20px;border-width:1.5px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <span style="font-family:'Kalam';font-size:13px">←</span>
+          <b style="font-family:'Caveat';font-size:22px">Mark Roberts</b>
+          <span class="pill blue"><span class="dot"></span>AI Verified · Pending Review</span>
+          <a style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--green);text-decoration:none">Open full →</a>
+          <button class="btn" style="padding:2px 8px;font-size:14px">×</button>
+        </div>
+
+        <p class="meta" style="margin:0 0 14px">Vitality UK · £245k DTL+CI · £42.80/mo · 22yr</p>
+
+        <!-- M1 ingested -->
+        <div class="card" style="margin-bottom:12px">
+          <h3 style="font-size:16px">M1 ingested · DocuSign env ABC-78901</h3>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span>Application form (12 pages, OCR clean)</div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span>FactFind PDF</div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span>Suitability letter v2 (signed)</div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span>Direct Debit mandate</div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span>Beneficiary nomination</div>
+        </div>
+
+        <!-- M2 cross-verification -->
+        <div class="card" style="margin-bottom:12px">
+          <h3 style="font-size:16px">M2 cross-verification <span class="pill green" style="margin-left:auto"><span class="dot"></span>All green</span></h3>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>Name</b></span><span class="meta">Mark John Roberts · 4 docs match</span></div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>DOB</b></span><span class="meta">14 Mar 1988 · 4 docs match</span></div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>Address</b></span><span class="meta">47 Broughton Lane, M6 4LP</span></div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>Premium</b></span><span class="meta">£42.80/mo</span></div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>Sum assured</b></span><span class="meta">£245,000</span></div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>Term</b></span><span class="meta">22 years</span></div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>Beneficiary</b></span><span class="meta">Sophie Roberts (spouse)</span></div>
+          <div class="row" style="padding:5px 0;font-size:12px"><span class="status done">✓</span><span class="grow"><b>Bank</b></span><span class="meta">Confirmed sort + account</span></div>
+        </div>
+
+        <!-- Next action -->
+        <div class="card" style="background:rgba(207,231,212,.2);border-color:var(--green);margin-bottom:0">
+          <h3 style="font-size:16px">Next action</h3>
+          <p style="font-family:'Kalam';font-size:13px;color:var(--ink-2);line-height:1.6;margin:0 0 12px">
+            Approve to move to <b>Portal Processing</b>. Vitality UK submission checklist will load when you do.
+          </p>
+          <div style="display:flex;gap:8px">
+            <button class="btn primary" style="flex:1">Approve &amp; move →</button>
+            <button class="btn warn">Flag issue</button>
+          </div>
+        </div>
+      </aside>
+
+      <p class="note" style="position:absolute;bottom:30px;left:28px;max-width:600px">Drawer state for ADM-01. Click any kanban card → this drawer slides in from the right. The kanban behind dims to .35 opacity. ESC or × closes.</p>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

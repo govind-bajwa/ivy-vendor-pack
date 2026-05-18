@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ivy L3 Wireframes · v1.0</title>
+<link rel="stylesheet" href="shared/wires.css">
+<style>
+  body { padding-top: 60px; background: var(--canvas); }
+  .seq {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  .seq .of { color: var(--ink-4); }
+  .step-narrative {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--ink-3);
+    margin: var(--s-2) 0 var(--s-3);
+    max-width: 760px;
+    line-height: 1.55;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+  <div class="idx-wrap">
+    <div class="idx-hero">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span style="width:28px;height:28px;border-radius:50% 0 50% 50%;background:var(--ivy-primary);box-shadow:var(--shadow-glow);transform:rotate(-25deg);display:inline-block"></span>
+        <span style="font-family:var(--sans);font-size:22px;font-weight:600;letter-spacing:-.025em">Ivy L3</span>
+        <span class="label-tag">Wireframes · v1.0</span>
+      </div>
+      <h1>Sarah's day, end-to-end —<br>then <em>Ivy</em> threads through it.</h1>
+      <p>Walk through the 15 P0 wireframes in order. The first 11 follow one case (Mark Roberts) through the 9-stage workflow across three surfaces. The last 4 show the Co-pilot AI that lives across all of them.</p>
+    </div>
+
+    <!-- ─── PART 1 · ADVISER WORKFLOW ────────────────────────── -->
+    <h3 class="idx-section-h">Part 1 · Sarah's day · Adviser surface</h3>
+    <p class="step-narrative">Morning home → new lead arrives → qualify → run the FactFind → draft the suitability letter → wait on UW → close with an audit-ready compliance file. Mark Roberts is the case throughout.</p>
+    <div class="idx-grid">
+      <a class="idx-card" href="adv-01-today.html">
+        <div class="seq">Step 1 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADV-01</div>
+        <div class="name">Today</div>
+        <div class="desc">Sarah opens her morning home. Inbox preview · today's appointments · compliance queue · alerts.</div>
+      </a>
+      <a class="idx-card" href="adv-02-leads.html">
+        <div class="seq">Step 2 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADV-02</div>
+        <div class="name">Lead inbox</div>
+        <div class="desc">12 new leads — 9 captured by F1 out-of-hours. Vulnerability flag on James Wong.</div>
+      </a>
+      <a class="idx-card" href="adv-03-lead-detail.html">
+        <div class="seq">Step 3 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADV-03</div>
+        <div class="name">Lead detail · Mark Roberts</div>
+        <div class="desc">F2 conversation log · enrichment from Companies House · lead score 8.4 · FactFind booked Friday.</div>
+      </a>
+      <a class="idx-card" href="adv-05-case-detail.html">
+        <div class="seq">Step 4 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADV-05</div>
+        <div class="name">Customer Card · case detail</div>
+        <div class="desc">Universal canvas. Every section projects every v1.0 feature. The central object across all surfaces.</div>
+      </a>
+      <a class="idx-card" href="adv-07-factfind.html">
+        <div class="seq">Step 5 <span class="of">/ 15</span> · headline</div>
+        <div class="id" style="margin-top:4px">ADV-07</div>
+        <div class="name">Live FactFind</div>
+        <div class="desc">3-column: transcript · A2 auto-populating · Ivy Live sidebar (C8 probes + C6 vulnerability). The hardest screen.</div>
+      </a>
+      <a class="idx-card" href="adv-11-suitability.html">
+        <div class="seq">Step 6 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADV-11</div>
+        <div class="name">Suitability draft</div>
+        <div class="desc">A4 editor with traceability tags · score panel · edits queue. Letter to Daniel for compliance review.</div>
+      </a>
+      <a class="idx-card" href="adv-13-uw.html">
+        <div class="seq">Step 7 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADV-13</div>
+        <div class="name">UW tracker</div>
+        <div class="desc">Timeline of insurer correspondence parsed by M5 · status state machine · loading-risk flag.</div>
+      </a>
+      <a class="idx-card" href="adv-14-compliance-file.html">
+        <div class="seq">Step 8 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADV-14</div>
+        <div class="name">Compliance file</div>
+        <div class="desc">C4 auto-built · 11-doc index · case summary cover · scores 92/91/96 · Daniel approved.</div>
+      </a>
+    </div>
+
+    <!-- ─── PART 2 · ADMIN BACK-OFFICE ──────────────────────── -->
+    <h3 class="idx-section-h">Part 2 · Niamh's kanban · Admin surface</h3>
+    <p class="step-narrative">After Mark signs the suitability letter, the case shifts from Sarah to Niamh. M1 ingests · M2 cross-verifies · M4 guides her through the Vitality portal · M5 watches insurer email for the UW decision.</p>
+    <div class="idx-grid">
+      <a class="idx-card" href="adm-01-kanban.html">
+        <div class="seq">Step 9 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADM-01</div>
+        <div class="name">Admin kanban</div>
+        <div class="desc">4 lanes — AI Verified · Not Matching · Portal Processing · Sent to Client. M2 prevented 2 NIGOs this week.</div>
+      </a>
+      <a class="idx-card" href="adm-02-drawer.html">
+        <div class="seq">Step 10 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">ADM-02</div>
+        <div class="name">Card drawer · Mark Roberts</div>
+        <div class="desc">Click a card — M2 cross-verify report opens as a side drawer. All-green case, one-click approve.</div>
+      </a>
+    </div>
+
+    <!-- ─── PART 3 · OPERATIONS / FIRM ──────────────────────── -->
+    <h3 class="idx-section-h">Part 3 · Mark Reynolds · Operations surface</h3>
+    <p class="step-narrative">The principal's view. Doesn't work cases himself — runs the firm. Most interaction is conversational with the Co-pilot (Atlas-style queries) supplemented by glances at the dashboard.</p>
+    <div class="idx-grid">
+      <a class="idx-card" href="ops-01-dashboard.html">
+        <div class="seq">Step 11 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">OPS-01</div>
+        <div class="name">Operations dashboard</div>
+        <div class="desc">Pipeline funnel · compliance summary · team capacity · Atlas-style firm-wide Ask Ivy.</div>
+      </a>
+    </div>
+
+    <!-- ─── PART 4 · AI CO-PILOT ────────────────────────────── -->
+    <h3 class="idx-section-h">Part 4 · The Co-pilot · cross-cutting AI</h3>
+    <p class="step-narrative">One AI agent in four states. Same conversation persists across modes. The Mark Roberts thread shown in all four — start in the widget, expand to the side panel, deep work on the full page.</p>
+    <div class="idx-grid">
+      <a class="idx-card" href="cop-00-welcome.html">
+        <div class="seq">Step 12 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">COP-00 · v1.0</div>
+        <div class="name">Welcome · empty state</div>
+        <div class="desc">First visit. Greeting · centered composer · 6 broker-specific starter prompts. Before any conversation has started.</div>
+      </a>
+      <a class="idx-card" href="cop-01-fullpage.html">
+        <div class="seq">Step 13 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">COP-01 · v1.0</div>
+        <div class="name">Full page · active thread</div>
+        <div class="desc">Conversation list left rail · active chat right pane. Pinned threads · search · slash commands · @-mentions.</div>
+      </a>
+      <a class="idx-card" href="cop-02-sidepanel.html">
+        <div class="seq">Step 14 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">COP-02 · v1.1</div>
+        <div class="name">Side panel · contextual</div>
+        <div class="desc">420px right drawer over a case detail. Auto-loads case context. Same thread, case-aware.</div>
+      </a>
+      <a class="idx-card" href="cop-03-widget.html">
+        <div class="seq">Step 15 <span class="of">/ 15</span></div>
+        <div class="id" style="margin-top:4px">COP-03 · v1.0</div>
+        <div class="name">Widget · bottom-right</div>
+        <div class="desc">380px floating chat over any page. Fast questions, one-shot drafts. Expands to side panel or full page.</div>
+      </a>
+    </div>
+
+    <!-- ─── FOOTER ──────────────────────────────────────────── -->
+    <div style="margin-top:60px;padding-top:24px;border-top:1px solid var(--hair-2);font-size:13px;color:var(--ink-3);line-height:1.7">
+      <strong style="color:var(--ink-2)">How to use these wireframes</strong><br>
+      → Walk through all 15 in order to feel the workflow shape.<br>
+      → All wireframes use the brand design system (Inter · emerald primary · warm canvas · real tokens from <code style="font-family:var(--mono);font-size:11.5px">01-design-system/ivy-tokens.css</code>).<br>
+      → React with <em>structural</em> feedback — what's missing, in the wrong order, wrong-shape. Don't focus on pixels yet.<br>
+      → After we lock structure, the hi-fi pass at <a href="../hifi/index.html" style="color:var(--ivy-700)">../hifi/</a> gets re-ported from these.
+    </div>
+  </div>
+</body>
+</html>

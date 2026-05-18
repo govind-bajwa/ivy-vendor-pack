@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · COP-01 Co-pilot full page</title>
+<link rel="stylesheet" href="shared/wires.css">
+<style>
+  /* COP-01 specific layout: sidebar | conv list | active conv */
+  .cop-app {
+    display: grid;
+    grid-template-columns: 220px 280px 1fr;
+    min-height: 920px;
+  }
+</style>
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · COP-01 · /copilot · Sarah Bennett (Adviser) · full page Co-pilot">
+  <div class="cop-app">
+
+    <!-- ─── Sidebar (existing nav with Copilot active) ─── -->
+    <aside class="nav">
+      <div class="logo">
+        <span class="leaf"></span>
+        <span class="wm">Ivy</span>
+        <span class="role">Adviser</span>
+      </div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <h6>AI</h6>
+      <ul>
+        <li class="active"><span class="ic dot"></span>Co-pilot <span class="count">17</span></li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <!-- ─── Conversation list rail ─── -->
+    <aside class="cop-rail">
+      <div class="new-chat">＋ New chat</div>
+      <div class="search">🔍 Search conversations…</div>
+
+      <h6>📌 Pinned</h6>
+      <ul>
+        <li class="active">
+          <span class="pin">📌</span>
+          <span style="flex:1">Mark Roberts — case strategy</span>
+        </li>
+        <li>
+          <span class="pin">📌</span>
+          <span style="flex:1">Q2 compliance review</span>
+        </li>
+        <li>
+          <span class="pin">📌</span>
+          <span style="flex:1">CPC 2025 audit prep</span>
+        </li>
+      </ul>
+
+      <h6>Today</h6>
+      <ul>
+        <li><span style="flex:1">Donovan loading reaction</span></li>
+        <li><span style="flex:1">Sarah Lee FactFind prep</span></li>
+        <li><span style="flex:1">CPC audit — section 3 gap</span></li>
+      </ul>
+
+      <h6>Yesterday</h6>
+      <ul>
+        <li><span style="flex:1">Anna Klein — UW decision</span></li>
+        <li><span style="flex:1">Compliance queue throughput</span></li>
+        <li><span style="flex:1">Tom Harris case re-sign</span></li>
+      </ul>
+
+      <h6>This week</h6>
+      <ul>
+        <li><span style="flex:1">Mon · 12 May review</span></li>
+        <li><span style="flex:1">Family hx Vitality patterns</span></li>
+        <li><span style="flex:1">Niamh — Murphy chase script</span></li>
+      </ul>
+
+      <h6>Archived</h6>
+      <ul>
+        <li><span class="meta" style="font-size:11px">47 older chats</span></li>
+      </ul>
+    </aside>
+
+    <!-- ─── Active conversation pane ─── -->
+    <section class="cop-pane">
+      <header class="cop-pane-head">
+        <span class="pin">📌</span>
+        <span class="title">Mark Roberts — case strategy + UW pre-empt</span>
+        <span class="meta" style="margin-left:auto">Started Tue 12 May · 17 messages · last 2 min ago</span>
+        <button class="btn" style="padding:4px 10px;font-size:11px">⋯</button>
+      </header>
+
+      <div class="cop-thread">
+
+        <div class="msg user">
+          <div class="who">Sarah</div>
+          <div class="body">
+            <p>read through Mark's FactFind and tell me what gaps a Vitality CI underwriter would flag</p>
+          </div>
+        </div>
+
+        <div class="msg ivy">
+          <div class="who">Ivy</div>
+          <div class="body">
+            <p>Three things to pre-empt before submission:</p>
+            <ol>
+              <li><b>Family medical hx</b> — brother bowel CA at 45. Vitality will likely request a GP report before final UW decision.</li>
+              <li><b>Self-employed income</b> — they'll want SA302 plus 6 months of business bank statements.</li>
+              <li><b>CI cover specifically</b> — given the family hx, Vitality's "additional CI questionnaire" is near-certain. Worth flagging to Mark now so he doesn't lose 2 weeks on a back-and-forth.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="msg user">
+          <div class="who">Sarah</div>
+          <div class="body">
+            <p>draft the GP authority cover note for Mark to sign — keep it short</p>
+          </div>
+        </div>
+
+        <div class="msg ivy">
+          <div class="who">Ivy</div>
+          <div class="body">
+            <p>Drafted.</p>
+            <div class="msg-attachment">
+              <div class="att-actions">
+                <button class="btn">Open</button>
+                <button class="btn">Copy</button>
+              </div>
+              <p style="margin:0 0 6px"><b>GP Authority — Mark Roberts</b></p>
+              <p style="margin:0">Dear Dr [GP],</p>
+              <p style="margin:6px 0">I authorise the release of my medical records to Vitality Life Limited for the purposes of underwriting my life insurance application. Records to cover the past 5 years, plus any documentation relating to family history of bowel cancer.</p>
+              <p style="margin:0">Yours sincerely, Mark Roberts · 14 May 2026</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="msg user">
+          <div class="who">Sarah</div>
+          <div class="body">
+            <p>good. also — should I flag the brother's age (45) explicitly in the suitability letter rationale, or keep it general?</p>
+          </div>
+        </div>
+
+        <div class="msg ivy">
+          <div class="who">Ivy</div>
+          <div class="body">
+            <p><b>Flag it explicitly.</b> Three reasons:</p>
+            <ol>
+              <li>Age 45 is below typical CI screening thresholds — supports the "elevated familial risk" framing that justifies choosing Vitality (their CI cancer definitions are stronger).</li>
+              <li>Daniel will check whether the suitability letter pre-empts the obvious objection ("why not Aviva at +0%?"). Explicit family hx pulls that defence forward.</li>
+              <li>Audit trail — if Mark complains in 6 years that you didn't pre-empt CI, the letter shows you did.</li>
+            </ol>
+            <p>Want me to draft the rationale paragraph?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input box -->
+      <div class="cop-input-wrap">
+        <div class="cop-input-box">
+          <div class="text">Ask Ivy anything — type, /command, or @customer…</div>
+          <div class="chip-row">
+            <span class="input-chip">@ mention</span>
+            <span class="input-chip">📎 attach</span>
+            <span class="input-chip">/ commands</span>
+            <span class="send">Send →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<p class="note" style="max-width:1100px;margin:14px auto 30px;display:block">Question: do we want chat <b>per-user</b> (Sarah's threads private) or <b>per-firm</b> (anyone at Northchart can see all threads)? Default: per-user, with explicit "share thread" action.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 30px;display:block">Question: when an @-mention is used (e.g., <code>@Mark Roberts</code>), does Ivy auto-load his FactFind/case context, or just link to it? Default: auto-load (treat as RAG injection).</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 30px;display:block">Question: archive after N days of inactivity? Default: yes, 30 days. User can pin to prevent archiving.</p>
+
+</body>
+</html>

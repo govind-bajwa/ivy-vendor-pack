@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mark Roberts · Case · Ivy</title>
+  <link rel="stylesheet" href="../07-design-system/ivy-tokens.css" />
+  <link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+  <main class="content">
+    <!-- Case header -->
+    <header style="margin-bottom:24px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div class="avatar" style="width:40px;height:40px;font-size:14px">MR</div>
+        <div>
+          <div style="font-size:22px;font-weight:600;letter-spacing:-.02em">Mark Roberts</div>
+          <div class="muted" style="font-size:13px">38 · Manchester M6 4LP · DOB 14 Mar 1988</div>
+        </div>
+        <span class="pill pill-stage-booked" style="margin-left:16px">UW · Day 7 · Awaiting GP report</span>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button class="btn btn-ghost">Share</button>
+          <button class="btn">Activity</button>
+          <button class="btn btn-primary">Send client update</button>
+        </div>
+      </div>
+      <div class="muted" style="font-size:13px;display:flex;gap:20px">
+        <span><b style="color:var(--ink)">Vitality DTL+CI</b> · £42.80/mo · £245k · 22yr</span>
+        <span>Adviser: <b style="color:var(--ink)">Sarah Bennett</b></span>
+        <span>Admin: <b style="color:var(--ink)">Niamh O'Reilly</b></span>
+        <span>Source: <b style="color:var(--ink)">Compare the Market</b> · £18</span>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav style="display:flex;gap:4px;border-bottom:1px solid var(--hair-2);margin-bottom:24px">
+      <a href="adv-05-case-detail.html" class="nav-item active" style="border-radius:0;border-bottom:2px solid var(--ivy-primary);padding:10px 14px;box-shadow:none;margin-bottom:-1px">Overview</a>
+      <a href="adv-07-factfind.html"     class="nav-item" style="border-radius:0;padding:10px 14px;box-shadow:none">FactFind</a>
+      <a href="#"                         class="nav-item" style="border-radius:0;padding:10px 14px;box-shadow:none">Quote</a>
+      <a href="adv-11-suitability.html"   class="nav-item" style="border-radius:0;padding:10px 14px;box-shadow:none">Suitability</a>
+      <a href="#"                         class="nav-item" style="border-radius:0;padding:10px 14px;box-shadow:none">Application</a>
+      <a href="#"                         class="nav-item" style="border-radius:0;padding:10px 14px;box-shadow:none">UW</a>
+      <a href="#"                         class="nav-item" style="border-radius:0;padding:10px 14px;box-shadow:none">Calls</a>
+      <a href="adv-14-compliance-file.html" class="nav-item" style="border-radius:0;padding:10px 14px;box-shadow:none">Compliance</a>
+    </nav>
+
+    <!-- 2-column layout: primary + activity rail -->
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:flex-start">
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <!-- At a glance -->
+        <div class="card">
+          <h2 class="card-title">At a glance</h2>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+            <div>
+              <div class="stat-label">Stage</div>
+              <div class="bold">UW</div>
+              <div class="muted" style="font-size:12px">Awaiting GP report · Day 7</div>
+            </div>
+            <div>
+              <div class="stat-label">Next event</div>
+              <div class="bold">GP report ETA</div>
+              <div class="muted" style="font-size:12px">Day 14 (est.)</div>
+            </div>
+            <div>
+              <div class="stat-label">Compliance</div>
+              <div class="bold" style="color:var(--stage-qualified-fg)">96 / 100 ✓</div>
+              <div class="muted" style="font-size:12px">File ready · Daniel signed</div>
+            </div>
+            <div>
+              <div class="stat-label">Vulnerability</div>
+              <div class="bold">None</div>
+              <div class="muted" style="font-size:12px">C6 across Stages 2–8</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lead profile -->
+        <div class="card">
+          <h2 class="card-title"><span>Lead profile</span><span class="muted" style="margin-left:auto;font-size:11px;font-weight:400">F1 captured 21:14 Tue · 6 min to qualify</span></h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:13px">
+            <div>
+              <div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Score · Source</div>
+              <div><b>8.4 / 10</b> · Compare the Market · £18 paid</div>
+            </div>
+            <div>
+              <div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Trigger</div>
+              <div>Brother diagnosed bowel cancer last month</div>
+            </div>
+            <div>
+              <div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Companies House</div>
+              <div>Director · XYZ Design Ltd</div>
+            </div>
+            <div>
+              <div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Household</div>
+              <div>Wife Sophie · 2 children (4, 7)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommendation -->
+        <div class="card">
+          <h2 class="card-title"><span>Recommendation</span><span class="pill pill-stage-converted" style="margin-left:auto">Standard rates accepted</span></h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;font-size:13px">
+            <div><div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em">Product</div><div class="bold">Vitality DTL + CI</div></div>
+            <div><div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em">Premium</div><div class="bold">£42.80/mo</div></div>
+            <div><div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em">Sum assured</div><div class="bold">£245,000</div></div>
+            <div><div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em">Term</div><div class="bold">22 years</div></div>
+          </div>
+          <div style="margin-top:14px;font-size:12px;color:var(--ink-3);padding-top:12px;border-top:1px solid var(--hair)">
+            Sum assured matches mortgage term · loading: none · alternatives considered: Royal London (priced higher) · Aviva (50% loading on family hx)
+          </div>
+        </div>
+
+        <!-- FactFind summary -->
+        <div class="card">
+          <h2 class="card-title"><span>FactFind summary</span><span class="muted" style="margin-left:auto;font-size:11px;font-weight:400">A2 · 94% confidence</span></h2>
+          <div style="font-size:13px;margin-bottom:10px"><span class="muted">Captured:</span> Friday 14:00 (Sarah) · all 8 sections complete</div>
+          <ul class="list" style="font-size:13px">
+            <li><span class="status-icon complete">✓</span> Family hx: brother bowel CA age 45</li>
+            <li><span class="status-icon complete">✓</span> Smoker status: stopped 4yr ago</li>
+            <li><span class="status-icon complete">✓</span> Personal hx: clean — no current/past conditions</li>
+            <li><span class="status-icon complete">✓</span> Self-employed graphic designer · £62k (SA302)</li>
+          </ul>
+          <a href="adv-07-factfind.html" style="font-size:12px;color:var(--ivy-700);text-decoration:none;margin-top:8px;display:inline-block">Open FactFind →</a>
+        </div>
+
+        <!-- Compliance file -->
+        <div class="card">
+          <h2 class="card-title"><span>Compliance file</span><span class="pill pill-stage-qualified" style="margin-left:auto">Auto-built · 11/11 docs</span></h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;font-size:13px">
+            <div><div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em">Score</div><div class="bold">96 / 100</div></div>
+            <div><div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em">Sign-off</div><div class="bold">Daniel · Mon 14:02</div></div>
+            <div><div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em">Retention</div><div class="bold">6 yrs (UK)</div></div>
+          </div>
+          <a href="adv-14-compliance-file.html" style="font-size:12px;color:var(--ivy-700);text-decoration:none;margin-top:12px;display:inline-block">Open compliance file →</a>
+        </div>
+      </div>
+
+      <!-- Activity rail -->
+      <aside class="card" style="position:sticky;top:80px">
+        <h2 class="card-title">Activity</h2>
+        <div class="activity-rail">
+          <div class="activity-item">
+            <span class="day">Day 7</span>
+            <div class="what">
+              <b>Vitality email parsed by M5</b><br />
+              <span class="muted">GP report status check · awaiting Day 14–19</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="day">Day 6</span>
+            <div class="what">
+              <b>Mark signed GP consent</b><br />
+              <span class="muted">DocuSign envelope</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="day">Day 5</span>
+            <div class="what">
+              <b>Vitality requested GP report</b><br />
+              <span class="muted">M5 classified · GP_REPORT_REQUEST</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="day">Day 1</span>
+            <div class="what">
+              <b>Application submitted via M4</b><br />
+              <span class="muted">M2 cross-verify all green</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="day">Day 0</span>
+            <div class="what">
+              <b>FactFind completed</b><br />
+              <span class="muted">A2 · 94% confidence (Sarah)</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="day">−2</span>
+            <div class="what">
+              <b>Suitability signed</b><br />
+              <span class="muted">A4 · 92 · Daniel approved 6 min</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="day">−5</span>
+            <div class="what">
+              <b>Pre-FactFind disclosure</b><br />
+              <span class="muted">A7 v3.4 sent · ToB signed Wed 09:02</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="day">−7</span>
+            <div class="what">
+              <b>F1 captured</b><br />
+              <span class="muted">Compare the Market · 21:14 Tue · score 8.4</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    window.IVY_SCREEN = {
+      surface: "adviser",
+      activeNav: "cases",
+      breadcrumb: "Cases / Mark Roberts"
+    };
+  </script>
+  <script src="shared/chrome.js"></script>
+</body>
+</html>

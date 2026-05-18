@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · COP-02 Co-pilot side panel</title>
+<link rel="stylesheet" href="shared/wires.css">
+<style>
+  /* The sheet contains the base page (Mark Roberts case detail) with a 420px side panel overlaid on the right */
+  .base-dimmed { position: relative; }
+  .base-dimmed::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 420px; bottom: 0;
+    background: rgba(0,0,0,.04);
+    pointer-events: none;
+    z-index: 5;
+  }
+</style>
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · COP-02 · /cases/MR-2026 · Mark Roberts · Co-pilot side panel open">
+  <div class="app base-dimmed">
+
+    <!-- ─── Base page: Sidebar + Mark Roberts case detail ─── -->
+    <aside class="nav">
+      <div class="logo">
+        <span class="leaf"></span>
+        <span class="wm">Ivy</span>
+        <span class="role">Adviser</span>
+      </div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li class="active"><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <h6>AI</h6>
+      <ul>
+        <li><span class="ic dot"></span>Co-pilot <span class="count">17</span></li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page" style="padding-right:24px">
+      <!-- Case header (compressed because side panel is taking right column) -->
+      <div class="pg-head">
+        <div>
+          <p class="pg-sub" style="margin-bottom:4px">← Cases</p>
+          <h1 class="pg-title">Mark Roberts</h1>
+          <p class="pg-sub">38 · Manchester M6 4LP · self-employed graphic designer</p>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <span class="pill blue"><span class="dot"></span>UW · Day 7 · Awaiting GP report</span>
+            <span class="pill">Vitality DTL+CI · £42.80/mo</span>
+            <span class="pill slate">Sarah · Niamh</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs strip -->
+      <div style="display:flex;gap:0;border-bottom:1.5px solid var(--hair-strong);margin-bottom:18px;font-family:'Inter';font-size:13px">
+        <span style="padding:10px 14px;border-bottom:2.5px solid var(--ink);font-weight:600;margin-bottom:-1.5px">Overview</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">FactFind</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Quote</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Suitability</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">UW</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Compliance</span>
+      </div>
+
+      <!-- Truncated body -->
+      <div class="card">
+        <h3>At a glance</h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;font-size:12.5px">
+          <div><span class="meta">Stage</span><br><b>UW Day 7</b><br><span class="meta">awaiting GP report</span></div>
+          <div><span class="meta">Next event</span><br><b>GP report ETA</b><br><span class="meta">Day 14 est.</span></div>
+          <div><span class="meta">Compliance</span><br><b style="color:var(--green)">96/100 ✓</b><br><span class="meta">file ready</span></div>
+          <div><span class="meta">Vulnerability</span><br><b>None</b><br><span class="meta">C6 Stages 2–8</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Recommendation <span class="pill green" style="margin-left:auto"><span class="dot"></span>Standard rates accepted</span></h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:12.5px">
+          <div><span class="meta">Product</span><br><b>Vitality DTL + CI</b></div>
+          <div><span class="meta">Premium</span><br><b>£42.80/mo</b></div>
+          <div><span class="meta">Sum assured</span><br><b>£245,000</b></div>
+          <div><span class="meta">Term</span><br><b>22 years</b></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>FactFind summary</h3>
+        <p style="font-size:12.5px;margin:0">Captured Friday 14:00 by Sarah · A2 confidence 94% · all 8 sections complete.</p>
+      </div>
+
+      <p class="meta" style="font-size:11.5px">… more sections collapsed (Lead profile · Activity rail)</p>
+    </main>
+
+    <!-- ─── Side panel: Co-pilot ─── -->
+    <aside class="cop-side">
+      <header class="cop-side-head">
+        <span class="status done" style="background:var(--green-wash);color:var(--green)">✦</span>
+        <span style="font-weight:600;font-size:14px">Ivy Co-pilot</span>
+        <div style="margin-left:auto;display:flex;gap:6px">
+          <button class="ico-btn" title="Open in full page">⊞</button>
+          <button class="ico-btn" title="Pin thread">📌</button>
+          <button class="ico-btn" title="Close">×</button>
+        </div>
+      </header>
+
+      <div class="cop-side-context">
+        <span>📎</span>
+        <span>Context loaded: <strong>Mark Roberts</strong> · FactFind, suitability, UW timeline, compliance file</span>
+      </div>
+
+      <div class="cop-thread" style="padding:18px 22px;flex:1;overflow-y:auto;font-size:13px;line-height:1.6">
+
+        <div class="msg user">
+          <div class="who">Sarah</div>
+          <div class="body">
+            <p>summary of where this case is at</p>
+          </div>
+        </div>
+
+        <div class="msg ivy">
+          <div class="who">Ivy</div>
+          <div class="body">
+            <p><b>Mark Roberts · UW Day 7</b></p>
+            <ul>
+              <li>Vitality acknowledged Day 1; GP report requested Day 5.</li>
+              <li>Consent signed by Mark Day 6, forwarded same-day.</li>
+              <li>Expected GP turnaround: Day 14–19.</li>
+              <li>No vulnerability flags. Compliance file score 96/100.</li>
+              <li>Indemnified commission ~£648, expected 2–4 weeks after on-risk.</li>
+            </ul>
+            <p>Anything specific to dig into?</p>
+          </div>
+        </div>
+
+        <div class="msg user">
+          <div class="who">Sarah</div>
+          <div class="body">
+            <p>what should I watch for between now and Day 14?</p>
+          </div>
+        </div>
+
+        <div class="msg ivy">
+          <div class="who">Ivy</div>
+          <div class="body">
+            <p>Three things:</p>
+            <ol>
+              <li><b>GP delay risk</b> — Mark's surgery typically responds in 16–22 days based on recent cases. If we hit Day 14 without movement, I'll surface a chase.</li>
+              <li><b>Loading reaction</b> — if Vitality comes back with a +25% loading on family hx, you'll want to compare against Royal London (which was your second pick) before accepting.</li>
+              <li><b>Client check-in</b> — Mark hasn't been updated since Day 6. I can draft a Day-10 status note. Want it?</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="msg user">
+          <div class="who">Sarah</div>
+          <div class="body">
+            <p>yes, draft it</p>
+          </div>
+        </div>
+
+        <div class="msg ivy">
+          <div class="who">Ivy</div>
+          <div class="body">
+            <p>Drafted.</p>
+            <div class="msg-attachment">
+              <div class="att-actions">
+                <button class="btn">Open</button>
+                <button class="btn">Send</button>
+              </div>
+              <p style="margin:0 0 4px"><b>Day-10 status to Mark</b></p>
+              <p style="margin:0;font-size:11.5px">Hi Mark, quick update — Vitality requested a GP report on Friday and your consent went over the same day. We're now in the GP-report waiting window, typically 14 days. I'll be in touch the moment we hear back. Anything in the meantime, just reply here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="cop-input-wrap" style="padding:14px 18px 16px">
+        <div class="cop-input-box" style="padding:10px 12px">
+          <div class="text">Ask anything about this case…</div>
+          <div class="chip-row">
+            <span class="input-chip">/ command</span>
+            <span class="input-chip">📎</span>
+            <span class="send">→</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<p class="note" style="max-width:1100px;margin:14px auto 18px;display:block">Question: how does the side panel know which thread to load? Default: load the most-recent thread that has this case as context. If none, open a new thread auto-prefilled with the case context.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 18px;display:block">Question: width — 420px feels right for case context but tight for long chats. Allow drag-resize? Default: fixed 420px in v1.1, drag-resize in v1.2.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 30px;display:block">Question: what happens when Sarah clicks "Open in full page"? Default: open full page Co-pilot at /copilot with this thread active. Side panel closes.</p>
+
+</body>
+</html>

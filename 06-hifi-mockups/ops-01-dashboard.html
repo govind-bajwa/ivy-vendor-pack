@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Operations · Mark Reynolds · Ivy</title>
+  <link rel="stylesheet" href="../07-design-system/ivy-tokens.css" />
+  <link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+  <main class="content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Northchart Advisory</h1>
+        <div class="page-subtitle">Week of 12 May 2026 · principal view · 8 advisers · 600 cases/yr</div>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-ghost">← Week</button>
+        <button class="btn btn-ghost">Week →</button>
+        <button class="btn">Export MI</button>
+      </div>
+    </div>
+
+    <!-- Pipeline this week -->
+    <section class="card card-lg" style="margin-bottom:16px">
+      <h2 class="card-title">
+        <span>Pipeline this week</span>
+        <span style="margin-left:auto;display:flex;gap:14px;font-size:12px">
+          <span><span class="muted">Pipeline value:</span> <b>£142k expected commission</b></span>
+        </span>
+      </h2>
+      <div class="funnel-row"><span class="label">Captured</span><span class="funnel-bar" style="width:760px"></span><span class="count">47</span></div>
+      <div class="funnel-row"><span class="label">Qualified</span><span class="funnel-bar" style="width:614px"></span><span class="count">38</span></div>
+      <div class="funnel-row"><span class="label">Called</span><span class="funnel-bar" style="width:453px"></span><span class="count">28</span></div>
+      <div class="funnel-row"><span class="label">Drafted</span><span class="funnel-bar" style="width:356px"></span><span class="count">22</span></div>
+      <div class="funnel-row"><span class="label">Issued</span><span class="funnel-bar" style="width:291px"></span><span class="count">18</span></div>
+    </section>
+
+    <!-- 2-column: Compliance + Team -->
+    <div class="card-grid card-grid-2">
+      <section class="card">
+        <h2 class="card-title"><span>Compliance</span><a href="#" style="margin-left:auto;font-size:11px;color:var(--ivy-700);text-decoration:none">Open compliance →</a></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:13px">
+          <div>
+            <div class="stat-label">Vulnerability cases</div>
+            <div class="stat" style="font-size:22px">4 <span style="color:var(--stage-qualified-fg);font-size:14px">✓</span></div>
+            <div class="muted" style="font-size:11px">All handled · C6</div>
+          </div>
+          <div>
+            <div class="stat-label">Audit-flagged cases</div>
+            <div class="stat" style="font-size:22px">0</div>
+            <div class="muted" style="font-size:11px">Clean week</div>
+          </div>
+          <div>
+            <div class="stat-label">Avg compliance file</div>
+            <div class="stat" style="font-size:22px">98<span style="color:var(--ink-3);font-size:14px">%</span></div>
+            <div class="muted" style="font-size:11px">C4 · across 18 issued cases</div>
+          </div>
+          <div>
+            <div class="stat-label">M2 NIGO prevention</div>
+            <div class="stat" style="font-size:22px">12</div>
+            <div class="muted" style="font-size:11px">Caught this week · saved ~30 case-days</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title"><span>Team capacity</span><a href="#" style="margin-left:auto;font-size:11px;color:var(--ivy-700);text-decoration:none">Open team →</a></h2>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="width:64px">Sarah</span>
+            <div class="bar"><div class="bar-fill warn" style="width:92%"></div></div>
+            <span class="bold" style="width:36px;text-align:right;font-variant-numeric:tabular-nums">92%</span>
+            <span class="pill pill-warn" style="font-size:9px">at risk</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="width:64px">James</span>
+            <div class="bar"><div class="bar-fill" style="width:78%"></div></div>
+            <span class="bold" style="width:36px;text-align:right;font-variant-numeric:tabular-nums">78%</span>
+            <span style="width:54px"></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="width:64px">Tom</span>
+            <div class="bar"><div class="bar-fill" style="width:88%"></div></div>
+            <span class="bold" style="width:36px;text-align:right;font-variant-numeric:tabular-nums">88%</span>
+            <span style="width:54px"></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="width:64px">Aiyana</span>
+            <div class="bar"><div class="bar-fill" style="width:65%"></div></div>
+            <span class="bold" style="width:36px;text-align:right;font-variant-numeric:tabular-nums">65%</span>
+            <span class="pill pill-info" style="font-size:9px">ramping</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="width:64px">Connor</span>
+            <div class="bar"><div class="bar-fill" style="width:81%"></div></div>
+            <span class="bold" style="width:36px;text-align:right;font-variant-numeric:tabular-nums">81%</span>
+            <span style="width:54px"></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="width:64px">Priya</span>
+            <div class="bar"><div class="bar-fill" style="width:84%"></div></div>
+            <span class="bold" style="width:36px;text-align:right;font-variant-numeric:tabular-nums">84%</span>
+            <span style="width:54px"></span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Attention items -->
+    <section class="card" style="margin-top:16px">
+      <h2 class="card-title">This week's attention items</h2>
+      <ul class="list">
+        <li>
+          <span class="pill pill-warn">CAPACITY</span>
+          <span><b>Sarah at 92%</b> — at risk; rebalance considered</span>
+          <a href="#" class="muted" style="margin-left:auto;font-size:11px;text-decoration:none">Open team →</a>
+        </li>
+        <li>
+          <span class="pill pill-info">RAMP</span>
+          <span><b>Aiyana ramping</b> (post-mat) — capacity climbing</span>
+          <a href="#" class="muted" style="margin-left:auto;font-size:11px;text-decoration:none">Open team →</a>
+        </li>
+        <li>
+          <span class="pill pill-warn">CHASE</span>
+          <span><b>Murphy family</b> case — 6 days in Portal Processing</span>
+          <a href="adm-01-kanban.html" class="muted" style="margin-left:auto;font-size:11px;text-decoration:none">Open kanban →</a>
+        </li>
+        <li>
+          <span class="pill pill-stage-qualified">CPC 2025</span>
+          <span><b>CPC 2025 evidence pack ready</b> — Daniel signed off Mon</span>
+          <a href="#" class="muted" style="margin-left:auto;font-size:11px;text-decoration:none">Open audit →</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Ask Ivy panel -->
+    <section class="card" style="margin-top:16px;background:linear-gradient(135deg, rgba(16,185,129,.04), transparent)">
+      <h2 class="card-title">
+        <span style="display:inline-flex;align-items:center;gap:8px">
+          <span class="dot" style="width:8px;height:8px;border-radius:var(--r-pill);background:var(--ivy-primary);box-shadow:var(--shadow-glow);display:inline-block"></span>
+          Ask Ivy · Atlas mode
+        </span>
+        <span class="muted" style="margin-left:auto;font-size:11px">natural-language firm-wide queries</span>
+      </h2>
+
+      <div style="background:var(--paper);border:1px solid var(--hair-2);border-radius:var(--r-md);padding:14px 16px;margin-bottom:12px">
+        <div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Question</div>
+        <div style="font-size:14px;margin-bottom:14px">Which adviser has the highest conversion this month?</div>
+
+        <div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Answer</div>
+        <div style="font-size:14px;line-height:1.6">
+          <b>Sarah at 71%.</b> Team avg 58%. Three drivers behind her lead:
+        </div>
+        <ul style="margin:8px 0 0;padding-left:20px;font-size:13px;color:var(--ink-2);line-height:1.7">
+          <li>27% more time on FactFind capture</li>
+          <li>100% same-day vulnerability response</li>
+          <li>Edits A4 drafts vs starting from scratch</li>
+        </ul>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="btn btn-ghost">Ask follow-up</button>
+          <button class="btn btn-ghost">Show reasoning</button>
+        </div>
+      </div>
+
+      <div class="muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Suggested next questions</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="pill" style="background:var(--paper);border:1px solid var(--hair-2);color:var(--ink-2);cursor:pointer">How many cases did Sarah close last quarter vs this quarter?</span>
+        <span class="pill" style="background:var(--paper);border:1px solid var(--hair-2);color:var(--ink-2);cursor:pointer">Show me all loaded UW decisions this month</span>
+        <span class="pill" style="background:var(--paper);border:1px solid var(--hair-2);color:var(--ink-2);cursor:pointer">What's our M2 NIGO prevention saving in £?</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.IVY_SCREEN = {
+      surface: "ops",
+      activeNav: "dashboard",
+      breadcrumb: "Mark Reynolds · principal",
+      copilot: {
+        body: '<em style="color:var(--ink-3)">Ask Ivy:</em> "Which adviser has the highest conversion this month?"<br><br><strong>Sarah at 71%.</strong> Team avg 58%. Three drivers behind her lead:<br>• 27% more time on FactFind capture<br>• 100% same-day vulnerability response<br>• Edits A4 drafts vs starting from scratch',
+        actions: [{ label: 'Ask follow-up' }]
+      }
+    };
+  </script>
+  <script src="shared/chrome.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Today · Sarah Bennett · Ivy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../07-design-system/ivy-tokens.css" />
+  <link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+  <main class="content">
+    <div class="content-narrow">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Today</h1>
+          <div class="page-subtitle">Wednesday 13 May · 4 client-facing slots · 3 in compliance queue</div>
+        </div>
+        <div class="page-actions">
+          <button class="btn"><span style="opacity:.6">＋</span> New lead</button>
+          <button class="btn btn-primary">Start next FactFind</button>
+        </div>
+      </div>
+
+      <!-- Stat grid -->
+      <div class="card-grid">
+        <div class="card card-tight">
+          <div class="stat-label">Active cases</div>
+          <div class="stat">47</div>
+        </div>
+        <div class="card card-tight">
+          <div class="stat-label">Today's apps</div>
+          <div class="stat">4</div>
+        </div>
+        <div class="card card-tight">
+          <div class="stat-label">Compliance queue</div>
+          <div class="stat">3</div>
+        </div>
+        <div class="card card-tight">
+          <div class="stat-label">Alerts</div>
+          <div class="stat" style="color:var(--stage-lost-fg)">3</div>
+        </div>
+      </div>
+
+      <!-- Lead inbox preview -->
+      <section class="card" style="margin-bottom:20px">
+        <h2 class="card-title">
+          <span>Lead inbox</span>
+          <span class="pill pill-info">12 new since yesterday · 9 captured by F1 out-of-hours</span>
+          <a href="adv-02-leads.html" class="muted" style="margin-left:auto;font-size:12px;text-decoration:none">View all →</a>
+        </h2>
+
+        <ul class="list">
+          <li>
+            <span class="bold" style="width:160px">Mark Roberts</span>
+            <span class="muted" style="width:140px">£245k LIFE+CI · 38</span>
+            <span class="pill pill-stage-qualified">Qualified ✓</span>
+            <span class="muted" style="margin-left:auto;font-size:12px">F1 · Compare the Market · 21:14 Tue</span>
+            <a class="btn btn-primary" href="adv-07-factfind.html" style="margin-left:12px">Open FactFind →</a>
+          </li>
+          <li>
+            <span class="bold" style="width:160px">Sarah Lee</span>
+            <span class="muted" style="width:140px">£150k LIFE · 42</span>
+            <span class="pill pill-stage-qualified">Qualified ✓</span>
+            <span class="muted" style="margin-left:auto;font-size:12px">F1 · MoneySuperMarket · 06:42 Wed</span>
+            <a class="btn" href="#" style="margin-left:12px">Triage →</a>
+          </li>
+          <li>
+            <span class="bold" style="width:160px">James Wong</span>
+            <span class="muted" style="width:140px">£80k IP · 35</span>
+            <span class="pill pill-stage-lost">⚠ Vuln flag</span>
+            <span class="muted" style="margin-left:auto;font-size:12px">F1 · Meta · 23:48 Tue</span>
+            <a class="btn btn-warning" href="#" style="margin-left:12px">Review →</a>
+          </li>
+          <li>
+            <span class="bold" style="width:160px">Priya Shah</span>
+            <span class="muted" style="width:140px">£180k LIFE · 39</span>
+            <span class="pill pill-stage-qualified">Qualified ✓</span>
+            <span class="muted" style="margin-left:auto;font-size:12px">F1 · Compare the Market · Mon 14:22</span>
+            <a class="btn" href="#" style="margin-left:12px">Open</a>
+          </li>
+          <li class="muted" style="font-size:12px;justify-content:center">+ 8 more leads · open inbox to review</li>
+        </ul>
+      </section>
+
+      <!-- Today's appointments -->
+      <div class="card-grid card-grid-2">
+        <section class="card">
+          <h2 class="card-title"><span>Today's appointments</span><span class="count">4</span></h2>
+          <ul class="list">
+            <li>
+              <span class="bold" style="width:60px">10:30</span>
+              <span style="flex:1">FactFind · <b>Mark Roberts</b></span>
+              <span class="muted" style="font-size:12px">90 min · Zoom</span>
+            </li>
+            <li>
+              <span class="bold" style="width:60px">13:00</span>
+              <span style="flex:1">FactFind · <b>Sarah Lee</b></span>
+              <span class="muted" style="font-size:12px">60 min · Zoom</span>
+            </li>
+            <li>
+              <span class="bold" style="width:60px">14:30</span>
+              <span style="flex:1">UW review · <b>Tom Harris</b></span>
+              <span class="muted" style="font-size:12px">30 min · Phone</span>
+            </li>
+            <li>
+              <span class="bold" style="width:60px">16:00</span>
+              <span style="flex:1">FactFind · <b>Priya Shah</b></span>
+              <span class="muted" style="font-size:12px">75 min · Teams</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">
+            <span>Compliance queue</span>
+            <span class="pill pill-info">avg wait 4 hrs · was 2 days</span>
+            <span class="count">3</span>
+          </h2>
+          <ul class="list">
+            <li>
+              <span class="status-icon complete">✓</span>
+              <div style="flex:1">
+                <div class="bold">Suitability · Anna Klein</div>
+                <div class="muted" style="font-size:12px">A4 drafted · score 94 · awaiting Daniel</div>
+              </div>
+            </li>
+            <li>
+              <span class="status-icon complete">✓</span>
+              <div style="flex:1">
+                <div class="bold">Suitability · David Patel</div>
+                <div class="muted" style="font-size:12px">A4 drafted · score 87 · awaiting Daniel</div>
+              </div>
+            </li>
+            <li>
+              <span class="status-icon complete">✓</span>
+              <div style="flex:1">
+                <div class="bold">Compliance file · Tom Harris</div>
+                <div class="muted" style="font-size:12px">C4 auto-built · score 96</div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Alerts -->
+      <section class="card" style="margin-top:20px">
+        <h2 class="card-title"><span>Alerts</span><span class="count">3</span></h2>
+        <ul class="list">
+          <li>
+            <span class="pill pill-stage-lost">VULN</span>
+            <span>James Wong (Stage 2) — review before booking</span>
+            <a href="#" class="btn btn-ghost" style="margin-left:auto">Review</a>
+          </li>
+          <li>
+            <span class="pill pill-stage-converted">UW</span>
+            <span>Anna Klein — Standard accepted (Aviva, parsed by M5)</span>
+            <a href="#" class="btn btn-ghost" style="margin-left:auto">Open case</a>
+          </li>
+          <li>
+            <span class="pill pill-warn">CHASE</span>
+            <span>Murphy family — 6 days in Portal Processing (RL IE)</span>
+            <a href="#" class="btn btn-ghost" style="margin-left:auto">Chase</a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    window.IVY_SCREEN = {
+      surface: "adviser",
+      activeNav: "today",
+      breadcrumb: "Sarah Bennett · Northchart Advisory"
+    };
+  </script>
+  <script src="shared/chrome.js"></script>
+</body>
+</html>

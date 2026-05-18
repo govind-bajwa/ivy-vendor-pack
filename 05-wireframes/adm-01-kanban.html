@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADM-01 Kanban</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADM-01 · /kanban · Niamh O'Reilly (Admin)">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Admin</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li class="active"><span class="ic"></span>Kanban <span class="count">18</span></li>
+        <li><span class="ic circ"></span>Email feed <span class="count">4</span></li>
+        <li><span class="ic"></span>Portal guides</li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page">
+      <div class="pg-head">
+        <div>
+          <h1 class="pg-title">Kanban</h1>
+          <p class="pg-sub">Today · <b>18 cards in flight</b> · M2 prevented <b style="color:var(--green)">2 NIGOs</b> this week</p>
+        </div>
+        <div class="pg-actions">
+          <input class="input" placeholder="🔍 Search by client or insurer…">
+          <button class="btn">Filters</button>
+        </div>
+      </div>
+
+      <!-- Kanban -->
+      <div class="kanban">
+
+        <!-- Lane 1: AI Verified -->
+        <div class="lane">
+          <h4>AI Verified Pending Review <span class="ct">14</span></h4>
+          <div class="k-card green">
+            <div class="nm">Mark Roberts</div>
+            <div class="ins">Vitality UK</div>
+            <div class="ins">£245k DTL+CI</div>
+            <div class="st">✓ M2 green</div>
+          </div>
+          <div class="k-card green">
+            <div class="nm">Priya Shah</div>
+            <div class="ins">Vitality UK · £180k LIFE</div>
+            <div class="st">✓ M2 green</div>
+          </div>
+          <div class="k-card green">
+            <div class="nm">Liam O'Brien</div>
+            <div class="ins">Aviva IE · €220k LIFE</div>
+            <div class="st">✓ M2 green</div>
+          </div>
+          <div class="k-card green">
+            <div class="nm">Hannah Wright</div>
+            <div class="ins">L&amp;G UK · £155k LIFE+CI</div>
+            <div class="st">✓ M2 green</div>
+          </div>
+          <div style="text-align:center;font-size:12px;color:var(--ink-3);padding:8px;border:1.5px dashed var(--hair-strong);border-radius:6px;margin-top:6px;font-family:'Kalam'">+ 10 more</div>
+        </div>
+
+        <!-- Lane 2: Not Matching -->
+        <div class="lane warn">
+          <h4>⚠ Not Matching <span class="ct">3</span></h4>
+          <div class="k-card warn">
+            <div class="nm">Tom Harris</div>
+            <div class="ins">Royal London UK</div>
+            <div class="ins">Address mismatch</div>
+            <div class="st">⚠ ping Sarah</div>
+          </div>
+          <div class="k-card warn">
+            <div class="nm">David Patel</div>
+            <div class="ins">L&amp;G UK</div>
+            <div class="ins">Premium delta flag</div>
+            <div class="st">⚠ ping Sarah</div>
+          </div>
+          <div class="k-card warn">
+            <div class="nm">Catherine Bell</div>
+            <div class="ins">Vitality UK</div>
+            <div class="ins">DOB mismatch (1 day)</div>
+            <div class="st">⚠ ping James</div>
+          </div>
+        </div>
+
+        <!-- Lane 3: Portal Processing -->
+        <div class="lane">
+          <h4>Portal Processing <span class="ct">8</span></h4>
+          <div class="k-card info">
+            <div class="nm">Anna Klein</div>
+            <div class="ins">Aviva UK · Day 3 UW</div>
+            <div class="st">M5 watching</div>
+          </div>
+          <div class="k-card amber">
+            <div class="nm">Murphy family</div>
+            <div class="ins">RL IE · Day 6 ⚠</div>
+            <div class="st">chase needed</div>
+          </div>
+          <div class="k-card info">
+            <div class="nm">Owen Reilly</div>
+            <div class="ins">New Ireland · Day 2 UW</div>
+            <div class="st">M5 watching</div>
+          </div>
+          <div class="k-card info">
+            <div class="nm">Jenna Kapoor</div>
+            <div class="ins">Vitality UK · GP report in</div>
+            <div class="st">UW reviewing</div>
+          </div>
+          <div style="text-align:center;font-size:12px;color:var(--ink-3);padding:8px;border:1.5px dashed var(--hair-strong);border-radius:6px;margin-top:6px;font-family:'Kalam'">+ 4 more</div>
+        </div>
+
+        <!-- Lane 4: Sent to Client -->
+        <div class="lane">
+          <h4>Sent to Client <span class="ct">5</span></h4>
+          <div class="k-card green">
+            <div class="nm">Sarah Lee</div>
+            <div class="ins">Vitality UK · sent today</div>
+            <div class="st">✓ M6 drafted</div>
+          </div>
+          <div class="k-card green">
+            <div class="nm">Walsh</div>
+            <div class="ins">Aviva IE · DD live 1 Jun</div>
+            <div class="st">✓ M6 sent</div>
+          </div>
+          <div class="k-card green">
+            <div class="nm">Tom Harris (B)</div>
+            <div class="ins">RL UK · on-risk Day 17</div>
+            <div class="st">✓ archived</div>
+          </div>
+          <div style="text-align:center;font-size:12px;color:var(--ink-3);padding:8px;border:1.5px dashed var(--hair-strong);border-radius:6px;margin-top:6px;font-family:'Kalam'">+ 2 more</div>
+        </div>
+      </div>
+
+      <!-- Attention strip -->
+      <div class="card" style="margin-top:18px">
+        <h3>Needs your attention <span style="margin-left:auto;font-family:'Kalam';font-size:12px;color:var(--ink-3);font-weight:400">3 items</span></h3>
+        <div class="row">
+          <span class="pill red">⚠ M2</span>
+          <span class="grow"><b>Tom Harris</b> · address mismatch — FactFind says "Lane", application says "Road"</span>
+          <button class="btn primary">Ping Sarah</button>
+        </div>
+        <div class="row">
+          <span class="pill red">⚠ M2</span>
+          <span class="grow"><b>David Patel</b> · premium delta — application £38.50, suitability £42.00</span>
+          <button class="btn primary">Ping Sarah</button>
+        </div>
+        <div class="row">
+          <span class="pill amber">CHASE</span>
+          <span class="grow"><b>Murphy family</b> · 6 days in Portal Processing (Royal London IE)</span>
+          <button class="btn">Chase RL IE</button>
+        </div>
+      </div>
+
+      <p class="note">Question: drag-and-drop between lanes — yes/no? M2/M5 should auto-transition; manual drag only when adviser/admin overrides.</p>
+    </main>
+  </div>
+</div>
+
+<div class="copilot">
+  <div class="h"><span class="dot"></span>Ivy Co-pilot</div>
+  <div class="body">Sarah responded — Tom's correct address is "Lane" not "Road". Re-ingesting now…</div>
+  <input class="input" placeholder="Ask Ivy…">
+</div>
+
+</body>
+</html>

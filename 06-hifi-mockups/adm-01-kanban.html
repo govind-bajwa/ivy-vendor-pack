@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Kanban · Niamh O'Reilly · Ivy</title>
+  <link rel="stylesheet" href="../07-design-system/ivy-tokens.css" />
+  <link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+  <main class="content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Kanban</h1>
+        <div class="page-subtitle">
+          Today · <b>18 cards in flight</b> · M2 prevented <b>2 NIGOs</b> this week
+        </div>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-ghost">Filter</button>
+        <button class="btn">Bulk action</button>
+      </div>
+    </div>
+
+    <!-- Kanban -->
+    <div class="kanban">
+
+      <!-- Lane 1: AI Verified Pending Review -->
+      <div class="kanban-lane">
+        <div class="kanban-lane-header">
+          <span>AI Verified Pending Review</span>
+          <span class="kanban-lane-count">14</span>
+        </div>
+        <div class="kanban-card" onclick="openDrawer()">
+          <div class="kanban-card-name">Mark Roberts</div>
+          <div class="kanban-card-line">Vitality UK</div>
+          <div class="kanban-card-line">£245k DTL+CI</div>
+          <div class="kanban-card-status green">✓ M2 green · all fields matched</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Priya Shah</div>
+          <div class="kanban-card-line">Vitality UK</div>
+          <div class="kanban-card-line">£180k LIFE</div>
+          <div class="kanban-card-status green">✓ M2 green</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Liam O'Brien</div>
+          <div class="kanban-card-line">Aviva IE</div>
+          <div class="kanban-card-line">€220k LIFE</div>
+          <div class="kanban-card-status green">✓ M2 green</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Hannah Wright</div>
+          <div class="kanban-card-line">L&G UK</div>
+          <div class="kanban-card-line">£155k LIFE+CI</div>
+          <div class="kanban-card-status green">✓ M2 green</div>
+        </div>
+        <div class="kanban-card" style="text-align:center;color:var(--ink-3);font-size:12px;cursor:default;box-shadow:none;border-style:dashed">+ 10 more</div>
+      </div>
+
+      <!-- Lane 2: Not Matching -->
+      <div class="kanban-lane kanban-lane-warning">
+        <div class="kanban-lane-header">
+          <span>⚠ Not Matching</span>
+          <span class="kanban-lane-count">3</span>
+        </div>
+        <div class="kanban-card" style="border-left:3px solid var(--stage-lost-fg)">
+          <div class="kanban-card-name">Tom Harris</div>
+          <div class="kanban-card-line">RL UK</div>
+          <div class="kanban-card-line">Address mismatch</div>
+          <div class="kanban-card-status danger">⚠ ping Sarah</div>
+        </div>
+        <div class="kanban-card" style="border-left:3px solid var(--stage-lost-fg)">
+          <div class="kanban-card-name">David Patel</div>
+          <div class="kanban-card-line">L&G UK</div>
+          <div class="kanban-card-line">Premium delta flag</div>
+          <div class="kanban-card-status danger">⚠ ping Sarah</div>
+        </div>
+        <div class="kanban-card" style="border-left:3px solid var(--stage-lost-fg)">
+          <div class="kanban-card-name">Catherine Bell</div>
+          <div class="kanban-card-line">Vitality UK</div>
+          <div class="kanban-card-line">DOB mismatch (1 day)</div>
+          <div class="kanban-card-status danger">⚠ ping James</div>
+        </div>
+      </div>
+
+      <!-- Lane 3: Portal Processing -->
+      <div class="kanban-lane">
+        <div class="kanban-lane-header">
+          <span>Portal Processing</span>
+          <span class="kanban-lane-count">8</span>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Anna Klein</div>
+          <div class="kanban-card-line">Aviva UK</div>
+          <div class="kanban-card-line">Day 3 UW</div>
+          <div class="kanban-card-status info">M5 watching</div>
+        </div>
+        <div class="kanban-card" style="border-left:3px solid var(--stage-quoted-fg)">
+          <div class="kanban-card-name">Murphy family</div>
+          <div class="kanban-card-line">RL IE</div>
+          <div class="kanban-card-line">Day 6 ⚠</div>
+          <div class="kanban-card-status warn">chase needed</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Owen Reilly</div>
+          <div class="kanban-card-line">New Ireland</div>
+          <div class="kanban-card-line">Day 2 UW</div>
+          <div class="kanban-card-status info">M5 watching</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Jenna Kapoor</div>
+          <div class="kanban-card-line">Vitality UK</div>
+          <div class="kanban-card-line">GP report in</div>
+          <div class="kanban-card-status info">UW reviewing</div>
+        </div>
+        <div class="kanban-card" style="text-align:center;color:var(--ink-3);font-size:12px;cursor:default;box-shadow:none;border-style:dashed">+ 4 more</div>
+      </div>
+
+      <!-- Lane 4: Sent to Client -->
+      <div class="kanban-lane">
+        <div class="kanban-lane-header">
+          <span>Sent to Client</span>
+          <span class="kanban-lane-count">5</span>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Sarah Lee</div>
+          <div class="kanban-card-line">Vitality UK</div>
+          <div class="kanban-card-line">Sent today</div>
+          <div class="kanban-card-status green">✓ M6 drafted</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Walsh</div>
+          <div class="kanban-card-line">Aviva IE</div>
+          <div class="kanban-card-line">DD live 1 Jun</div>
+          <div class="kanban-card-status green">✓ M6 sent</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-name">Tom Harris (B)</div>
+          <div class="kanban-card-line">Royal London UK</div>
+          <div class="kanban-card-line">On-risk Day 17</div>
+          <div class="kanban-card-status green">✓ archived</div>
+        </div>
+        <div class="kanban-card" style="text-align:center;color:var(--ink-3);font-size:12px;cursor:default;box-shadow:none;border-style:dashed">+ 2 more</div>
+      </div>
+    </div>
+
+    <!-- Needs your attention strip -->
+    <section class="card" style="margin-top:24px">
+      <h2 class="card-title">Needs your attention</h2>
+      <ul class="list">
+        <li>
+          <span class="pill pill-stage-lost">⚠ M2</span>
+          <span><b>Tom Harris</b> · address mismatch — FactFind says "Lane", application says "Road"</span>
+          <button class="btn btn-primary" style="margin-left:auto">Ping Sarah</button>
+        </li>
+        <li>
+          <span class="pill pill-stage-lost">⚠ M2</span>
+          <span><b>David Patel</b> · premium delta — application £38.50, suitability £42.00</span>
+          <button class="btn btn-primary" style="margin-left:auto">Ping Sarah</button>
+        </li>
+        <li>
+          <span class="pill pill-warn">CHASE</span>
+          <span><b>Murphy family</b> · 6 days in Portal Processing (Royal London IE)</span>
+          <button class="btn">Chase RL IE</button>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Mark Roberts card drawer (toggled) -->
+  <aside class="drawer" id="drawer" style="display:none">
+    <div class="drawer-header">
+      <span class="bold" style="font-size:14px">← Mark Roberts</span>
+      <span class="pill">AI Verified · Pending Review</span>
+      <a href="adv-05-case-detail.html" class="btn btn-ghost" style="margin-left:auto;font-size:11px">Open full →</a>
+      <button class="drawer-close" onclick="closeDrawer()">×</button>
+    </div>
+
+    <div class="muted" style="font-size:12px;margin-bottom:14px">Vitality UK · £245k DTL+CI · £42.80/mo · 22yr</div>
+
+    <div class="card" style="margin-bottom:14px">
+      <h2 class="card-title">M1 ingested · DocuSign envelope ABC-78901</h2>
+      <ul class="list" style="font-size:12px">
+        <li><span class="status-icon complete">✓</span>Application form (12 pages, OCR clean)</li>
+        <li><span class="status-icon complete">✓</span>FactFind PDF</li>
+        <li><span class="status-icon complete">✓</span>Suitability letter v2 (signed)</li>
+        <li><span class="status-icon complete">✓</span>Direct Debit mandate</li>
+        <li><span class="status-icon complete">✓</span>Beneficiary nomination</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <h2 class="card-title">
+        <span>M2 cross-verification</span>
+        <span class="pill pill-stage-qualified" style="margin-left:auto">All green</span>
+      </h2>
+      <ul class="list" style="font-size:12px">
+        <li><span class="status-icon complete">✓</span><span>Name</span><span class="muted" style="margin-left:auto">Mark John Roberts · 4 docs match</span></li>
+        <li><span class="status-icon complete">✓</span><span>DOB</span><span class="muted" style="margin-left:auto">14 Mar 1988 · 4 docs match</span></li>
+        <li><span class="status-icon complete">✓</span><span>Address</span><span class="muted" style="margin-left:auto">47 Broughton Lane, M6 4LP</span></li>
+        <li><span class="status-icon complete">✓</span><span>Premium</span><span class="muted" style="margin-left:auto">£42.80/mo</span></li>
+        <li><span class="status-icon complete">✓</span><span>Sum assured</span><span class="muted" style="margin-left:auto">£245,000</span></li>
+        <li><span class="status-icon complete">✓</span><span>Term</span><span class="muted" style="margin-left:auto">22 years</span></li>
+        <li><span class="status-icon complete">✓</span><span>Beneficiary</span><span class="muted" style="margin-left:auto">Sophie Roberts (spouse)</span></li>
+        <li><span class="status-icon complete">✓</span><span>Bank</span><span class="muted" style="margin-left:auto">Confirmed sort + account</span></li>
+      </ul>
+    </div>
+
+    <div class="card" style="background:linear-gradient(to bottom, rgba(16,185,129,.04), transparent);margin-bottom:14px">
+      <h2 class="card-title">Next action</h2>
+      <div style="font-size:13px;color:var(--ink-2);margin-bottom:12px">Approve to move to <b>Portal Processing</b>. Vitality UK submission checklist will load when you do.</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" style="flex:1">Approve & move →</button>
+        <button class="btn">Flag issue</button>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    window.IVY_SCREEN = {
+      surface: "admin",
+      activeNav: "kanban",
+      breadcrumb: "Niamh O'Reilly"
+    };
+    function openDrawer() { document.getElementById('drawer').style.display = 'block'; }
+    function closeDrawer() { document.getElementById('drawer').style.display = 'none'; }
+  </script>
+  <script src="shared/chrome.js"></script>
+</body>
+</html>

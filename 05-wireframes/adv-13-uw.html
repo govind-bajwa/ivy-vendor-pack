@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADV-13 UW Tracker</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADV-13 · /cases/MR-2026/uw · UW Tracker">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Adviser</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li class="active"><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page">
+      <div class="pg-head">
+        <div>
+          <p class="pg-sub" style="margin-bottom:4px">← Mark Roberts</p>
+          <h1 class="pg-title">Underwriting tracker</h1>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <span class="pill blue"><span class="dot"></span>Vitality UK · Day 7 of ~14</span>
+            <span class="pill amber"><span class="dot"></span>Awaiting GP report</span>
+            <span class="pill">£42.80/mo · £245k · 22yr</span>
+          </div>
+        </div>
+        <div class="pg-actions">
+          <button class="btn">Add manual note</button>
+          <button class="btn">Escalate</button>
+          <button class="btn primary">Send client update</button>
+        </div>
+      </div>
+
+      <!-- Top: status summary + state machine -->
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-bottom:14px">
+
+        <!-- Visual timeline -->
+        <div class="card">
+          <h3>Status</h3>
+          <div style="display:flex;align-items:center;gap:0;padding:14px 4px 24px;position:relative">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+              <div class="status done" style="width:24px;height:24px;font-size:14px">✓</div>
+              <p class="meta" style="margin:6px 0 0;font-size:11px;text-align:center">Submitted<br>Day 1</p>
+            </div>
+            <div style="height:2px;background:var(--green);flex:1;margin:0 -8px;margin-top:-22px;align-self:flex-start"></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+              <div class="status done" style="width:24px;height:24px;font-size:14px">✓</div>
+              <p class="meta" style="margin:6px 0 0;font-size:11px;text-align:center">Ack received<br>Day 1</p>
+            </div>
+            <div style="height:2px;background:var(--green);flex:1;margin:0 -8px;margin-top:-22px;align-self:flex-start"></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+              <div class="status done" style="width:24px;height:24px;font-size:14px">✓</div>
+              <p class="meta" style="margin:6px 0 0;font-size:11px;text-align:center">GP consent<br>signed Day 6</p>
+            </div>
+            <div style="height:2px;border-top:2px dashed var(--amber);flex:1;margin:0 -8px;margin-top:-22px;align-self:flex-start"></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+              <div class="status prog" style="width:28px;height:28px;font-size:14px;border:2px solid var(--amber)">●</div>
+              <p class="meta" style="margin:6px 0 0;font-size:11px;text-align:center"><b style="color:var(--amber)">Awaiting GP</b><br>Day 14 est.</p>
+            </div>
+            <div style="height:2px;border-top:2px dashed var(--ink-4);flex:1;margin:0 -8px;margin-top:-22px;align-self:flex-start"></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+              <div class="status pending" style="width:24px;height:24px;font-size:14px">○</div>
+              <p class="meta" style="margin:6px 0 0;font-size:11px;text-align:center">UW decision<br>Day ~17</p>
+            </div>
+            <div style="height:2px;border-top:2px dashed var(--ink-4);flex:1;margin:0 -8px;margin-top:-22px;align-self:flex-start"></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+              <div class="status pending" style="width:24px;height:24px;font-size:14px">○</div>
+              <p class="meta" style="margin:6px 0 0;font-size:11px;text-align:center">On risk<br>Day ~19</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI stack -->
+        <div>
+          <div class="kpi" style="margin-bottom:10px"><h5>Day in UW</h5><div class="v">7</div><p class="vsub">of ~14 expected</p></div>
+          <div class="kpi" style="margin-bottom:10px"><h5>Next event</h5><div class="v" style="font-size:20px">GP report</div><p class="vsub">est. Day 14–19</p></div>
+          <div class="kpi"><h5>Loading risk</h5><div class="v" style="color:var(--green);font-size:20px">Low</div><p class="vsub">family hx only · no personal hx</p></div>
+        </div>
+      </div>
+
+      <!-- Inbound timeline -->
+      <div class="card">
+        <h3>M5 · Inbound timeline <span style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--ink-3);font-weight:400">parsed from broker mailbox</span></h3>
+        <table class="table">
+          <thead>
+            <tr><th style="width:60px">Day</th><th style="width:120px">Type</th><th>Event</th><th style="width:120px">M5 status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>7</b></td>
+              <td><span class="pill amber"><span class="dot"></span>WAITING</span></td>
+              <td>Awaiting GP report from Mark's GP surgery · est. Day 14–19</td>
+              <td class="meta">tracking</td>
+            </tr>
+            <tr>
+              <td><b>6</b></td>
+              <td><span class="pill blue"><span class="dot"></span>CLIENT</span></td>
+              <td>Auto-update sent to Mark — "GP report typical 14 days from your surgery, we'll keep you posted"</td>
+              <td class="meta">M5 sent</td>
+            </tr>
+            <tr>
+              <td><b>6</b></td>
+              <td><span class="pill green"><span class="dot"></span>SIGNED</span></td>
+              <td>Mark signed GP consent · M5 forwarded to Vitality 11:18</td>
+              <td class="meta">forwarded</td>
+            </tr>
+            <tr>
+              <td><b>5</b></td>
+              <td><span class="pill amber"><span class="dot"></span>ACTION</span></td>
+              <td><b>Vitality medical evidence team</b>: "Routine GP report needed for Mark Roberts. Please obtain consent."</td>
+              <td class="meta">classified · GP_REPORT_REQUEST</td>
+            </tr>
+            <tr>
+              <td><b>1</b></td>
+              <td><span class="pill green"><span class="dot"></span>ACK</span></td>
+              <td><b>Vitality</b>: application received · ref VTL-78901</td>
+              <td class="meta">acknowledged</td>
+            </tr>
+            <tr>
+              <td><b>1</b></td>
+              <td><span class="pill green"><span class="dot"></span>SENT</span></td>
+              <td>Application submitted via M4 portal checklist (Niamh)</td>
+              <td class="meta">M2 all green</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 2-col: next action + decisions log -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="card">
+          <h3>Next action <span class="pill amber" style="margin-left:auto">pending</span></h3>
+          <p style="font-family:'Kalam';font-size:13px;line-height:1.7">Wait for GP report from Mark's surgery. M5 will parse Vitality's next email automatically. Estimated arrival window Day 14–19.</p>
+          <p class="meta" style="margin:6px 0 0">No action required from Sarah unless 5+ days overdue → auto-chase fires on Day 22.</p>
+        </div>
+        <div class="card">
+          <h3>If loaded / declined</h3>
+          <p style="font-family:'Kalam';font-size:13px;line-height:1.7">M5 surfaces immediately. Sarah decides:</p>
+          <ul style="font-family:'Kalam';font-size:12.5px;color:var(--ink-2);line-height:1.7;margin:0;padding-left:18px">
+            <li>Accept loading → continue to on-risk</li>
+            <li>Loop back to Stage 5 → alternative insurer (Royal London, Aviva on standby)</li>
+            <li>Escalate to Mark Reynolds if &gt;75% loading</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="note">Question: should "Loading risk" be a real ML prediction (CIExpert / ProtectionGuru) or just a manual flag? Ship as manual flag in v1.0?</p>
+    </main>
+  </div>
+</div>
+
+<div class="copilot">
+  <div class="h"><span class="dot"></span>Ivy Co-pilot</div>
+  <div class="body">Day 7. No action needed. Mark gets an auto-update from M5 on Day 11 if no movement.</div>
+  <input class="input" placeholder="Ask Ivy…">
+</div>
+
+</body>
+</html>

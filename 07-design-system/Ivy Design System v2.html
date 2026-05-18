@@ -1,0 +1,1829 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ivy — Design System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,450;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivy-primary:        #10B981;
+    --ivy-primary-light:  #34D399;
+    --ivy-primary-dark:   #064E3B;
+    --ivy-700:            #047857;
+    --ivy-50:             #d1fae5;
+
+    --ink:   #0a0a0a;
+    --ink-2: #4a4a4a;
+    --ink-3: #7a7a7a;
+    --ink-4: #b8b8b8;
+    --ink-5: #d8d8d8;
+
+    --hair:   rgba(0,0,0,0.04);
+    --hair-2: rgba(0,0,0,0.08);
+    --canvas: #f5f3ee;       /* warmer wash */
+    --canvas-2: #efece4;
+
+    --r-sm: 6px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px; --r-2xl: 22px; --r-pill: 999px;
+
+    --shadow-warm-sm: 0 1px 3px rgba(120,80,40,.06), 0 1px 2px rgba(120,80,40,.03);
+    --shadow-warm:    0 4px 16px rgba(120,80,40,.07), 0 1px 3px rgba(120,80,40,.04);
+    --shadow-warm-lg: 0 24px 60px -12px rgba(120,80,40,.18), 0 8px 24px -6px rgba(120,80,40,.10);
+    --shadow-glow:    0 4px 20px -2px rgba(16,185,129,.30);
+
+    --sans:  "Inter", system-ui, -apple-system, sans-serif;
+    --mono:  "Inter", system-ui, -apple-system, sans-serif;
+    --num-feat: "tnum", "cv11", "ss01";
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02","cv03","cv04","cv11","ss01";
+    overflow-x: hidden;
+  }
+
+  /* Inter with tabular numerals + straight-sided one (cv11) for clean numbers */
+  body {
+    font-feature-settings: var(--num-feat);
+  }
+  .mono, .num, [class*="num-"], .hex, .tok, .v, .ts, .kbd {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: var(--num-feat);
+    letter-spacing: -.005em;
+  }
+
+  /* ── Glass surfaces ───────────────────────────────── */
+  .glass {
+    background: rgba(255,255,255,.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 3px rgba(120,80,40,.04), 0 0 0 1px rgba(255,255,255,.6) inset;
+  }
+  .glass-elevated {
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-warm), 0 0 0 1px rgba(255,255,255,.7) inset;
+  }
+
+  /* ── Section frames ───────────────────────────────── */
+  .frontispiece {
+    display: flex; align-items: baseline; gap: 24px;
+    padding: 80px 0 32px;
+    border-top: 1px solid var(--hair);
+  }
+  .frontispiece .num {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-4);
+    letter-spacing: .12em;
+  }
+  .frontispiece .title {
+    font-family: var(--sans); font-weight: 600;
+    font-size: 32px; line-height: 1.1; letter-spacing: -.025em;
+    margin: 0; color: var(--ink);
+  }
+  .frontispiece .blurb {
+    margin-left: auto; max-width: 380px;
+    font-size: 14px; line-height: 1.55; color: var(--ink-2);
+  }
+
+  /* ── Layout helpers ───────────────────────────────── */
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  .wrap-tight { max-width: 920px; margin: 0 auto; padding: 0 48px; }
+  .grid { display: grid; gap: 16px; }
+  .g-2 { grid-template-columns: repeat(2, 1fr); }
+  .g-3 { grid-template-columns: repeat(3, 1fr); }
+  .g-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .panel { border-radius: var(--r-2xl); padding: 28px; }
+  .panel-title {
+    font-size: 11px; color: var(--ink-3); text-transform: uppercase;
+    letter-spacing: .12em; margin: 0 0 18px;
+  }
+  .hint { font-size: 11px; color: var(--ink-3); margin: 12px 0 0; line-height: 1.5; }
+
+  /* ───────────────────────────────────────────────────
+     HERO  ·  two directions, toggled via [data-hero] on <body>
+     ─────────────────────────────────────────────────── */
+
+  /* Hero switcher (top-right, mono — matches doc voice) */
+  .hero-switch {
+    position: fixed; top: 16px; right: 16px; z-index: 50;
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px; border-radius: var(--r-pill);
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-warm-sm), 0 0 0 1px var(--hair) inset;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .hero-switch button {
+    appearance: none; border: 0; background: transparent;
+    color: var(--ink-3); cursor: pointer;
+    padding: 6px 12px; border-radius: var(--r-pill);
+    font: inherit; letter-spacing: inherit; text-transform: inherit;
+    white-space: nowrap;
+  }
+  .hero-switch button[aria-pressed="true"] {
+    background: var(--ink); color: var(--canvas);
+  }
+
+  /* Show only the active hero */
+  body[data-hero="A"] .hero-b { display: none; }
+  body[data-hero="B"] .hero-a { display: none; }
+
+  /* ── A · Editorial cover ─────────────────────────── */
+  .hero-a {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(900px 600px at 88% -10%, rgba(16,185,129,.18), transparent 60%),
+      radial-gradient(600px 400px at 0% 0%, rgba(16,185,129,.07), transparent 60%),
+      var(--canvas);
+    border-bottom: 1px solid var(--hair);
+  }
+  /* Subtle 32px grid — adds technical texture without noise */
+  .hero-a::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(10,10,10,.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10,10,10,.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask-image: radial-gradient(1100px 700px at 50% 30%, #000 35%, transparent 80%);
+            mask-image: radial-gradient(1100px 700px at 50% 30%, #000 35%, transparent 80%);
+    pointer-events: none;
+  }
+  /* Glass blob removed — was reading as a mistake. Keep wash + grid only. */
+  .hero-a-inner {
+    position: relative; z-index: 1;
+    max-width: 1280px; margin: 0 auto;
+    padding: 28px 48px 0;
+  }
+  .hero-a-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--hair);
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .hero-a-top .id {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-a-top .id .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ivy-primary); box-shadow: 0 0 0 3px rgba(16,185,129,.18);
+  }
+  .hero-a-top .stamp { color: var(--ink); }
+
+  .hero-a-cover {
+    padding: 88px 0 64px;
+    display: grid; grid-template-columns: 1fr; gap: 40px;
+  }
+  .hero-a-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0;
+  }
+  .hero-a-wordmark {
+    font-family: var(--sans); font-weight: 600;
+    font-size: clamp(120px, 18vw, 240px);
+    line-height: .85; letter-spacing: -.06em;
+    margin: 0; color: var(--ink);
+    display: flex; align-items: flex-end; gap: .04em;
+  }
+  .hero-a-wordmark .leaf {
+    width: .5em; height: .5em;
+    color: var(--ivy-primary);
+    margin-left: .12em;
+    transform: translateY(-.06em);
+    flex: 0 0 auto;
+  }
+  .hero-a-sub {
+    display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: 80px; align-items: end;
+    padding-top: 24px; border-top: 1px solid var(--hair);
+  }
+  .hero-a-sub h1 {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 32px; line-height: 1.15; letter-spacing: -.02em;
+    margin: 0; color: var(--ink); max-width: 18ch;
+    text-wrap: balance;
+  }
+  .hero-a-sub p {
+    margin: 0; font-size: 14px; line-height: 1.6; color: var(--ink-2);
+    max-width: 52ch;
+  }
+
+  .hero-a-meta {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-top: 1px solid var(--hair);
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .hero-a-meta > div {
+    padding: 20px 20px 24px;
+    border-right: 1px solid var(--hair);
+  }
+  .hero-a-meta > div:last-child { border-right: 0; }
+  .hero-a-meta dt {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px;
+  }
+  .hero-a-meta dd {
+    margin: 0; font-size: 13px; font-weight: 500; color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* Contact-sheet preview strip across the bottom of hero A */
+  .hero-a-strip {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(8, 1fr);
+    border-top: 1px solid var(--hair);
+  }
+  .hero-a-strip .cell {
+    aspect-ratio: 1 / 1;
+    border-right: 1px solid var(--hair);
+    position: relative;
+    display: flex; align-items: flex-end;
+    padding: 12px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-3);
+    overflow: hidden;
+  }
+  .hero-a-strip .cell:last-child { border-right: 0; }
+  .hero-a-strip .cell .label { position: relative; z-index: 1; mix-blend-mode: multiply; }
+  .hero-a-strip .cell.on-dark .label { color: rgba(255,255,255,.75); mix-blend-mode: normal; }
+
+  .hero-a-strip .cell.type-aa {
+    align-items: stretch; padding: 0;
+    background: white;
+  }
+  .hero-a-strip .cell.type-aa .glyph {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    font-family: var(--sans); font-weight: 600;
+    font-size: 96px; letter-spacing: -.06em; color: var(--ink);
+    line-height: 1;
+  }
+  .hero-a-strip .cell.type-aa .lab {
+    padding: 10px 12px; border-top: 1px solid var(--hair);
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* ── B · Spec sheet ─────────────────────────────── */
+  .hero-b {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(800px 500px at 12% -10%, rgba(16,185,129,.16), transparent 60%),
+      radial-gradient(700px 600px at 95% 50%, rgba(16,185,129,.10), transparent 65%),
+      var(--canvas);
+    border-bottom: 1px solid var(--hair);
+    font-family: var(--sans);
+  }
+  /* Engineering grid behind B — fits the spec-sheet voice */
+  .hero-b::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(10,10,10,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10,10,10,.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+    pointer-events: none;
+  }
+  /* Glass blob — mid-right, sits behind the spec block */
+  .hero-b::after {
+    content: ""; position: absolute;
+    width: 460px; height: 460px; border-radius: 50%;
+    right: -80px; top: 28%;
+    background:
+      radial-gradient(circle at 40% 30%, rgba(255,255,255,.75), rgba(255,255,255,.2) 55%, transparent 75%),
+      radial-gradient(circle at 65% 70%, rgba(16,185,129,.40), transparent 70%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 30px 80px -20px rgba(16,185,129,.30), 0 0 0 1px rgba(255,255,255,.5) inset;
+    pointer-events: none;
+  }
+  .hero-b-grid {
+    position: relative; z-index: 1;
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border-left: 1px solid var(--hair);
+    border-right: 1px solid var(--hair);
+    background: rgba(255,255,255,.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .hero-b-rail {
+    border-right: 1px solid var(--hair);
+    padding: 20px 24px;
+    display: flex; flex-direction: column; gap: 28px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .hero-b-rail .stamp {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--ink); font-weight: 500;
+  }
+  .hero-b-rail .stamp .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ivy-primary);
+  }
+  .hero-b-rail .meta { display: grid; gap: 18px; }
+  .hero-b-rail .meta div { display: grid; gap: 4px; }
+  .hero-b-rail .meta dt { color: var(--ink-3); }
+  .hero-b-rail .meta dd {
+    margin: 0; color: var(--ink); font-weight: 500;
+    text-transform: none; letter-spacing: -.005em;
+    font-family: var(--sans); font-size: 13px;
+  }
+  .hero-b-rail .footer { margin-top: auto; color: var(--ink-4); }
+
+  .hero-b-main { padding: 56px 56px 32px; min-height: 560px; display: flex; flex-direction: column; }
+  .hero-b-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-b-eyebrow::before {
+    content: ""; width: 28px; height: 1px; background: var(--ink-4);
+  }
+  .hero-b-title {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 56px; line-height: 1.05; letter-spacing: -.035em;
+    margin: 0 0 24px; color: var(--ink);
+    max-width: 16ch; text-wrap: balance;
+  }
+  /* Headline accent: italic, brand emerald — reads as a typographic
+     moment without the noisy underline-marker. */
+  .hero-b-title .ivy {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--ivy-700);
+    letter-spacing: -.045em;
+    padding-right: .04em;
+  }
+  .hero-b-lede {
+    margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2);
+    max-width: 56ch;
+  }
+  .hero-b-spec {
+    margin-top: auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--hair);
+    padding-top: 20px; gap: 0;
+  }
+  .hero-b-spec > div { padding-right: 16px; }
+  .hero-b-spec dt {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px;
+  }
+  .hero-b-spec dd {
+    margin: 0; font-family: var(--mono);
+    font-size: 22px; font-weight: 500; color: var(--ink);
+    letter-spacing: -.01em;
+  }
+  .hero-b-spec dd small {
+    display: block; font-family: var(--sans); font-size: 11px;
+    color: var(--ink-3); font-weight: 400; letter-spacing: 0;
+    text-transform: none; margin-top: 2px;
+  }
+
+  .hero-b-foot {
+    position: relative; z-index: 1;
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 48px;
+  }
+  .hero-b-foot-inner {
+    border-left: 1px solid var(--hair);
+    border-right: 1px solid var(--hair);
+    border-top: 1px solid var(--hair);
+    display: grid; grid-template-columns: repeat(5, 1fr);
+  }
+  .hero-b-foot-inner .swatch {
+    aspect-ratio: 5 / 2;
+    border-right: 1px solid var(--hair);
+    position: relative;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 12px 14px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .hero-b-foot-inner .swatch:last-child { border-right: 0; }
+  .hero-b-foot-inner .swatch .name { font-weight: 500; }
+  .hero-b-foot-inner .swatch.on-dark { color: rgba(255,255,255,.85); }
+
+  /* Legacy hero classes left as no-ops to avoid dead-css warnings — */
+  /* old structure removed entirely. */
+
+  .ivy-w-head {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px; border-bottom: 1px solid var(--hair);
+  }
+  .ivy-w-head .av {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--ivy-50);
+    color: var(--ivy-700); display:flex; align-items:center; justify-content:center;
+  }
+  .ivy-w-head h4 { margin:0; font-size: 13px; font-weight: 600; }
+  .ivy-w-head p { margin:0; font-size: 11px; color: var(--ink-3); }
+  .ivy-w-msgs { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .b { padding: 9px 13px; font-size: 13px; line-height: 1.5; max-width: 85%; border-radius: 18px; }
+  .b.bot { background: rgba(255,255,255,.65); border-bottom-left-radius: 8px; align-self: flex-start; }
+  .b.user { background: var(--ivy-700); color: white; border-bottom-right-radius: 8px; align-self: flex-end; }
+  .ivy-w-input {
+    display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--hair);
+  }
+  .ivy-w-input input {
+    flex:1; border: 1px solid var(--hair-2); background: rgba(255,255,255,.6);
+    border-radius: var(--r-md); padding: 8px 12px; font-size: 13px;
+    font-family: inherit; outline: none;
+  }
+  .ivy-w-input button {
+    background: var(--ivy-primary); color: white; border: 0;
+    width: 34px; height: 34px; border-radius: var(--r-md); cursor: pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ───────────────────────────────────────────────────
+     SECTION 1 — COLOR (full bleed)
+     ─────────────────────────────────────────────────── */
+  .color-strip {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    margin: 0; height: 320px;
+  }
+  .color-cell {
+    position: relative; padding: 28px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .color-cell .name {
+    font-family: var(--sans); font-size: 22px; font-weight: 600;
+    letter-spacing: -.02em; margin: 0;
+  }
+  .color-cell .hex {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
+  }
+  .color-cell .role {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .12em;
+    opacity: .8;
+  }
+
+  .stage-strip {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    margin-top: 24px;
+  }
+  .stage-cell {
+    padding: 24px 20px; border-right: 1px solid rgba(255,255,255,.4);
+  }
+  .stage-cell:last-child { border-right: 0; }
+  .stage-cell .pill {
+    display: inline-block; padding: 2px 10px; border-radius: var(--r-md);
+    font-size: 12px; font-weight: 500;
+    background: var(--bg); color: var(--fg);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+  }
+  .stage-cell .stage-name {
+    font-family: var(--sans); font-size: 15px; font-weight: 600;
+    margin: 14px 0 4px; letter-spacing: -.015em;
+  }
+  .stage-cell .stage-role { font-size: 11.5px; color: var(--ink-3); margin: 0 0 4px; line-height: 1.5; }
+  .stage-cell .stage-token { font-family: var(--mono); font-size: 10.5px; color: var(--ink-4); }
+
+  .neutral-row {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 0; height: 90px; border-radius: var(--r-lg); overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--hair);
+  }
+  .neutral-row > div {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 14px;
+    font-size: 11px;
+  }
+  .neutral-row .label { font-weight: 500; }
+  .neutral-row .tok { font-family: var(--mono); opacity: .65; }
+
+  .tag-rail { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 11.5px; font-weight: 500; padding: 3px 10px;
+    border-radius: var(--r-sm);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+
+  /* ───────────────────────────────────────────────────
+     SECTION 2 — TYPE (editorial)
+     ─────────────────────────────────────────────────── */
+  .type-editorial {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px;
+    align-items: start;
+  }
+  .type-display {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 64px; line-height: 1.02; letter-spacing: -.045em;
+    margin: 0 0 20px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .type-display em {
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    background: linear-gradient(120deg, #047857 0%, #059669 50%, #10B981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    padding: 0 .08em;
+    margin: 0 -.08em;
+  }
+  .type-lede {
+    font-size: 15px; line-height: 1.6; color: var(--ink-2);
+    margin: 0 0 32px; max-width: 540px; letter-spacing: -.005em;
+  }
+  .type-stack { display: flex; flex-direction: column; gap: 18px; }
+  .type-row {
+    display: grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: baseline;
+    padding: 14px 0; border-top: 1px solid var(--hair);
+  }
+  .type-row:first-of-type { border-top: 0; }
+  .type-row .tag-spec {
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-3);
+    letter-spacing: .04em;
+  }
+
+  /* Specimen card — fake email from Ivy */
+  .specimen {
+    border-radius: var(--r-xl);
+    padding: 24px;
+    background: white;
+    box-shadow: var(--shadow-warm-sm);
+    border: 1px solid var(--hair);
+  }
+  .specimen-head {
+    font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .1em;
+    margin: 0 0 14px;
+  }
+  .email-meta {
+    font-size: 12px; color: var(--ink-3); margin: 0 0 6px;
+  }
+  .email-meta b { color: var(--ink); font-weight: 500; }
+  .email-subject {
+    font-family: var(--sans); font-size: 16px; font-weight: 600;
+    letter-spacing: -.015em; margin: 14px 0 10px;
+  }
+  .email-body {
+    font-size: 14px; line-height: 1.6; color: var(--ink-2);
+    margin: 0;
+  }
+  .email-sig {
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid var(--hair);
+    font-size: 12px; color: var(--ink-3);
+  }
+  .ai-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(16,185,129,.10); color: var(--ivy-700);
+    padding: 2px 8px; border-radius: var(--r-sm);
+    font-size: 11px; font-weight: 500;
+  }
+
+  /* Number specimen */
+  .num-spec {
+    background: white; border-radius: var(--r-xl);
+    padding: 32px; border: 1px solid var(--hair);
+  }
+  .num-big {
+    font-family: var(--mono); font-size: 64px; font-weight: 500;
+    letter-spacing: -.02em; line-height: 1;
+    color: var(--ink);
+  }
+  .num-cur { color: var(--ink-3); font-weight: 400; }
+  .num-label {
+    font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .1em;
+    margin: 0 0 12px;
+  }
+  .num-trend {
+    font-family: var(--mono); font-size: 13px; color: var(--ivy-700);
+    margin-top: 8px;
+  }
+
+  /* ───────────────────────────────────────────────────
+     SECTION 3 — IN-SITU DASHBOARD
+     ─────────────────────────────────────────────────── */
+  .insitu-frame {
+    background: linear-gradient(180deg, rgba(16,185,129,.04), rgba(6,182,212,.03)), #fbfaf6;
+    border-radius: var(--r-2xl);
+    padding: 24px;
+    box-shadow: var(--shadow-warm-lg);
+    border: 1px solid var(--hair);
+    overflow: hidden;
+  }
+  .insitu-frame.dark {
+    background: linear-gradient(180deg, #0f1714, #0a1310);
+    box-shadow: var(--shadow-warm-lg);
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .app {
+    display: grid; grid-template-columns: 220px 1fr;
+    background: rgba(255,255,255,.4);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    height: 680px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.6) inset, var(--shadow-warm-sm);
+  }
+  .app-side {
+    background: rgba(255,255,255,.6);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--hair);
+    display: flex; flex-direction: column;
+  }
+  .app-side .logo {
+    display: flex; align-items: center; gap: 10px;
+    padding: 18px 20px; height: 56px;
+  }
+  .app-side .logo .m {
+    width: 28px; height: 28px; border-radius: 8px; background: var(--ivy-primary);
+    display:flex; align-items:center; justify-content:center; color: white;
+  }
+  .app-side .logo span { font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+  .app-nav { padding: 8px 12px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .app-nav a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 10px; border-radius: var(--r-md);
+    font-size: 13px; font-weight: 500; color: var(--ink-2);
+    text-decoration: none;
+  }
+  .app-nav a.on { background: rgba(16,185,129,.12); color: var(--ivy-700); }
+  .app-nav a .ic { color: var(--ink-3); }
+  .app-nav a.on .ic { color: var(--ivy-primary); }
+  .app-credits {
+    margin: 8px 12px 12px; padding: 12px;
+    background: rgba(255,255,255,.6); border-radius: var(--r-md);
+  }
+  .app-credits .lab {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--ink-3); margin-bottom: 6px;
+  }
+  .app-credits .bar { height: 4px; border-radius: var(--r-pill); background: rgba(0,0,0,.05); overflow: hidden; }
+  .app-credits .bar i { display: block; height: 100%; width: 85%; background: var(--ivy-primary-light); }
+
+  .app-main { display: flex; flex-direction: column; overflow: hidden; }
+  .app-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px; height: 56px;
+    background: rgba(255,255,255,.6);
+    border-bottom: 1px solid var(--hair);
+  }
+  .app-search {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: var(--r-md);
+    background: rgba(255,255,255,.5); width: 280px;
+    color: var(--ink-3); font-size: 13px;
+  }
+  .app-search .kbd {
+    margin-left: auto; font-family: var(--mono); font-size: 10.5px;
+    border: 1px solid var(--hair-2); padding: 1px 6px; border-radius: 4px; color: var(--ink-4);
+  }
+
+  .app-body { padding: 24px; overflow: auto; }
+  .app-h1 {
+    font-family: var(--sans); font-size: 22px; font-weight: 600;
+    letter-spacing: -.02em; margin: 0 0 4px;
+  }
+  .app-h1-sub { font-size: 13px; color: var(--ink-3); margin: 0 0 20px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .mini-stat {
+    background: rgba(255,255,255,.7); border: 1px solid var(--hair);
+    border-radius: var(--r-lg); padding: 14px;
+  }
+  .mini-stat .l { font-size: 10.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin: 0; }
+  .mini-stat .v { font-family: var(--mono); font-size: 22px; font-weight: 500; margin: 4px 0 2px; }
+  .mini-stat .t { font-size: 11px; color: var(--ivy-700); }
+  .mini-stat .t.down { color: #be123c; }
+
+  /* Kanban */
+  .kanban {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  .kcol-head { display: flex; align-items: center; gap: 8px; padding: 0 4px 10px; }
+  .kcol-pill {
+    font-size: 12px; font-weight: 500; padding: 1px 10px; border-radius: var(--r-md);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+  }
+  .kcol-count { font-family: var(--mono); font-size: 12px; color: var(--ink-4); }
+  .kbody { padding: 6px; border-radius: var(--r-lg); display: flex; flex-direction: column; gap: 8px; min-height: 120px; }
+  .kc {
+    background: rgba(255,255,255,.85); border-radius: var(--r-lg); padding: 11px;
+    box-shadow: var(--shadow-warm-sm), 0 0 0 1px rgba(255,255,255,.6) inset;
+  }
+  .kc-r { display: flex; align-items: center; gap: 8px; }
+  .kc-name { font-size: 12.5px; font-weight: 500; flex: 1; }
+  .kc-foot {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--hair);
+    font-size: 11px; color: var(--ink-3);
+  }
+  .kc-act {
+    margin-left: auto;
+    background: rgba(209,250,229,.8); color: var(--ivy-700);
+    padding: 2px 8px; border-radius: var(--r-pill);
+    font-size: 11px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .av {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: var(--ivy-50); color: var(--ivy-700);
+    font-weight: 600; flex-shrink: 0;
+  }
+  .av.xs { width: 20px; height: 20px; font-size: 9px; }
+  .av.sm { width: 24px; height: 24px; font-size: 10px; }
+  .av.md { width: 32px; height: 32px; font-size: 12px; }
+  .av.lg { width: 40px; height: 40px; font-size: 13px; }
+
+  /* ───────────────────────────────────────────────────
+     SECTION — IVY VOICE
+     ─────────────────────────────────────────────────── */
+  .voice-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .voice-pillars {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .pillar {
+    padding: 22px;
+    background: white;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--hair);
+  }
+  .pillar h4 {
+    font-family: var(--sans); font-size: 17px; font-weight: 600;
+    letter-spacing: -.015em; margin: 0 0 6px;
+  }
+  .pillar h4 em { color: var(--ivy-700); font-style: normal; font-weight: 600; }
+  .pillar p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); margin: 0 0 12px; }
+  .pillar .ex {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    font-size: 12.5px;
+  }
+  .ex-good, .ex-bad {
+    padding: 10px 12px; border-radius: var(--r-md);
+    line-height: 1.5;
+  }
+  .ex-good { background: rgba(16,185,129,.08); color: var(--ivy-700); }
+  .ex-bad  { background: rgba(190,18,60,.06); color: #9f1239; text-decoration: line-through; text-decoration-color: rgba(190,18,60,.4); }
+  .ex-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; opacity: .7; margin-bottom: 4px; display: block; text-decoration: none; }
+
+  .micro-table {
+    background: white; border-radius: var(--r-xl); padding: 22px;
+    border: 1px solid var(--hair);
+  }
+  .micro-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .micro-table th {
+    text-align: left; font-weight: 500; font-size: 11px;
+    text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3);
+    padding: 0 0 12px; border-bottom: 1px solid var(--hair);
+  }
+  .micro-table td {
+    padding: 12px 0; border-bottom: 1px solid var(--hair);
+    vertical-align: top;
+  }
+  .micro-table tr:last-child td { border-bottom: 0; }
+  .micro-table .ctx { color: var(--ink-3); width: 30%; }
+  .micro-table .ivy-says { color: var(--ink); }
+  .micro-table .ivy-says em {
+    display: block; color: var(--ink-4); font-style: normal;
+    text-decoration: line-through; font-size: 12px; margin-top: 4px;
+  }
+
+  /* ───────────────────────────────────────────────────
+     SECTION — TRUST & COMPLIANCE
+     ─────────────────────────────────────────────────── */
+  .trust-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .trust-card {
+    background: white; border: 1px solid var(--hair);
+    border-radius: var(--r-xl); padding: 22px;
+  }
+  .trust-card h4 {
+    font-family: var(--sans); font-size: 15px; font-weight: 600;
+    margin: 0 0 4px; letter-spacing: -.015em;
+  }
+  .trust-card p { font-size: 12.5px; color: var(--ink-3); margin: 0 0 16px; line-height: 1.5; }
+
+  .agent-state {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: var(--r-pill);
+    font-size: 12px; font-weight: 500;
+    background: rgba(16,185,129,.10); color: var(--ivy-700);
+    border: 1px solid rgba(16,185,129,.20);
+  }
+  .agent-state .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ivy-primary);
+    box-shadow: 0 0 0 0 rgba(16,185,129,.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16,185,129,.5); }
+    70% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+    100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+  }
+  .agent-state.paused { background: rgba(245,158,11,.10); color: #b45309; border-color: rgba(245,158,11,.25); }
+  .agent-state.paused .pulse { background: #f59e0b; animation: none; }
+  .agent-state.review { background: rgba(59,130,246,.10); color: #1d4ed8; border-color: rgba(59,130,246,.20); }
+  .agent-state.review .pulse { background: #3b82f6; animation: none; }
+
+  .provenance {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 12px;
+    background: rgba(0,0,0,.02); border-radius: var(--r-md);
+    font-size: 12px; color: var(--ink-2);
+  }
+  .provenance .av { width: 24px; height: 24px; font-size: 10px; }
+  .provenance .ts { color: var(--ink-3); font-family: var(--mono); font-size: 11px; }
+
+  .audit-line {
+    display: grid; grid-template-columns: 90px 1fr;
+    padding: 8px 0; border-bottom: 1px solid var(--hair);
+    font-size: 12.5px;
+  }
+  .audit-line:last-child { border-bottom: 0; }
+  .audit-line .t { color: var(--ink-3); font-family: var(--mono); font-size: 11px; }
+  .audit-line .e { color: var(--ink); }
+  .audit-line .e b { font-weight: 500; }
+
+  .disclosure {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-top: 2px solid var(--hair-2);
+    font-size: 11px; line-height: 1.5; color: var(--ink-3);
+  }
+  .disclosure b { color: var(--ink-2); display: block; margin-bottom: 4px;
+    font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+
+  /* ───────────────────────────────────────────────────
+     SECTION — STATES & FOCUS
+     ─────────────────────────────────────────────────── */
+  .states {
+    display: grid; grid-template-columns: 100px repeat(6, 1fr); gap: 14px;
+    align-items: center;
+  }
+  .states .row-label {
+    font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .1em;
+  }
+  .states .col-label {
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-4);
+    letter-spacing: .04em; text-align: center;
+  }
+  .states .cell {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 56px;
+  }
+
+  /* Buttons across states */
+  .bp { display:inline-flex; align-items:center; gap: 6px; padding: 7px 14px; border-radius: var(--r-md); background: var(--ivy-primary); color: white; border: 0; font-size: 13px; font-weight: 500; cursor: pointer; }
+  .bp.hov { background: var(--ivy-primary-light); transform: translateY(-1px); box-shadow: var(--shadow-warm-sm); }
+  .bp.act { background: var(--ivy-700); transform: translateY(0); }
+  .bp.foc { outline: 2px solid var(--ivy-primary-light); outline-offset: 2px; }
+  .bp.dis { background: rgba(0,0,0,.06); color: var(--ink-4); cursor: not-allowed; }
+  .bp.load { background: var(--ivy-primary); color: rgba(255,255,255,.6); }
+  .bp .spin { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,.4); border-top-color: white; border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Inputs across states */
+  .ip { background: rgba(255,255,255,.6); border: 1px solid var(--hair-2); border-radius: var(--r-md); padding: 7px 12px; font-size: 13px; outline: none; font-family: inherit; width: 100%; }
+  .ip.foc { border-color: var(--ivy-primary); box-shadow: 0 0 0 3px rgba(16,185,129,.15); }
+  .ip.err { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.10); }
+  .ip.dis { background: rgba(0,0,0,.03); color: var(--ink-4); }
+
+  /* ───────────────────────────────────────────────────
+     SECTION — DATA VIZ
+     ─────────────────────────────────────────────────── */
+  .viz-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+  .viz {
+    background: white; border: 1px solid var(--hair);
+    border-radius: var(--r-xl); padding: 22px;
+  }
+  .viz h4 {
+    font-family: var(--sans); font-size: 14px; font-weight: 600;
+    margin: 0 0 4px; letter-spacing: -.015em;
+  }
+  .viz .vsub { font-size: 11px; color: var(--ink-3); margin: 0 0 16px; }
+
+  .funnel { display: flex; flex-direction: column; gap: 6px; }
+  .funnel-row { display: grid; grid-template-columns: 110px 1fr 70px; gap: 10px; align-items: center; font-size: 12px; }
+  .funnel-row .l { color: var(--ink-2); }
+  .funnel-row .b { height: 20px; border-radius: 4px; }
+  .funnel-row .v { font-family: var(--mono); color: var(--ink); font-weight: 500; text-align: right; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; color: var(--ink-3); margin-top: 12px; }
+  .legend .sw { display: inline-flex; align-items: center; gap: 5px; }
+  .legend .sw i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+  /* line chart */
+  .line-chart { width: 100%; height: 180px; }
+
+  /* donut */
+  .donut-row { display: flex; gap: 16px; align-items: center; }
+  .donut-row svg { flex-shrink: 0; }
+
+  /* ───────────────────────────────────────────────────
+     SECTION — SOLID & PRINT
+     ─────────────────────────────────────────────────── */
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mode-frame {
+    border-radius: var(--r-xl);
+    padding: 24px; min-height: 220px;
+  }
+  .mode-frame.glass {
+    background:
+      radial-gradient(400px 200px at 20% 10%, rgba(16,185,129,.10), transparent),
+      rgba(255,255,255,.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.6);
+    box-shadow: var(--shadow-warm);
+  }
+  .mode-frame.solid {
+    background: white;
+    border: 1px solid var(--hair-2);
+    box-shadow: 0 1px 0 rgba(0,0,0,.04);
+  }
+  .mode-tag {
+    display: inline-block; font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: var(--r-sm);
+    margin-bottom: 14px;
+  }
+  .mode-tag.g { background: rgba(16,185,129,.10); color: var(--ivy-700); }
+  .mode-tag.s { background: rgba(0,0,0,.06); color: var(--ink-2); }
+
+  .table {
+    width: 100%; border-collapse: collapse; font-size: 12.5px;
+  }
+  .table th, .table td {
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--hair);
+  }
+  .table th {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--ink-3); font-weight: 500;
+  }
+  .table td.num { font-family: var(--mono); text-align: right; }
+
+  /* ───────────────────────────────────────────────────
+     CLOSING
+     ─────────────────────────────────────────────────── */
+  .closing {
+    text-align: center; padding: 120px 48px; max-width: 900px; margin: 0 auto;
+  }
+  .closing .quote {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 24px; line-height: 1.4; letter-spacing: -.02em;
+    color: var(--ink); margin: 0 0 16px;
+  }
+  .closing .quote em { color: var(--ivy-700); font-style: normal; font-weight: 600; }
+  .closing .by { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .12em; text-transform: uppercase; }
+
+  /* small utilities */
+  .row { display: flex; align-items: center; gap: 10px; }
+  .pill {
+    font-size: 12px; font-weight: 500; padding: 1px 10px; border-radius: var(--r-md);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO  ·  switcher ═══════════════ -->
+<div class="hero-switch" role="group" aria-label="Hero direction">
+  <button type="button" data-set-hero="A" aria-pressed="true">A · Cover</button>
+  <button type="button" data-set-hero="B" aria-pressed="false">B · Spec</button>
+</div>
+
+<!-- ── A · Editorial cover ───────────────────────── -->
+<section class="hero-a">
+  <div class="hero-a-inner">
+
+    <div class="hero-a-top">
+      <div class="id">
+        <span class="dot"></span>
+        <span>Ivy &nbsp;·&nbsp; Design System</span>
+      </div>
+      <div class="stamp">v0.2 &nbsp;·&nbsp; May 2026</div>
+    </div>
+
+    <div class="hero-a-cover">
+      <p class="hero-a-eyebrow">A visual &amp; editorial system for an AI sales agent</p>
+
+      <h2 class="hero-a-wordmark" aria-label="Ivy">
+        <span>Ivy</span>
+        <svg class="leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+      </h2>
+
+      <div class="hero-a-sub">
+        <h1>Calm, factual, &amp; built for brokers.</h1>
+        <p>Ivy is a 24/7 AI sales agent for life &amp; protection brokers. This document is the visual and editorial system that makes her feel trustworthy on screen — and makes the brokers running her feel in control.</p>
+      </div>
+    </div>
+
+    <dl class="hero-a-meta">
+      <div><dt>Type</dt><dd>Inter</dd></div>
+      <div><dt>Brand</dt><dd>Emerald · warm wash</dd></div>
+      <div><dt>Surfaces</dt><dd>Glass / Solid</dd></div>
+      <div><dt>Audience</dt><dd>FCA / CBI brokers</dd></div>
+      <div><dt>Voice</dt><dd>Calm · plain</dd></div>
+      <div><dt>Density</dt><dd>13px · 4px grid</dd></div>
+    </dl>
+
+    <div class="hero-a-strip" aria-hidden="true">
+      <div class="cell on-dark" style="background: linear-gradient(135deg,#10B981,#047857);"><span class="label">Emerald · #10B981</span></div>
+      <div class="cell on-dark" style="background: #064E3B;"><span class="label">Forest · #064E3B</span></div>
+      <div class="cell" style="background: #34D399; color:#064E3B;"><span class="label" style="color:#064E3B;">Mint · #34D399</span></div>
+      <div class="cell" style="background: #d1fae5;"><span class="label" style="color: var(--ivy-700);">Wash · #D1FAE5</span></div>
+      <div class="cell type-aa">
+        <div class="glyph">Aa</div>
+        <div class="lab">Inter · 600 · −0.04em</div>
+      </div>
+      <div class="cell" style="background: white;"><span class="label">Surface · paper</span></div>
+      <div class="cell" style="background: var(--canvas-2);"><span class="label">Canvas-2</span></div>
+      <div class="cell on-dark" style="background: #0a0a0a;"><span class="label">Ink · #0A0A0A</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── B · Spec sheet ─────────────────────────────── -->
+<section class="hero-b">
+
+  <div class="hero-b-grid">
+
+    <aside class="hero-b-rail">
+      <div class="stamp"><span class="dot"></span> Ivy / DS</div>
+
+      <dl class="meta">
+        <div><dt>Document</dt><dd>Design System</dd></div>
+        <div><dt>Version</dt><dd>0.2 · May 2026</dd></div>
+        <div><dt>Owner</dt><dd>Brand &amp; Product</dd></div>
+        <div><dt>Status</dt><dd>In review</dd></div>
+        <div><dt>Pages</dt><dd>09 sections</dd></div>
+      </dl>
+
+      <div class="footer">© Braind · internal</div>
+    </aside>
+
+    <div class="hero-b-main">
+      <p class="hero-b-eyebrow">Design System · 09 sections</p>
+
+      <h1 class="hero-b-title">
+        The system behind <span class="ivy">Ivy</span>.
+      </h1>
+
+      <p class="hero-b-lede">Ivy is a 24/7 AI sales agent for life &amp; protection brokers. This document specifies the surfaces, type, color, components and editorial voice that keep her calm, factual, and trustworthy across every broker workstation she shows up in.</p>
+
+      <dl class="hero-b-spec">
+        <div>
+          <dt>Primary</dt>
+          <dd>#10B981<small>Emerald · brand</small></dd>
+        </div>
+        <div>
+          <dt>Type</dt>
+          <dd>Inter<small>400 / 500 / 600</small></dd>
+        </div>
+        <div>
+          <dt>Grid</dt>
+          <dd>4&nbsp;px<small>13px text floor</small></dd>
+        </div>
+        <div>
+          <dt>Surfaces</dt>
+          <dd>2<small>Glass · Solid</small></dd>
+        </div>
+      </dl>
+    </div>
+
+  </div>
+
+  <div class="hero-b-foot">
+    <div class="hero-b-foot-inner" aria-hidden="true">
+      <div class="swatch on-dark" style="background: linear-gradient(135deg,#10B981,#047857);"><span class="name">Emerald</span><span>#10B981</span></div>
+      <div class="swatch on-dark" style="background: #064E3B;"><span class="name">Forest</span><span>#064E3B</span></div>
+      <div class="swatch" style="background:#34D399; color:#064E3B;"><span class="name">Mint</span><span>#34D399</span></div>
+      <div class="swatch" style="background:#d1fae5; color: var(--ivy-700);"><span class="name">Wash</span><span>#D1FAE5</span></div>
+      <div class="swatch" style="background: var(--canvas); color: var(--ink-3);"><span class="name" style="color: var(--ink);">Canvas</span><span>#F5F3EE</span></div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  (function() {
+    var body = document.body;
+    var saved = null;
+    try { saved = localStorage.getItem('ivy-hero'); } catch (e) {}
+    body.setAttribute('data-hero', saved === 'B' ? 'B' : 'A');
+
+    document.querySelectorAll('.hero-switch [data-set-hero]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var v = btn.getAttribute('data-set-hero');
+        body.setAttribute('data-hero', v);
+        try { localStorage.setItem('ivy-hero', v); } catch (e) {}
+        document.querySelectorAll('.hero-switch [data-set-hero]').forEach(function(b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-set-hero') === v ? 'true' : 'false');
+        });
+      });
+    });
+
+    // Sync initial pressed state
+    document.querySelectorAll('.hero-switch [data-set-hero]').forEach(function(b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-set-hero') === body.getAttribute('data-hero') ? 'true' : 'false');
+    });
+  })();
+</script>
+
+<!-- ═══════════════ 01 — COLOR ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">01 / 09</span>
+    <h2 class="title">Color</h2>
+    <p class="blurb">Emerald is Ivy. The semantic stage palette is how brokers read the pipeline at a glance — earn it before you spend it.</p>
+  </header>
+</div>
+
+<div style="margin: 0 48px;">
+  <div class="color-strip" style="border-radius: var(--r-2xl); overflow: hidden; box-shadow: var(--shadow-warm);">
+    <div class="color-cell" style="background: linear-gradient(135deg, #10B981, #047857); color: white;">
+      <span class="role">Brand · primary</span>
+      <div>
+        <p class="name">Emerald</p>
+        <p class="hex">#10B981</p>
+      </div>
+    </div>
+    <div class="color-cell" style="background: #064E3B; color: white;">
+      <span class="role">on-emerald · text</span>
+      <div><p class="name" style="font-size: 22px;">Forest</p><p class="hex">#064E3B</p></div>
+    </div>
+    <div class="color-cell" style="background: #34D399; color: #064E3B;">
+      <span class="role">tint / hover</span>
+      <div><p class="name" style="font-size: 22px;">Mint</p><p class="hex">#34D399</p></div>
+    </div>
+    <div class="color-cell" style="background: #d1fae5; color: var(--ivy-700);">
+      <span class="role">avatar / chip</span>
+      <div><p class="name" style="font-size: 22px;">Wash</p><p class="hex">#D1FAE5</p></div>
+    </div>
+    <div class="color-cell" style="background: var(--canvas); color: var(--ink); box-shadow: inset 1px 0 0 var(--hair);">
+      <span class="role">page</span>
+      <div><p class="name" style="font-size: 22px;">Canvas</p><p class="hex">#F5F3EE</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="margin-top: 40px;">
+  <div class="grid g-2" style="grid-template-columns: 1.4fr 1fr;">
+    <div>
+      <p class="panel-title">Pipeline stages — earn the color</p>
+      <div class="stage-strip" style="background: white; border: 1px solid var(--hair); border-radius: var(--r-xl); overflow: hidden;">
+        <div class="stage-cell">
+          <span class="pill" style="--bg:#f1f5f9; --fg:#475569;">New</span>
+          <p class="stage-name">New</p>
+          <p class="stage-role">Fresh inbound. Ivy is qualifying.</p>
+          <span class="stage-token">slate-100</span>
+        </div>
+        <div class="stage-cell">
+          <span class="pill" style="--bg:#d1fae5; --fg:var(--ivy-700);">Qualified</span>
+          <p class="stage-name">Qualified</p>
+          <p class="stage-role">Real intent · ready for a quote.</p>
+          <span class="stage-token">emerald-100</span>
+        </div>
+        <div class="stage-cell">
+          <span class="pill" style="--bg:#fef3c7; --fg:#b45309;">Quoted</span>
+          <p class="stage-name">Quoted</p>
+          <p class="stage-role">Awaiting client decision.</p>
+          <span class="stage-token">amber-100</span>
+        </div>
+        <div class="stage-cell">
+          <span class="pill" style="--bg:#dbeafe; --fg:#1d4ed8;">Booked</span>
+          <p class="stage-name">Booked</p>
+          <p class="stage-role">Application submitted to provider.</p>
+          <span class="stage-token">blue-100</span>
+        </div>
+        <div class="stage-cell">
+          <span class="pill" style="--bg:#d1fae5; --fg:#065f46;">Converted</span>
+          <p class="stage-name">Converted</p>
+          <p class="stage-role">Policy on the books.</p>
+          <span class="stage-token">emerald-100·800</span>
+        </div>
+        <div class="stage-cell">
+          <span class="pill" style="--bg:rgba(254,226,226,.8); --fg:#dc2626;">Lost</span>
+          <p class="stage-name">Lost</p>
+          <p class="stage-role">Closed unconverted · note required.</p>
+          <span class="stage-token">red-100/80</span>
+        </div>
+      </div>
+      <p class="hint">Stage colors are <b>semantic</b>, not decorative — they appear on column heads, badges, tints, dashed slots, and trust ribbons. Don't reuse them for unrelated UI.</p>
+    </div>
+
+    <div>
+      <p class="panel-title">Neutrals — ink &amp; hairlines</p>
+      <div class="neutral-row">
+        <div style="background:#0a0a0a; color: white;"><span class="label">Ink</span><span class="tok">#0a0a0a</span></div>
+        <div style="background:#4a4a4a; color: white;"><span class="label">Ink 2</span><span class="tok">#4a4a4a</span></div>
+        <div style="background:#7a7a7a; color: white;"><span class="label">Ink 3</span><span class="tok">#7a7a7a</span></div>
+        <div style="background:#b8b8b8; color: var(--ink);"><span class="label">Ink 4</span><span class="tok">#b8b8b8</span></div>
+        <div style="background:#f5f3ee; color: var(--ink);"><span class="label">Canvas</span><span class="tok">#f5f3ee</span></div>
+        <div style="background:#fff; color: var(--ink);"><span class="label">Surface</span><span class="tok">#ffffff</span></div>
+      </div>
+      <p class="hint">Ink 3 (#7a7a7a) is the floor for body text on glass — passes <b>WCAG AA</b> at 13px+. Ink 4 is for hairline metadata only (mono, ≥11px).</p>
+
+      <p class="panel-title" style="margin-top: 28px;">Tag rail</p>
+      <div class="tag-rail">
+        <span class="tag" style="background:rgba(209,250,229,.8); color:var(--ivy-700);">Life Cover</span>
+        <span class="tag" style="background:rgba(219,234,254,.8); color:#1d4ed8;">Income Protection</span>
+        <span class="tag" style="background:rgba(254,243,199,.8); color:#b45309;">Mortgage Protection</span>
+        <span class="tag" style="background:rgba(255,228,230,.8); color:#be123c;">Serious Illness</span>
+        <span class="tag" style="background:rgba(243,232,255,.8); color:#7e22ce;">Life + SI</span>
+        <span class="tag" style="background:rgba(224,231,255,.8); color:#4338ca;">Pension</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 02 — TYPOGRAPHY ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">02 / 09</span>
+    <h2 class="title">Typography</h2>
+    <p class="blurb">Fraunces for editorial moments. Inter does the work. JetBrains Mono carries every number a broker stakes a decision on.</p>
+  </header>
+
+  <div class="type-editorial">
+    <div>
+      <h3 class="type-display">Quotes that <em>land</em>.<br/>Renewals that <em>show up</em>.</h3>
+      <p class="type-lede">Inter does everything — UI, copy, headlines. Tight tracking and a clear weight ladder give the system a Linear/Notion clarity. JetBrains Mono carries every number.</p>
+
+      <div class="type-stack">
+        <div class="type-row">
+          <span class="tag-spec">Display<br/>40 / 600 · -.03em</span>
+          <div style="font-size: 40px; font-weight: 600; line-height: 1.05; letter-spacing: -.03em;">Hello, Govind.</div>
+        </div>
+        <div class="type-row">
+          <span class="tag-spec">H1<br/>22 / 600 · -.02em</span>
+          <div style="font-size: 22px; font-weight: 600; letter-spacing: -.02em;">12 renewals due this week</div>
+        </div>
+        <div class="type-row">
+          <span class="tag-spec">H2<br/>15 / 600 · -.015em</span>
+          <div style="font-size: 15px; font-weight: 600; letter-spacing: -.015em;">Niamh O'Connor</div>
+        </div>
+        <div class="type-row">
+          <span class="tag-spec">Body<br/>14 / 400 · -.005em</span>
+          <div style="font-size: 14px; line-height: 1.55; color: var(--ink-2); letter-spacing: -.005em;">Four clients have already responded — three want to keep their current cover, one wants to upgrade.</div>
+        </div>
+        <div class="type-row">
+          <span class="tag-spec">UI<br/>13 / 500</span>
+          <div style="font-size: 13px; font-weight: 500;">Send to client · Save draft · Cancel</div>
+        </div>
+        <div class="type-row">
+          <span class="tag-spec">Caption<br/>12 / 500</span>
+          <div style="font-size: 12px; font-weight: 500; color: var(--ink-2);">Aviva · €34/mo · expires Friday</div>
+        </div>
+        <div class="type-row">
+          <span class="tag-spec">Eyebrow<br/>11 / 500</span>
+          <div style="font-size: 11px; font-weight: 500; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em;">QUALIFIED · 14 DAYS IN STAGE</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <div class="specimen">
+        <p class="specimen-head">Specimen — Ivy email to client</p>
+        <p class="email-meta"><b>From:</b> Govind via Ivy &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a7d756c73747e5a7f7b696376737c7f79756c7f6834737f">[email&#160;protected]</a>&gt;</p>
+        <p class="email-meta"><b>To:</b> Niamh O'Connor</p>
+        <p class="email-subject">Your Life Cover quote — a quick note before Friday</p>
+        <p class="email-body">Hi Niamh,<br/><br/>Your Aviva quote of €34/month expires this Friday. Nothing has changed on your end — the same cover, same provider, same rate.<br/><br/>If you'd like to go ahead, just reply yes and I'll send the application over. If not, no pressure — happy to talk it through.<br/><br/>— Govind</p>
+        <div class="email-sig">
+          <span class="ai-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg>
+            Drafted by Ivy · reviewed by Govind
+          </span>
+          <span style="float: right; font-family: var(--mono); font-size: 11px;">07 May, 14:32</span>
+        </div>
+      </div>
+
+      <div class="num-spec">
+        <p class="num-label">Booked premium · this month</p>
+        <div class="num-big"><span class="num-cur">€</span>42,180<span style="font-size: 20px; color: var(--ink-3); font-weight: 400;">.50</span></div>
+        <div class="num-trend">↑ €4,640 vs. last month</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 03 — IN SITU ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">03 / 09</span>
+    <h2 class="title">In situ</h2>
+    <p class="blurb">The system at work. Every token, type rule, and component you've seen, composed into a real broker dashboard.</p>
+  </header>
+</div>
+
+<div style="margin: 0 48px;">
+  <div class="insitu-frame">
+    <div class="app">
+      <aside class="app-side">
+        <div class="logo">
+          <div class="m">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          </div>
+          <span>Ivy</span>
+        </div>
+        <nav class="app-nav">
+          <a><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Home</a>
+          <a><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Contacts</a>
+          <a><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Conversations</a>
+          <a class="on"><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 8h6M9 12h6M9 16h4"/></svg> Pipeline</a>
+          <a><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/></svg> Renewals</a>
+          <a><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> Documents</a>
+          <a><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 11l18-5v12L3 14v-3z"/></svg> Outreach</a>
+          <a><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg> Reports</a>
+        </nav>
+        <div class="app-credits">
+          <div class="lab"><span>Credits</span><span class="mono">847 / 1,000</span></div>
+          <div class="bar"><i></i></div>
+        </div>
+      </aside>
+      <main class="app-main">
+        <div class="app-top">
+          <div class="app-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Search...</span>
+            <span class="kbd">⌘K</span>
+          </div>
+          <div class="row">
+            <div class="agent-state"><div class="pulse"></div>Ivy active</div>
+            <div class="av sm">GB</div>
+          </div>
+        </div>
+        <div class="app-body">
+          <h1 class="app-h1">Pipeline</h1>
+          <p class="app-h1-sub">12 active leads · €128,400 weighted pipeline value</p>
+
+          <div class="stat-row">
+            <div class="mini-stat"><p class="l">Active leads</p><p class="v">128</p><p class="t">+18 this week</p></div>
+            <div class="mini-stat"><p class="l">Booked premium</p><p class="v">€42,180</p><p class="t">+12.4%</p></div>
+            <div class="mini-stat"><p class="l">Conversion</p><p class="v">36%</p><p class="t down">−1.2%</p></div>
+            <div class="mini-stat"><p class="l">Ivy actions today</p><p class="v">47</p><p class="t">12 awaiting review</p></div>
+          </div>
+
+          <div class="kanban">
+            <div>
+              <div class="kcol-head">
+                <span class="kcol-pill" style="background:#d1fae5; color: var(--ivy-700);">Qualified</span>
+                <span class="kcol-count">3</span>
+              </div>
+              <div class="kbody" style="background: rgba(209,250,229,.30);">
+                <div class="kc">
+                  <div class="kc-r"><div class="av xs">NO</div><span class="kc-name">Niamh O'Connor</span><span class="tag mono" style="background:rgba(16,185,129,.15); color:var(--ivy-700);">9</span></div>
+                  <div class="kc-r" style="margin-top:6px;"><span class="tag" style="background:rgba(209,250,229,.8); color:var(--ivy-700);">Life Cover</span><span class="mono" style="margin-left:auto; font-size: 11.5px;">€2,450</span></div>
+                  <div class="kc-foot"><span>Aviva</span><span class="mono">€34/mo</span><span class="kc-act">Send quote</span></div>
+                </div>
+                <div class="kc">
+                  <div class="kc-r"><div class="av xs">MS</div><span class="kc-name">Marek Sienkiewicz</span><span class="tag mono" style="background:rgba(16,185,129,.15); color:var(--ivy-700);">8</span></div>
+                  <div class="kc-r" style="margin-top:6px;"><span class="tag" style="background:rgba(219,234,254,.8); color:#1d4ed8;">Income Prot.</span><span class="mono" style="margin-left:auto; font-size: 11.5px;">€1,920</span></div>
+                  <div class="kc-foot"><span>Irish Life</span><span class="mono">€28/mo</span><span class="kc-act">Send quote</span></div>
+                </div>
+                <div class="kc">
+                  <div class="kc-r"><div class="av xs">JC</div><span class="kc-name">Jane Cassidy</span><span class="tag mono" style="background:rgba(245,158,11,.10); color:#d97706;">6</span></div>
+                  <div class="kc-r" style="margin-top:6px;"><span class="tag" style="background:rgba(243,232,255,.8); color:#7e22ce;">Life + SI</span><span class="mono" style="margin-left:auto; font-size: 11.5px;">€3,180</span></div>
+                  <div class="kc-foot"><span>Royal London</span><span class="mono">€51/mo</span><span class="kc-act">Re-engage</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="kcol-head">
+                <span class="kcol-pill" style="background:#fef3c7; color:#b45309;">Quoted</span>
+                <span class="kcol-count">2</span>
+              </div>
+              <div class="kbody" style="background: rgba(254,243,199,.30);">
+                <div class="kc">
+                  <div class="kc-r"><div class="av xs">RD</div><span class="kc-name">Rory Doyle</span><span class="tag mono" style="background:rgba(16,185,129,.15); color:var(--ivy-700);">8</span></div>
+                  <div class="kc-r" style="margin-top:6px;"><span class="tag" style="background:rgba(254,243,199,.8); color:#b45309;">Mortgage Prot.</span><span class="mono" style="margin-left:auto; font-size: 11.5px;">€1,640</span></div>
+                  <div class="kc-foot"><span>New Ireland</span><span class="mono">€22/mo</span><span class="kc-act">Follow up</span></div>
+                </div>
+                <div class="kc">
+                  <div class="kc-r"><div class="av xs">AK</div><span class="kc-name">Aoife Kelly</span><span class="tag mono" style="background:rgba(16,185,129,.15); color:var(--ivy-700);">9</span></div>
+                  <div class="kc-r" style="margin-top:6px;"><span class="tag" style="background:rgba(255,228,230,.8); color:#be123c;">Serious Illness</span><span class="mono" style="margin-left:auto; font-size: 11.5px;">€2,820</span></div>
+                  <div class="kc-foot"><span>Aviva</span><span class="mono">€42/mo</span><span class="kc-act">Expires Fri</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="kcol-head">
+                <span class="kcol-pill" style="background:#dbeafe; color:#1d4ed8;">Booked</span>
+                <span class="kcol-count">1</span>
+              </div>
+              <div class="kbody" style="background: rgba(219,234,254,.30);">
+                <div class="kc">
+                  <div class="kc-r"><div class="av xs">DH</div><span class="kc-name">Daniel Hennessy</span><span class="tag mono" style="background:rgba(16,185,129,.15); color:var(--ivy-700);">9</span></div>
+                  <div class="kc-r" style="margin-top:6px;"><span class="tag" style="background:rgba(209,250,229,.8); color:var(--ivy-700);">Life Cover</span><span class="mono" style="margin-left:auto; font-size: 11.5px;">€4,200</span></div>
+                  <div class="kc-foot"><span>Royal London</span><span class="mono">€58/mo</span><span class="kc-act">Awaiting docs</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 04 — IVY VOICE ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">04 / 09</span>
+    <h2 class="title">Ivy's voice</h2>
+    <p class="blurb">Ivy talks to clients on a broker's behalf. The voice has to feel like the broker — never like a chatbot. Three pillars, no exceptions.</p>
+  </header>
+
+  <div class="voice-wrap">
+    <div class="voice-pillars">
+      <div class="pillar">
+        <h4>Calm, <em>not chirpy</em></h4>
+        <p>No exclamation marks. No "Awesome!" No emoji. Ivy speaks the way a senior broker would over a coffee — measured, present, in no rush.</p>
+        <div class="ex">
+          <div>
+            <span class="ex-label">Ivy</span>
+            <div class="ex-good">Your quote is ready. Take your time looking it over.</div>
+          </div>
+          <div>
+            <span class="ex-label">Not Ivy</span>
+            <div class="ex-bad">Great news! 🎉 Your quote is here!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <h4>Plain, <em>not jargony</em></h4>
+        <p>"Cover" not "underwriting decision." "Monthly cost" not "indicative premium." If a client wouldn't say it at the kitchen table, Ivy doesn't say it.</p>
+        <div class="ex">
+          <div>
+            <span class="ex-label">Ivy</span>
+            <div class="ex-good">€34 a month, for €250,000 of cover.</div>
+          </div>
+          <div>
+            <span class="ex-label">Not Ivy</span>
+            <div class="ex-bad">Indicative monthly premium of €34 for sum-assured of €250k.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <h4>Honest, <em>never pushy</em></h4>
+        <p>Brokers' reputations are built on trust over decades. Ivy never invents urgency. When a quote expires, she says so once, plainly, with an out.</p>
+        <div class="ex">
+          <div>
+            <span class="ex-label">Ivy</span>
+            <div class="ex-good">This quote expires Friday. If you'd rather wait, that's fine — I'll re-quote next month.</div>
+          </div>
+          <div>
+            <span class="ex-label">Not Ivy</span>
+            <div class="ex-bad">⏰ Don't miss out! Lock in your rate before Friday!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="micro-table">
+      <p class="panel-title" style="margin-bottom: 14px;">Microcopy library</p>
+      <table>
+        <thead><tr><th>Context</th><th>Ivy says</th></tr></thead>
+        <tbody>
+          <tr><td class="ctx">Lead lost</td><td class="ivy-says">Marked as lost. I'll keep her record warm in case she circles back. <em>This lead has been moved to the Lost stage.</em></td></tr>
+          <tr><td class="ctx">Awaiting approval</td><td class="ivy-says">Drafted — ready for your review before it sends. <em>AI-generated content is pending human approval.</em></td></tr>
+          <tr><td class="ctx">No data</td><td class="ivy-says">No leads in Quoted yet. <em>The Quoted pipeline is currently empty.</em></td></tr>
+          <tr><td class="ctx">Out of credits</td><td class="ivy-says">You're out of credits for this month. I'll pause outreach until they reset on the 1st. <em>Credit limit exceeded. Service paused.</em></td></tr>
+          <tr><td class="ctx">Error sending</td><td class="ivy-says">Couldn't send — the email bounced. Want me to try her WhatsApp? <em>Email delivery failed. Error code: SMTP_550.</em></td></tr>
+          <tr><td class="ctx">Confirm a destructive action</td><td class="ivy-says">Move 14 leads to Lost? They'll stay in your records, just out of view. <em>Are you sure you want to perform this action?</em></td></tr>
+          <tr><td class="ctx">Greeting (morning)</td><td class="ivy-says">Morning, Govind. 12 renewals due this week — 4 already responded. <em>Hello! Welcome to your dashboard.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 05 — TRUST & COMPLIANCE ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">05 / 09</span>
+    <h2 class="title">Trust &amp; compliance</h2>
+    <p class="blurb">Ivy operates inside a regulated industry. Every AI-generated word is labelled, every action is logged, and the broker is always one click from "stop."</p>
+  </header>
+
+  <div class="trust-grid">
+    <div class="trust-card">
+      <h4>Agent state — always visible</h4>
+      <p>The broker should never wonder whether Ivy is acting on their behalf right now. Top-bar pill, three states.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <div class="agent-state"><div class="pulse"></div>Ivy active</div>
+        <div class="agent-state paused"><div class="pulse"></div>Paused by Govind</div>
+        <div class="agent-state review"><div class="pulse"></div>3 awaiting your review</div>
+      </div>
+      <p class="hint" style="margin-top: 18px;">Pause is a single click and takes effect within 5 seconds. No outbound goes out without it being on.</p>
+    </div>
+
+    <div class="trust-card">
+      <h4>AI-drafted badge</h4>
+      <p>Anywhere Ivy has written words that a human will read — emails, WhatsApp drafts, summary notes — she's labelled.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span class="ai-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg>
+          Drafted by Ivy
+        </span>
+        <span class="ai-badge" style="background: rgba(59,130,246,.10); color: #1d4ed8;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          Drafted by Ivy · reviewed by Govind
+        </span>
+        <span class="ai-badge" style="background: rgba(245,158,11,.10); color: #b45309;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12" y2="16"/></svg>
+          Awaiting review
+        </span>
+      </div>
+    </div>
+
+    <div class="trust-card">
+      <h4>Provenance — who said what, when</h4>
+      <p>Every message in a conversation thread carries provenance. Hover for full audit detail.</p>
+      <div class="provenance" style="margin-bottom: 8px;">
+        <div class="av">NO</div>
+        <div style="flex:1;">
+          <div style="font-weight: 500;">Niamh O'Connor</div>
+          <div>I'd like to go ahead with the cover.</div>
+          <div class="ts">via WhatsApp · 07 May, 14:32</div>
+        </div>
+      </div>
+      <div class="provenance" style="background: rgba(16,185,129,.06);">
+        <div class="av" style="background: var(--ivy-50);">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg>
+        </div>
+        <div style="flex:1;">
+          <div style="font-weight: 500;">Ivy <span class="ai-badge" style="margin-left: 4px;">AI</span> · for Govind</div>
+          <div>Brilliant, Niamh. I'll send the application now and confirm once it's in.</div>
+          <div class="ts">drafted 14:33 · sent 14:34 (auto-approved)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-card">
+      <h4>Audit trail</h4>
+      <p>Every state change on every lead is logged. Exportable as CSV for compliance reviews.</p>
+      <div style="margin-top: 12px;">
+        <div class="audit-line"><span class="t">14:34</span><span class="e"><b>Ivy</b> sent application to Aviva</span></div>
+        <div class="audit-line"><span class="t">14:33</span><span class="e"><b>Ivy</b> drafted reply · auto-approved by rule "intent: yes"</span></div>
+        <div class="audit-line"><span class="t">14:32</span><span class="e"><b>Niamh O'Connor</b> replied via WhatsApp</span></div>
+        <div class="audit-line"><span class="t">14:30</span><span class="e"><b>Govind</b> moved lead to Booked</span></div>
+        <div class="audit-line"><span class="t">12 May</span><span class="e"><b>Ivy</b> sent quote · €34/mo Aviva Life Cover</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 24px;" class="trust-card">
+    <h4>Client-facing disclosure footer</h4>
+    <p>Every email or document Ivy generates for a client carries a fixed disclosure. The wording is set centrally per tenant; only legal can change it.</p>
+    <div class="email-body" style="font-size: 13px; padding: 14px 0;">Hi Niamh — your quote of €34/month is ready. Reply yes to proceed, or call me on 01 234 5678 if you'd prefer to chat.</div>
+    <div class="disclosure">
+      <b>Regulatory notice</b>
+      EasyLifeCover Ltd is regulated by the Central Bank of Ireland. This communication was prepared with assistance from an AI tool (Ivy) and reviewed by a qualified financial advisor before sending. Quoted premiums are indicative and subject to underwriting. You can request a fully human-prepared quote at any time.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 06 — STATES ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">06 / 09</span>
+    <h2 class="title">States</h2>
+    <p class="blurb">Every interactive component has six states. Document them once, ship them everywhere. Focus rings are non-negotiable — power users live in ⌘K.</p>
+  </header>
+
+  <div class="panel" style="background: white; border: 1px solid var(--hair);">
+    <p class="panel-title">Primary button</p>
+    <div class="states">
+      <span class="row-label">Default</span>
+      <span class="col-label">default</span>
+      <span class="col-label">hover</span>
+      <span class="col-label">active</span>
+      <span class="col-label">focus</span>
+      <span class="col-label">disabled</span>
+      <span class="col-label">loading</span>
+
+      <span class="row-label">Primary</span>
+      <div class="cell"><button class="bp">Send</button></div>
+      <div class="cell"><button class="bp hov">Send</button></div>
+      <div class="cell"><button class="bp act">Send</button></div>
+      <div class="cell"><button class="bp foc">Send</button></div>
+      <div class="cell"><button class="bp dis">Send</button></div>
+      <div class="cell"><button class="bp load"><span class="spin"></span>Sending</button></div>
+    </div>
+  </div>
+
+  <div class="panel" style="background: white; border: 1px solid var(--hair); margin-top: 16px;">
+    <p class="panel-title">Input field</p>
+    <div class="states">
+      <span class="row-label">Text</span>
+      <span class="col-label">empty</span>
+      <span class="col-label">filled</span>
+      <span class="col-label">focus</span>
+      <span class="col-label">error</span>
+      <span class="col-label">disabled</span>
+      <span class="col-label">success</span>
+
+      <span class="row-label">Email</span>
+      <div class="cell"><input class="ip" placeholder="niamh@..."/></div>
+      <div class="cell"><input class="ip" value="niamh@oconnor.ie"/></div>
+      <div class="cell"><input class="ip foc" value="niamh@oconnor.ie"/></div>
+      <div class="cell"><input class="ip err" value="niamh@oconnor"/></div>
+      <div class="cell"><input class="ip dis" value="niamh@oconnor.ie" disabled/></div>
+      <div class="cell"><input class="ip" style="border-color: rgba(16,185,129,.6);" value="niamh@oconnor.ie"/></div>
+    </div>
+    <p class="hint">Focus ring: 3px wash + 1px solid emerald. Used on every focusable element. Never <span class="mono">outline: none</span> without a replacement.</p>
+  </div>
+</div>
+
+<!-- ═══════════════ 07 — DATA VIZ ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">07 / 09</span>
+    <h2 class="title">Data viz</h2>
+    <p class="blurb">Reports inherit the stage palette. One color per stage means a funnel, a line, and a donut all read the same way at a glance.</p>
+  </header>
+
+  <div class="viz-grid">
+    <div class="viz">
+      <h4>Conversion funnel</h4>
+      <p class="vsub">Past 30 days · 412 inbound leads</p>
+      <div class="funnel">
+        <div class="funnel-row"><span class="l">New</span><div class="b" style="width:100%; background:#e2e8f0;"></div><span class="v">412</span></div>
+        <div class="funnel-row"><span class="l">Qualified</span><div class="b" style="width:62%; background:#a7f3d0;"></div><span class="v">256</span></div>
+        <div class="funnel-row"><span class="l">Quoted</span><div class="b" style="width:42%; background:#fde68a;"></div><span class="v">174</span></div>
+        <div class="funnel-row"><span class="l">Booked</span><div class="b" style="width:24%; background:#bfdbfe;"></div><span class="v">98</span></div>
+        <div class="funnel-row"><span class="l">Converted</span><div class="b" style="width:18%; background:var(--ivy-primary);"></div><span class="v">73</span></div>
+      </div>
+      <div class="legend">
+        <span class="sw"><i style="background:var(--ivy-primary);"></i>17.7% overall conversion</span>
+        <span class="sw"><i style="background:#fde68a;"></i>56% quote → book</span>
+      </div>
+    </div>
+
+    <div class="viz">
+      <h4>Booked premium · 7d</h4>
+      <p class="vsub">Daily, last week</p>
+      <svg class="line-chart" viewBox="0 0 320 180" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="lg" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#10B981" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="rgba(0,0,0,.06)" stroke-dasharray="2 4">
+          <line x1="0" y1="40" x2="320" y2="40"/>
+          <line x1="0" y1="90" x2="320" y2="90"/>
+          <line x1="0" y1="140" x2="320" y2="140"/>
+        </g>
+        <path d="M0,130 L45,110 L90,120 L135,80 L180,90 L225,50 L270,60 L320,30 L320,180 L0,180 Z" fill="url(#lg)"/>
+        <path d="M0,130 L45,110 L90,120 L135,80 L180,90 L225,50 L270,60 L320,30" fill="none" stroke="#10B981" stroke-width="2"/>
+        <g fill="#10B981">
+          <circle cx="0" cy="130" r="3"/><circle cx="45" cy="110" r="3"/><circle cx="90" cy="120" r="3"/><circle cx="135" cy="80" r="3"/><circle cx="180" cy="90" r="3"/><circle cx="225" cy="50" r="3"/><circle cx="270" cy="60" r="3"/><circle cx="320" cy="30" r="4" fill="white" stroke="#10B981" stroke-width="2"/>
+        </g>
+      </svg>
+      <div style="display:flex; justify-content:space-between; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3);">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+    </div>
+
+    <div class="viz" style="grid-column: span 2;">
+      <h4>Lead source · this month</h4>
+      <p class="vsub">Channel mix, weighted by booked premium</p>
+      <div class="donut-row">
+        <svg width="160" height="160" viewBox="0 0 42 42">
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#f1f5f9" stroke-width="6"/>
+          <!-- 45% chatbot, 25% whatsapp, 20% email, 10% phone -->
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#10B981" stroke-width="6" stroke-dasharray="45 100" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#34D399" stroke-width="6" stroke-dasharray="25 100" stroke-dashoffset="-20" transform="rotate(-90 21 21)"/>
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#60a5fa" stroke-width="6" stroke-dasharray="20 100" stroke-dashoffset="-45" transform="rotate(-90 21 21)"/>
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#cbd5e1" stroke-width="6" stroke-dasharray="10 100" stroke-dashoffset="-65" transform="rotate(-90 21 21)"/>
+          <text x="21" y="20" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" letter-spacing="-0.05" fill="#0a0a0a" style="font-variant-numeric: tabular-nums;">€42k</text>
+          <text x="21" y="26" text-anchor="middle" font-family="Inter" font-size="3" fill="#7a7a7a">booked</text>
+        </svg>
+        <div style="flex:1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px;">
+          <div class="legend" style="margin: 0;"><span class="sw"><i style="background:#10B981;"></i><span style="color: var(--ink); font-weight: 500;">Chatbot</span> · 45% · €18,981</span></div>
+          <div class="legend" style="margin: 0;"><span class="sw"><i style="background:#34D399;"></i><span style="color: var(--ink); font-weight: 500;">WhatsApp</span> · 25% · €10,545</span></div>
+          <div class="legend" style="margin: 0;"><span class="sw"><i style="background:#60a5fa;"></i><span style="color: var(--ink); font-weight: 500;">Email</span> · 20% · €8,436</span></div>
+          <div class="legend" style="margin: 0;"><span class="sw"><i style="background:#cbd5e1;"></i><span style="color: var(--ink); font-weight: 500;">Phone</span> · 10% · €4,218</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 08 — SOLID & PRINT ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">08 / 09</span>
+    <h2 class="title">Glass &amp; Solid</h2>
+    <p class="blurb">Glass is the brand. Solid is the safety net — for dense tables, low-end Windows laptops, exported PDFs, and printed quotes. Same tokens, opaque surfaces.</p>
+  </header>
+
+  <div class="modes">
+    <div class="mode-frame glass">
+      <span class="mode-tag g">Glass mode · primary UI</span>
+      <h4 style="font-family: var(--serif); font-size: 22px; font-weight: 500; margin: 0 0 4px;">Pipeline · Qualified</h4>
+      <p style="margin: 0 0 14px; font-size: 12px; color: var(--ink-3);">3 leads · €7,550 weighted</p>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="display:flex; align-items:center; gap: 8px; font-size: 12.5px;">
+          <div class="av xs">NO</div>Niamh O'Connor<span style="margin-left:auto; font-family: var(--mono);">€2,450</span>
+        </div>
+        <div style="display:flex; align-items:center; gap: 8px; font-size: 12.5px;">
+          <div class="av xs">MS</div>Marek Sienkiewicz<span style="margin-left:auto; font-family: var(--mono);">€1,920</span>
+        </div>
+        <div style="display:flex; align-items:center; gap: 8px; font-size: 12.5px;">
+          <div class="av xs">JC</div>Jane Cassidy<span style="margin-left:auto; font-family: var(--mono);">€3,180</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mode-frame solid">
+      <span class="mode-tag s">Solid mode · tables, print, fallback</span>
+      <h4 style="font-family: var(--serif); font-size: 22px; font-weight: 500; margin: 0 0 4px;">Quote summary</h4>
+      <p style="margin: 0 0 14px; font-size: 12px; color: var(--ink-3);">For Niamh O'Connor · prepared 07 May 2026</p>
+      <table class="table">
+        <thead><tr><th>Cover</th><th>Provider</th><th class="num">Monthly</th><th class="num">Annual</th></tr></thead>
+        <tbody>
+          <tr><td>Life Cover · €250k</td><td>Aviva</td><td class="num">€34.00</td><td class="num">€408.00</td></tr>
+          <tr><td>Specified illness rider</td><td>Aviva</td><td class="num">€12.50</td><td class="num">€150.00</td></tr>
+          <tr><td><b>Total</b></td><td></td><td class="num"><b>€46.50</b></td><td class="num"><b>€558.00</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="hint" style="margin-top: 18px;"><b>Rule:</b> If the surface holds &gt;20 rows, contains exported content (PDF, CSV preview), or renders below the fold on a 13" Windows laptop — use solid mode. Glass everywhere else.</p>
+</div>
+
+<!-- ═══════════════ 09 — PRINCIPLES ═══════════════ -->
+<div class="wrap">
+  <header class="frontispiece">
+    <span class="num">09 / 09</span>
+    <h2 class="title">Principles</h2>
+    <p class="blurb">When in doubt — and you will be — these are the rails. They override aesthetics. They override consistency. They are the product.</p>
+  </header>
+
+  <div class="grid g-3">
+    <div class="trust-card">
+      <h4>1 · Calm beats clever</h4>
+      <p>If a flourish makes the screen feel busy, cut it. Brokers come to Ivy <i>between</i> client calls — give them space to think.</p>
+    </div>
+    <div class="trust-card">
+      <h4>2 · The broker is the boss</h4>
+      <p>Every Ivy action shows who triggered it, can be undone, and can be paused. Autonomy without consent is a bug.</p>
+    </div>
+    <div class="trust-card">
+      <h4>3 · Numbers are sacred</h4>
+      <p>Every premium, every conversion rate, every audit timestamp uses JetBrains Mono. They never sit inside a paragraph — always on their own line.</p>
+    </div>
+    <div class="trust-card">
+      <h4>4 · The vertical wins</h4>
+      <p>If a SaaS pattern conflicts with how a regulated broker actually works — the broker's workflow wins. Always.</p>
+    </div>
+    <div class="trust-card">
+      <h4>5 · Don't invent urgency</h4>
+      <p>No countdown timers. No red badges for things that aren't actually red. The pipeline carries enough real urgency.</p>
+    </div>
+    <div class="trust-card">
+      <h4>6 · Plain English everywhere</h4>
+      <p>If a client wouldn't say it, Ivy doesn't say it. If an engineer wrote the error message, rewrite it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- closing -->
+<div class="closing">
+  <p class="quote">"The best AI agents <em>disappear</em> into the broker's day. The job of this system is to make sure Ivy never feels like software — only like the quietest, most reliable colleague on the team."</p>
+  <p class="by">Ivy Design System · v0.2 · 07 May 2026</p>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADV-02 Lead Inbox</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADV-02 · /leads · Sarah Bennett">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Adviser</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li class="active"><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page">
+      <div class="pg-head">
+        <div>
+          <h1 class="pg-title">Lead inbox</h1>
+          <p class="pg-sub">12 new since yesterday · 9 captured by F1 out-of-hours · 1 vuln flag</p>
+        </div>
+        <div class="pg-actions">
+          <input class="input" placeholder="🔍 Search by name or phone…">
+          <button class="btn">Filters</button>
+          <button class="btn">+ Manual lead</button>
+        </div>
+      </div>
+
+      <!-- Filter chips -->
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+        <span class="pill blue"><span class="dot"></span>All · 12</span>
+        <span class="pill">Qualified · 9</span>
+        <span class="pill red"><span class="dot"></span>Vuln · 1</span>
+        <span class="pill">Knocked out · 2</span>
+        <span class="pill">Today · 5</span>
+        <span class="pill">Out-of-hours · 9</span>
+      </div>
+
+      <!-- Mark Roberts (expanded) -->
+      <div class="card" style="border-left:3px solid var(--green)">
+        <h3>
+          Mark Roberts
+          <span class="pill green"><span class="dot"></span>Qualified · score 8.4</span>
+          <span style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--ink-3)">21:14 Tue · Compare the Market · £18 paid</span>
+        </h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;font-size:12.5px;margin-bottom:10px">
+          <div><span class="meta">Age</span><br><b>38</b></div>
+          <div><span class="meta">Cover</span><br><b>£245k LIFE+CI</b></div>
+          <div><span class="meta">Budget</span><br><b>£40–60/mo</b></div>
+          <div><span class="meta">Timeline</span><br><b>8 weeks</b></div>
+        </div>
+
+        <div class="card subtle" style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px">
+            <b>F1 / F2 conversation log</b>
+            <span class="meta">11 messages · 6 min · WhatsApp</span>
+          </div>
+          <ul style="margin:0;padding-left:18px;font-size:12px;color:var(--ink-2);line-height:1.7;font-family:'Kalam'">
+            <li>Captured 21:14 Tue · out-of-hours</li>
+            <li>Qualified 21:20 by F2 — all knockouts passed</li>
+            <li>FactFind booked Friday 14:00 with Sarah</li>
+            <li>Pre-FactFind docs queued for Wed 09:00</li>
+            <li>Companies House + electoral roll → score 8.4</li>
+          </ul>
+        </div>
+
+        <div style="display:flex;gap:16px;font-size:12px;margin-bottom:10px">
+          <span><span class="meta">Vuln (C6):</span> <b style="color:var(--green)">none</b></span>
+          <span><span class="meta">Trigger:</span> brother bowel CA dx</span>
+          <span><span class="meta">Health flags:</span> family hx → probe at FF</span>
+        </div>
+
+        <div style="display:flex;gap:8px">
+          <button class="btn primary">Open FactFind →</button>
+          <button class="btn">Open case</button>
+          <button class="btn">Reassign</button>
+          <span style="margin-left:auto;font-family:'Kalam';font-size:12px;color:var(--ink-3)">View full conversation →</span>
+        </div>
+      </div>
+
+      <!-- Other leads (collapsed) -->
+      <div class="card">
+        <div class="row">
+          <span class="name">Sarah Lee</span>
+          <span class="meta">42 · £150k LIFE</span>
+          <span class="pill green"><span class="dot"></span>Qualified · 7.6</span>
+          <span class="meta grow">06:42 Wed · MoneySuperMarket</span>
+          <button class="btn">Triage →</button>
+        </div>
+        <div class="row" style="border-left:3px solid var(--red);padding-left:8px">
+          <span class="name">James Wong</span>
+          <span class="meta">35 · £80k IP</span>
+          <span class="pill red"><span class="dot"></span>Vuln · 6.9</span>
+          <span class="meta grow"><b style="color:var(--red)">C6:</b> financial pressure language in F2 conversation</span>
+          <button class="btn warn">Review →</button>
+        </div>
+        <div class="row">
+          <span class="name">Priya Shah</span>
+          <span class="meta">39 · £180k LIFE</span>
+          <span class="pill green"><span class="dot"></span>Qualified · 8.1</span>
+          <span class="meta grow">Mon 14:22 · Compare the Market</span>
+          <button class="btn">Open</button>
+        </div>
+        <div class="row">
+          <span class="name">David Patel</span>
+          <span class="meta">44 · £300k LIFE</span>
+          <span class="pill green"><span class="dot"></span>Qualified · 8.8</span>
+          <span class="meta grow">Mon 11:15 · Bonkers.ie</span>
+          <button class="btn">Open</button>
+        </div>
+        <div class="row" style="justify-content:center;color:var(--ink-3);font-size:12px">+ 7 more · 2 knocked out · 1 in re-engagement nurture</div>
+      </div>
+
+      <p class="note">Question: do we ever show >1 expanded card, or always one-at-a-time? Mobile especially. Defaults: 1 expanded.</p>
+    </main>
+  </div>
+</div>
+
+<div class="copilot">
+  <div class="h"><span class="dot"></span>Ivy Co-pilot</div>
+  <div class="body">James Wong has a financial-pressure flag. Want me to draft a script Sarah can use on the review call?</div>
+  <input class="input" placeholder="Ask Ivy or invoke…">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADV-05 Customer Card</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADV-05 · /cases/MR-2026 · Mark Roberts Customer Card">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Adviser</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li class="active"><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page">
+      <!-- Case header -->
+      <div class="pg-head">
+        <div>
+          <p class="pg-sub" style="margin-bottom:4px">← Cases</p>
+          <h1 class="pg-title">Mark Roberts</h1>
+          <p class="pg-sub">38 · Manchester M6 4LP · DOB 14 Mar 1988</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <span class="pill blue"><span class="dot"></span>UW · Day 7 · Awaiting GP report</span>
+            <span class="pill">Vitality DTL+CI · £42.80/mo</span>
+            <span class="pill slate">Sarah Bennett · Niamh O'Reilly</span>
+          </div>
+        </div>
+        <div class="pg-actions">
+          <button class="btn">Share</button>
+          <button class="btn">Activity</button>
+          <button class="btn primary">Send client update</button>
+        </div>
+      </div>
+
+      <!-- Tabs strip -->
+      <div style="display:flex;gap:0;border-bottom:1.5px solid var(--hair-strong);margin-bottom:18px;font-family:'Kalam';font-size:13.5px">
+        <span style="padding:10px 14px;border-bottom:2.5px solid var(--ink);font-weight:700;margin-bottom:-1.5px">Overview</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">FactFind</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Quote</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Suitability</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Application</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">UW</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Calls</span>
+        <span style="padding:10px 14px;color:var(--ink-3)">Compliance</span>
+      </div>
+
+      <!-- 2-col: primary + activity rail -->
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px">
+
+        <div>
+          <!-- At a glance -->
+          <div class="card">
+            <h3>At a glance</h3>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;font-size:12.5px">
+              <div><span class="meta">Stage</span><br><b>UW Day 7</b><br><span class="meta">awaiting GP report</span></div>
+              <div><span class="meta">Next event</span><br><b>GP report ETA</b><br><span class="meta">Day 14 est.</span></div>
+              <div><span class="meta">Compliance</span><br><b style="color:var(--green)">96/100 ✓</b><br><span class="meta">file ready</span></div>
+              <div><span class="meta">Vulnerability</span><br><b>None</b><br><span class="meta">C6 across 2–8</span></div>
+            </div>
+          </div>
+
+          <!-- Lead profile -->
+          <div class="card">
+            <h3>Lead profile <span style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--ink-3);font-weight:400">F1 captured 21:14 Tue · 6 min to qualify</span></h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12.5px">
+              <div><span class="meta">Score · Source</span><br><b>8.4 · Compare the Market · £18 paid</b></div>
+              <div><span class="meta">Trigger</span><br>Brother diagnosed bowel cancer last month</div>
+              <div><span class="meta">Companies House</span><br>Director · XYZ Design Ltd</div>
+              <div><span class="meta">Household</span><br>Wife Sophie · 2 children (4, 7)</div>
+            </div>
+          </div>
+
+          <!-- Recommendation -->
+          <div class="card">
+            <h3>Recommendation <span class="pill green" style="margin-left:auto"><span class="dot"></span>Standard rates accepted</span></h3>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:12.5px;margin-bottom:10px">
+              <div><span class="meta">Product</span><br><b>Vitality DTL + CI</b></div>
+              <div><span class="meta">Premium</span><br><b>£42.80/mo</b></div>
+              <div><span class="meta">Sum assured</span><br><b>£245,000</b></div>
+              <div><span class="meta">Term</span><br><b>22 years</b></div>
+            </div>
+            <p class="meta" style="margin:0;padding-top:8px;border-top:1px dashed var(--hair-2)">Sum assured matches mortgage term · loading: none · alternatives: Royal London (priced higher) · Aviva (50% loading on family hx)</p>
+          </div>
+
+          <!-- FactFind summary -->
+          <div class="card">
+            <h3>FactFind summary <span style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--ink-3);font-weight:400">A2 · 94% confidence</span></h3>
+            <p style="font-size:12.5px;margin:0 0 10px"><span class="meta">Captured:</span> Friday 14:00 (Sarah) · all 8 sections complete</p>
+            <ul style="margin:0;padding-left:18px;font-size:12.5px;font-family:'Kalam';color:var(--ink-2);line-height:1.7">
+              <li>Family hx: brother bowel CA age 45</li>
+              <li>Smoker: stopped 4yr ago</li>
+              <li>Personal hx: clean — no current/past conditions</li>
+              <li>Self-employed graphic designer · £62k SA302</li>
+            </ul>
+          </div>
+
+          <!-- Compliance file -->
+          <div class="card">
+            <h3>Compliance file <span class="pill green" style="margin-left:auto">Auto-built · 11/11 docs</span></h3>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12.5px">
+              <div><span class="meta">Score</span><br><b>96 / 100</b></div>
+              <div><span class="meta">Sign-off</span><br><b>Daniel · Mon 14:02</b></div>
+              <div><span class="meta">Retention</span><br><b>6 yrs (UK)</b></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity rail -->
+        <aside class="card" style="height:fit-content">
+          <h3>Activity</h3>
+          <div style="font-size:12px;font-family:'Kalam';line-height:1.6">
+            <div style="margin-bottom:10px"><b style="color:var(--ink-3)">Day 7</b><br>Vitality email parsed by M5 — GP report status check</div>
+            <div style="margin-bottom:10px"><b style="color:var(--ink-3)">Day 6</b><br>Mark signed GP consent (DocuSign)</div>
+            <div style="margin-bottom:10px"><b style="color:var(--ink-3)">Day 5</b><br>Vitality requested GP report</div>
+            <div style="margin-bottom:10px"><b style="color:var(--ink-3)">Day 1</b><br>Application submitted via M4 · M2 all green</div>
+            <div style="margin-bottom:10px"><b style="color:var(--ink-3)">Day 0</b><br>FactFind completed · A2 94% conf (Sarah)</div>
+            <div style="margin-bottom:10px"><b style="color:var(--ink-3)">−2</b><br>Suitability signed · A4 92 · Daniel approved 6 min</div>
+            <div style="margin-bottom:10px"><b style="color:var(--ink-3)">−5</b><br>Pre-FactFind disclosure · A7 v3.4 sent</div>
+            <div><b style="color:var(--ink-3)">−7</b><br>F1 captured · Compare the Market · score 8.4</div>
+          </div>
+        </aside>
+      </div>
+
+      <p class="note">Question: how much can sections collapse on smaller screens? Should the activity rail become a drawer on &lt;1280?</p>
+    </main>
+  </div>
+</div>
+
+<div class="copilot">
+  <div class="h"><span class="dot"></span>Ivy Co-pilot</div>
+  <div class="body">Day 14 GP report is expected. Want me to draft Mark's Day-7 update message?</div>
+  <input class="input" placeholder="Ask Ivy…">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · COP-03 Co-pilot widget</title>
+<link rel="stylesheet" href="shared/wires.css">
+<style>
+  /* Widget shown over Today screen */
+</style>
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · COP-03 · /today · widget bottom-right · Sarah Bennett">
+  <div class="app">
+
+    <!-- ─── Base page: Today ─── -->
+    <aside class="nav">
+      <div class="logo">
+        <span class="leaf"></span>
+        <span class="wm">Ivy</span>
+        <span class="role">Adviser</span>
+      </div>
+      <h6>Workspace</h6>
+      <ul>
+        <li class="active"><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <h6>AI</h6>
+      <ul>
+        <li><span class="ic dot"></span>Co-pilot <span class="count">17</span></li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page">
+      <div class="pg-head">
+        <div>
+          <h1 class="pg-title">Today</h1>
+          <p class="pg-sub">Wednesday 13 May · 4 client-facing slots · 3 in compliance queue</p>
+        </div>
+        <div class="pg-actions">
+          <button class="btn">+ New lead</button>
+          <button class="btn primary">Start next FactFind</button>
+        </div>
+      </div>
+
+      <!-- Top stats -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+        <div class="card" style="padding:12px 14px">
+          <h6 style="font-family:'Inter';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--ink-3);margin:0 0 6px;font-weight:600">Active cases</h6>
+          <div style="font-size:26px;font-weight:600;line-height:1">47</div>
+        </div>
+        <div class="card" style="padding:12px 14px">
+          <h6 style="font-family:'Inter';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--ink-3);margin:0 0 6px;font-weight:600">Today's apps</h6>
+          <div style="font-size:26px;font-weight:600;line-height:1">4</div>
+        </div>
+        <div class="card" style="padding:12px 14px">
+          <h6 style="font-family:'Inter';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--ink-3);margin:0 0 6px;font-weight:600">Comp queue</h6>
+          <div style="font-size:26px;font-weight:600;line-height:1">3</div>
+        </div>
+        <div class="card" style="padding:12px 14px">
+          <h6 style="font-family:'Inter';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--ink-3);margin:0 0 6px;font-weight:600">Alerts</h6>
+          <div style="font-size:26px;font-weight:600;line-height:1;color:var(--red)">3</div>
+        </div>
+      </div>
+
+      <!-- Lead inbox preview (abbreviated) -->
+      <div class="card">
+        <h3>Lead inbox <span class="pill blue">12 new · 9 out-of-hours via F1</span></h3>
+        <div class="row">
+          <span class="name">Mark Roberts</span>
+          <span class="meta">£245k LIFE+CI · 38</span>
+          <span class="pill green"><span class="dot"></span>Qualified</span>
+          <span class="meta grow">F1 · Compare the Market · 21:14 Tue</span>
+          <button class="btn primary">Open FactFind →</button>
+        </div>
+        <div class="row">
+          <span class="name">Sarah Lee</span>
+          <span class="meta">£150k LIFE · 42</span>
+          <span class="pill green"><span class="dot"></span>Qualified</span>
+          <span class="meta grow">F1 · MoneySuperMarket · 06:42 Wed</span>
+          <button class="btn">Triage →</button>
+        </div>
+        <div class="row">
+          <span class="name">James Wong</span>
+          <span class="meta">£80k IP · 35</span>
+          <span class="pill red"><span class="dot"></span>Vuln flag</span>
+          <span class="meta grow">F1 · Meta · 23:48 Tue</span>
+          <button class="btn warn">Review →</button>
+        </div>
+      </div>
+
+      <!-- Today's appointments (abbreviated) -->
+      <div class="card">
+        <h3>Today's appointments</h3>
+        <div class="row"><span class="name" style="min-width:60px">10:30</span><span class="grow">FactFind · <b>Mark Roberts</b></span><span class="meta">90 min · Zoom</span></div>
+        <div class="row"><span class="name" style="min-width:60px">13:00</span><span class="grow">FactFind · <b>Sarah Lee</b></span><span class="meta">60 min · Zoom</span></div>
+        <div class="row"><span class="name" style="min-width:60px">14:30</span><span class="grow">UW review · <b>Tom Harris</b></span><span class="meta">30 min · Phone</span></div>
+        <div class="row"><span class="name" style="min-width:60px">16:00</span><span class="grow">FactFind · <b>Priya Shah</b></span><span class="meta">75 min · Teams</span></div>
+      </div>
+
+      <p class="meta" style="font-size:11.5px">… more sections (compliance queue · alerts)</p>
+    </main>
+  </div>
+</div>
+
+<!-- ─── The widget itself (bottom-right, expanded) ─── -->
+<div class="cop-widget">
+  <header class="cop-widget-head">
+    <span class="dot"></span>
+    <span>Ivy Co-pilot</span>
+    <div class="actions">
+      <button class="ico-btn" title="Expand to side panel">⇢</button>
+      <button class="ico-btn" title="Open in full page">⊞</button>
+      <button class="ico-btn" title="Collapse">−</button>
+    </div>
+  </header>
+
+  <!-- Thread context strip -->
+  <div style="background:var(--canvas);padding:8px 14px;border-bottom:1px solid var(--hair-2);font-size:11px;color:var(--ink-3);display:flex;align-items:center;gap:6px">
+    <span class="pin" style="color:var(--amber)">📌</span>
+    <span>Continuing: <strong style="color:var(--ink);font-weight:600">Mark Roberts — case strategy</strong></span>
+    <span style="margin-left:auto;color:var(--ink-4)">17 msgs</span>
+  </div>
+
+  <div class="cop-widget-thread">
+
+    <div class="msg user">
+      <div class="who">Sarah</div>
+      <div class="body">
+        <p>quick — what's mark's UW status look like</p>
+      </div>
+    </div>
+
+    <div class="msg ivy">
+      <div class="who">Ivy</div>
+      <div class="body">
+        <p><b>Day 7 of ~14.</b></p>
+        <p style="margin-top:4px">Vitality has the GP consent. M5 is watching for the report. No action needed yet — I'll surface if Day 14 passes without movement.</p>
+      </div>
+    </div>
+
+    <div class="msg user">
+      <div class="who">Sarah</div>
+      <div class="body">
+        <p>thanks. one more — sarah lee FactFind at 13:00, anything I should pre-read?</p>
+      </div>
+    </div>
+
+    <div class="msg ivy">
+      <div class="who">Ivy</div>
+      <div class="body">
+        <p>Two things:</p>
+        <ul>
+          <li>She mentioned "anxiety meds" in the F2 qualifier — Section 5 will need careful probe (current vs historical).</li>
+          <li>Self-employed, freelance writer, mixed income — SA302 question early.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="cop-widget-input">
+    <div class="text">Ask Ivy…</div>
+    <div class="chip-row">
+      <span class="input-chip">/</span>
+      <span class="input-chip">@</span>
+      <span class="input-chip">📎</span>
+      <span class="send">→</span>
+    </div>
+  </div>
+</div>
+
+<p class="note" style="max-width:1100px;margin:14px auto 18px;display:block">Question: when widget shows the "continuing" strip (last thread), does that thread auto-load every time? Default: yes — last active thread persists unless user clicks New chat.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 18px;display:block">Question: minimised vs expanded — should widget default to collapsed (just a leaf icon) or expanded? Default: collapsed on first load, expanded if there's a pending Co-pilot prompt.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 30px;display:block">Question: the ⇢ "expand to side panel" only makes sense when there's a contextual page (case, kanban card). On Today, should it be disabled / hidden? Default: hidden when no context available.</p>
+
+</body>
+</html>

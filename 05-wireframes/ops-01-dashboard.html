@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · OPS-01 Operations Dashboard</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · OPS-01 · /ops · Mark Reynolds (Principal)">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Operations</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li class="active"><span class="ic circ"></span>Dashboard</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance</li>
+        <li><span class="ic circ"></span>Team</li>
+        <li><span class="ic"></span>Reports</li>
+        <li><span class="ic"></span>Audit log</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page">
+      <div class="pg-head">
+        <div>
+          <h1 class="pg-title">Northchart Advisory</h1>
+          <p class="pg-sub">Week of 12 May 2026 · principal view · 8 advisers · 600 cases/yr</p>
+        </div>
+        <div class="pg-actions">
+          <button class="btn">← Week</button>
+          <button class="btn">Week →</button>
+          <button class="btn">Export MI</button>
+        </div>
+      </div>
+
+      <!-- Pipeline funnel -->
+      <div class="card">
+        <h3>
+          Pipeline this week
+          <span style="margin-left:auto;font-family:'Kalam';font-size:13px;color:var(--ink-2)"><span class="meta">Pipeline value:</span> <b>£142k expected commission</b></span>
+        </h3>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;font-size:13px"><span style="width:90px;font-weight:700">Captured</span><div style="height:14px;background:var(--green);width:640px;border-radius:50px"></div><b>47</b></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;font-size:13px"><span style="width:90px;font-weight:700">Qualified</span><div style="height:14px;background:var(--green);width:518px;border-radius:50px;opacity:.85"></div><b>38</b></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;font-size:13px"><span style="width:90px;font-weight:700">Called</span><div style="height:14px;background:var(--green);width:381px;border-radius:50px;opacity:.72"></div><b>28</b></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;font-size:13px"><span style="width:90px;font-weight:700">Drafted</span><div style="height:14px;background:var(--green);width:299px;border-radius:50px;opacity:.6"></div><b>22</b></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;font-size:13px"><span style="width:90px;font-weight:700">Issued</span><div style="height:14px;background:var(--green);width:245px;border-radius:50px;opacity:.48"></div><b>18</b></div>
+      </div>
+
+      <!-- 2-col: compliance + team -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+
+        <div class="card">
+          <h3>Compliance <a style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--green);text-decoration:none">Open compliance →</a></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:12.5px">
+            <div><p class="meta" style="margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-family:'Inter';font-weight:600">Vulnerability cases</p><div style="font-family:'Caveat';font-size:28px;font-weight:700">4 <span style="color:var(--green);font-size:14px">✓</span></div><span class="meta">all handled · C6</span></div>
+            <div><p class="meta" style="margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-family:'Inter';font-weight:600">Audit-flagged</p><div style="font-family:'Caveat';font-size:28px;font-weight:700">0</div><span class="meta">clean week</span></div>
+            <div><p class="meta" style="margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-family:'Inter';font-weight:600">Avg compliance file</p><div style="font-family:'Caveat';font-size:28px;font-weight:700">98%</div><span class="meta">C4 · 18 issued</span></div>
+            <div><p class="meta" style="margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-family:'Inter';font-weight:600">M2 NIGO prevention</p><div style="font-family:'Caveat';font-size:28px;font-weight:700">12</div><span class="meta">~30 case-days saved</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Team capacity <a style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--green);text-decoration:none">Open team →</a></h3>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:64px"><b>Sarah</b></span>
+              <div class="bar"><i class="amber" style="width:92%"></i></div>
+              <b style="width:36px;text-align:right;font-variant-numeric:tabular-nums">92%</b>
+              <span class="pill amber"><span class="dot"></span>at risk</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:64px">James</span><div class="bar"><i style="width:78%"></i></div><b style="width:36px;text-align:right">78%</b><span style="width:60px"></span></div>
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:64px">Tom</span><div class="bar"><i style="width:88%"></i></div><b style="width:36px;text-align:right">88%</b><span style="width:60px"></span></div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:64px">Aiyana</span>
+              <div class="bar"><i style="width:65%"></i></div>
+              <b style="width:36px;text-align:right">65%</b>
+              <span class="pill blue"><span class="dot"></span>ramping</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:64px">Connor</span><div class="bar"><i style="width:81%"></i></div><b style="width:36px;text-align:right">81%</b><span style="width:60px"></span></div>
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:64px">Priya</span><div class="bar"><i style="width:84%"></i></div><b style="width:36px;text-align:right">84%</b><span style="width:60px"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attention items -->
+      <div class="card" style="margin-top:14px">
+        <h3>This week's attention items</h3>
+        <div class="row"><span class="pill amber">CAPACITY</span><span class="grow"><b>Sarah at 92%</b> — at risk; rebalance considered</span><a class="meta">Open team →</a></div>
+        <div class="row"><span class="pill blue">RAMP</span><span class="grow"><b>Aiyana ramping</b> (post-mat) — capacity climbing</span><a class="meta">Open team →</a></div>
+        <div class="row"><span class="pill amber">CHASE</span><span class="grow"><b>Murphy family</b> case — 6 days in Portal Processing</span><a class="meta">Open kanban →</a></div>
+        <div class="row"><span class="pill green">CPC 2025</span><span class="grow"><b>CPC 2025 evidence pack ready</b> — Daniel signed off Mon</span><a class="meta">Open audit →</a></div>
+      </div>
+
+      <!-- Ask Ivy / Atlas -->
+      <div class="card" style="margin-top:14px;background:linear-gradient(135deg,rgba(45,143,95,.05),transparent)">
+        <h3>
+          <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)"></span>Ask Ivy · Atlas mode</span>
+          <span style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--ink-3);font-weight:400">natural-language firm-wide queries</span>
+        </h3>
+
+        <div class="card subtle" style="margin-bottom:12px">
+          <p class="meta" style="margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-family:'Inter';font-weight:600">Question</p>
+          <p style="font-family:'Kalam';font-size:14px;margin:0 0 12px">Which adviser has the highest conversion this month?</p>
+
+          <p class="meta" style="margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-family:'Inter';font-weight:600">Answer</p>
+          <p style="font-family:'Kalam';font-size:14px;line-height:1.6;margin:0"><b>Sarah at 71%.</b> Team avg 58%. Three drivers behind her lead:</p>
+          <ul style="font-family:'Kalam';font-size:13px;color:var(--ink-2);line-height:1.7;margin:6px 0 0;padding-left:18px">
+            <li>27% more time on FactFind capture</li>
+            <li>100% same-day vulnerability response</li>
+            <li>Edits A4 drafts vs starting from scratch</li>
+          </ul>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn">Ask follow-up</button>
+            <button class="btn">Show reasoning</button>
+          </div>
+        </div>
+
+        <p class="meta" style="margin:0 0 6px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-family:'Inter';font-weight:600">Suggested next questions</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="pill">How many cases did Sarah close last quarter vs this quarter?</span>
+          <span class="pill">Show me all loaded UW decisions this month</span>
+          <span class="pill">What's our M2 NIGO prevention saving in £?</span>
+        </div>
+      </div>
+
+      <p class="note">Question: C5 (Manager Coaching Dashboard) is deferred to v1.5. Should we put a "Coming in v1.5: adviser-drift detection" placeholder card here, or omit entirely?</p>
+    </main>
+  </div>
+</div>
+
+<div class="copilot" style="width:400px">
+  <div class="h"><span class="dot"></span>Ask Ivy · Atlas mode</div>
+  <div class="body" style="font-size:12.5px"><b>Sarah at 71%.</b> Team avg 58%. Three drivers behind her lead: FactFind time · same-day vuln response · A4 edits.</div>
+  <input class="input" placeholder="Ask any firm-wide question…">
+</div>
+
+</body>
+</html>

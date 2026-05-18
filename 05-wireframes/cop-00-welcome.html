@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · COP-00 Co-pilot welcome (empty state)</title>
+<link rel="stylesheet" href="shared/wires.css">
+<style>
+  .cop-app {
+    display: grid;
+    grid-template-columns: 220px 280px 1fr;
+    min-height: 920px;
+  }
+</style>
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · COP-00 · /copilot · empty state · Sarah Bennett">
+  <div class="cop-app">
+
+    <!-- Sidebar -->
+    <aside class="nav">
+      <div class="logo">
+        <span class="leaf"></span>
+        <span class="wm">Ivy</span>
+        <span class="role">Adviser</span>
+      </div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <h6>AI</h6>
+      <ul>
+        <li class="active"><span class="ic dot"></span>Co-pilot</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <!-- Conversation rail · empty -->
+    <aside class="cop-rail">
+      <div class="new-chat">＋ New chat</div>
+      <div class="search">🔍 Search conversations…</div>
+
+      <div class="cop-rail-empty">
+        <div style="font-weight:600;color:var(--ink-2);margin-bottom:4px">No chats yet</div>
+        Your conversations with Ivy will appear here. Start one →
+      </div>
+    </aside>
+
+    <!-- Welcome center pane -->
+    <section class="cop-welcome">
+      <div class="mark">
+        <span class="leaf"></span>
+        <span class="wm">Ivy</span>
+      </div>
+
+      <h1 class="greet">
+        Good afternoon, Sarah.<br />
+        What are <em>we working on</em>?
+      </h1>
+
+      <p class="subhead">Your AI workspace for the advised-sale workflow — from FactFind to compliance file. Tailored for protection brokers in UK + Ireland.</p>
+
+      <!-- Centered composer -->
+      <div class="composer">
+        <div class="text">Ask Ivy anything — type, /command, or @customer…</div>
+        <div class="chip-row">
+          <span class="input-chip">@ mention</span>
+          <span class="input-chip">/ commands</span>
+          <span class="input-chip">📎 attach</span>
+          <span class="send">Send →</span>
+        </div>
+      </div>
+
+      <div class="starter-h">— Try —</div>
+
+      <div class="starter-grid">
+        <div class="cop-starter">
+          <div class="label">Underwriting</div>
+          <div class="prompt">What would an underwriter flag on Mark Roberts' case before submission?</div>
+        </div>
+        <div class="cop-starter">
+          <div class="label">Client comms</div>
+          <div class="prompt">Draft a Day-7 status update to send my client</div>
+        </div>
+        <div class="cop-starter">
+          <div class="label">FactFind QA</div>
+          <div class="prompt">Score the FactFind I just captured against firm QA criteria</div>
+        </div>
+        <div class="cop-starter">
+          <div class="label">Firm intelligence</div>
+          <div class="prompt">Which adviser has the highest conversion this month?</div>
+        </div>
+        <div class="cop-starter">
+          <div class="label">Case lookup</div>
+          <div class="prompt">Show cases similar to one I'm working on right now</div>
+        </div>
+        <div class="cop-starter">
+          <div class="label">Suitability</div>
+          <div class="prompt">Audit a suitability letter before I send it to compliance</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<p class="note" style="max-width:1100px;margin:14px auto 14px;display:block">Question: greeting "Good afternoon, Sarah. What are <em>we working on</em>?" — keep both lines or simplify to one? Default: both. The personalisation matters in v1.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 14px;display:block">Question: starter prompts are 6 in a 3-col grid. After Sarah has started a few chats, should we show "Recent" instead of "Try"? Default: yes — replace starters with 3 recent thread cards once she has &gt;3 chats.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 14px;display:block">Question: when Sarah types into the centered composer and hits Send, does the layout animate (composer slides to bottom, conversation appears above) or hard-cut to COP-01? Default: animate — feels alive.</p>
+
+<p class="note" style="max-width:1100px;margin:0 auto 30px;display:block">Question: the broker-domain sub-headline — is "from FactFind to compliance file" too jargon-heavy for a new adviser onboarded mid-week? Alternates: "Tailored for protection brokers in UK + Ireland" / "Ivy knows your cases, your firm's templates, and your compliance baseline."</p>
+
+</body>
+</html>

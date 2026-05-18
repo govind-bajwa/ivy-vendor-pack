@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADV-01 Today</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADV-01 · /today · Sarah Bennett (Adviser)">
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="nav">
+      <div class="logo">
+        <span class="leaf"></span>
+        <span class="wm">Ivy</span>
+        <span class="role">Adviser</span>
+      </div>
+      <h6>Workspace</h6>
+      <ul>
+        <li class="active"><span class="ic circ"></span>Today</li>
+        <li><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <!-- Page -->
+    <main class="page">
+      <div class="pg-head">
+        <div>
+          <h1 class="pg-title">Today</h1>
+          <p class="pg-sub">Wednesday 13 May · 4 client-facing slots · 3 in compliance queue</p>
+        </div>
+        <div class="pg-actions">
+          <button class="btn">+ New lead</button>
+          <button class="btn primary">Start next FactFind</button>
+        </div>
+      </div>
+
+      <!-- KPI strip -->
+      <div class="kpi-strip">
+        <div class="kpi"><h5>Active cases</h5><div class="v">47</div></div>
+        <div class="kpi"><h5>Today's apps</h5><div class="v">4</div></div>
+        <div class="kpi"><h5>Compliance queue</h5><div class="v">3</div></div>
+        <div class="kpi warn"><h5>Alerts</h5><div class="v">3</div></div>
+      </div>
+
+      <!-- Lead inbox preview -->
+      <div class="card">
+        <h3>
+          Lead inbox
+          <span class="pill blue">12 new · 9 out-of-hours via F1</span>
+          <span style="margin-left:auto;font-family:'Kalam';font-size:12px;color:var(--ink-3)">view all →</span>
+        </h3>
+        <div class="row">
+          <span class="name">Mark Roberts</span>
+          <span class="meta">£245k LIFE+CI · 38</span>
+          <span class="pill green"><span class="dot"></span>Qualified</span>
+          <span class="meta grow">F1 · Compare the Market · 21:14 Tue</span>
+          <button class="btn primary">Open FactFind →</button>
+        </div>
+        <div class="row">
+          <span class="name">Sarah Lee</span>
+          <span class="meta">£150k LIFE · 42</span>
+          <span class="pill green"><span class="dot"></span>Qualified</span>
+          <span class="meta grow">F1 · MoneySuperMarket · 06:42 Wed</span>
+          <button class="btn">Triage →</button>
+        </div>
+        <div class="row">
+          <span class="name">James Wong</span>
+          <span class="meta">£80k IP · 35</span>
+          <span class="pill red"><span class="dot"></span>Vuln flag</span>
+          <span class="meta grow">F1 · Meta · 23:48 Tue</span>
+          <button class="btn warn">Review →</button>
+        </div>
+        <div class="row" style="justify-content:center;color:var(--ink-3);font-size:12px">+ 9 more leads</div>
+      </div>
+
+      <!-- 2-column appointments + compliance -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div class="card">
+          <h3>Today's appointments <span class="pill slate" style="margin-left:auto">4</span></h3>
+          <div class="row"><span class="name" style="min-width:60px">10:30</span><span class="grow">FactFind · <b>Mark Roberts</b></span><span class="meta">90 min · Zoom</span></div>
+          <div class="row"><span class="name" style="min-width:60px">13:00</span><span class="grow">FactFind · <b>Sarah Lee</b></span><span class="meta">60 min · Zoom</span></div>
+          <div class="row"><span class="name" style="min-width:60px">14:30</span><span class="grow">UW review · <b>Tom Harris</b></span><span class="meta">30 min · Phone</span></div>
+          <div class="row"><span class="name" style="min-width:60px">16:00</span><span class="grow">FactFind · <b>Priya Shah</b></span><span class="meta">75 min · Teams</span></div>
+        </div>
+
+        <div class="card">
+          <h3>Compliance queue <span class="pill blue" style="margin-left:auto">avg 4hr · was 2 days</span></h3>
+          <div class="row"><span class="status done">✓</span><div class="grow"><b>Suitability · Anna Klein</b><br><span class="meta">A4 score 94 · awaiting Daniel</span></div></div>
+          <div class="row"><span class="status done">✓</span><div class="grow"><b>Suitability · David Patel</b><br><span class="meta">A4 score 87 · awaiting Daniel</span></div></div>
+          <div class="row"><span class="status done">✓</span><div class="grow"><b>Compliance file · Tom Harris</b><br><span class="meta">C4 auto-built · score 96</span></div></div>
+        </div>
+      </div>
+
+      <!-- Alerts -->
+      <div class="card">
+        <h3>Alerts <span class="pill red" style="margin-left:auto">3</span></h3>
+        <div class="row"><span class="pill red">VULN</span><span class="grow">James Wong (Stage 2) — review before booking</span><button class="btn">Review</button></div>
+        <div class="row"><span class="pill green">UW</span><span class="grow">Anna Klein — Standard accepted (Aviva, parsed by M5)</span><button class="btn">Open case</button></div>
+        <div class="row"><span class="pill amber">CHASE</span><span class="grow">Murphy family — 6 days in Portal Processing (RL IE)</span><button class="btn">Chase</button></div>
+      </div>
+
+      <p class="note">Question: are 4 KPI stats enough? Some teams add "Indemnified commission this month" — maybe move to OPS-01 instead?</p>
+
+    </main>
+  </div>
+</div>
+
+<!-- Co-pilot widget -->
+<div class="copilot">
+  <div class="h"><span class="dot"></span>Ivy Co-pilot</div>
+  <div class="body"><b>Mrs Patel</b> hasn't been followed up since Tuesday. Want me to draft a check-in based on her FactFind?</div>
+  <input class="input" placeholder="Ask Ivy or invoke…">
+</div>
+
+</body>
+</html>

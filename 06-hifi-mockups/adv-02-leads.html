@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lead Inbox · Ivy</title>
+  <link rel="stylesheet" href="../07-design-system/ivy-tokens.css" />
+  <link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+  <main class="content">
+    <div class="content-narrow">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Lead Inbox</h1>
+          <div class="page-subtitle">12 new since yesterday · 9 captured by F1 out-of-hours · 1 vuln flag</div>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-ghost">Filter</button>
+          <button class="btn">＋ Manual lead</button>
+        </div>
+      </div>
+
+      <!-- Filter chips -->
+      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+        <span class="pill pill-info" style="cursor:pointer">All · 12</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--hair-2);color:var(--ink-2);cursor:pointer">Qualified · 9</span>
+        <span class="pill pill-stage-lost" style="cursor:pointer">Vuln flag · 1</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--hair-2);color:var(--ink-2);cursor:pointer">Knocked out · 2</span>
+      </div>
+
+      <!-- Lead grid -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+
+        <!-- Mark Roberts (open) -->
+        <div class="card" style="border-left:3px solid var(--ivy-primary)">
+          <div style="display:flex;align-items:flex-start;gap:16px">
+            <div class="avatar">MR</div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <span class="bold" style="font-size:15px">Mark Roberts</span>
+                <span class="muted" style="font-size:12px">· 38 · Manchester M6 · self-employed</span>
+                <span class="pill pill-stage-qualified" style="margin-left:auto">Qualified ✓</span>
+              </div>
+              <div style="display:flex;gap:20px;font-size:13px;margin-bottom:8px">
+                <div><span class="muted">Cover:</span> <b>£245k LIFE+CI</b></div>
+                <div><span class="muted">Budget:</span> <b>£40–60/mo</b></div>
+                <div><span class="muted">Timeline:</span> <b>8 weeks</b></div>
+                <div><span class="muted">Score:</span> <b>8.4 / 10</b></div>
+              </div>
+              <div style="font-size:12px;color:var(--ink-3);margin-bottom:10px">
+                <b>Trigger:</b> brother diagnosed bowel cancer last month ·
+                <b>Health flags:</b> family CA history (probe at FactFind)
+              </div>
+
+              <div style="background:var(--canvas);border-radius:var(--r-md);padding:10px 12px;font-size:12px;margin-bottom:10px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                  <strong>F1 conversation log</strong>
+                  <span class="muted">11 messages · 6 minutes · WhatsApp</span>
+                </div>
+                <ul style="margin:0;padding-left:16px;color:var(--ink-2);line-height:1.7">
+                  <li>Captured 21:14 Tue · out-of-hours · F1 took it</li>
+                  <li>Qualified 21:20 by F2 — passed all knockout questions</li>
+                  <li>FactFind booked Friday 14:00 with Sarah</li>
+                  <li>Pre-FactFind disclosures: queued for Wed 09:00</li>
+                  <li>Companies House + electoral roll signals → score 8.4</li>
+                </ul>
+              </div>
+
+              <div style="display:flex;gap:16px;font-size:12px">
+                <span><span class="muted">Vulnerability check (C6):</span> <b style="color:var(--stage-qualified-fg)">None detected</b></span>
+                <span><span class="muted">Knockouts:</span> <b style="color:var(--stage-qualified-fg)">All passed</b></span>
+                <a href="#" class="muted" style="margin-left:auto;text-decoration:none">View full conversation →</a>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;width:140px">
+              <a class="btn btn-primary" href="adv-07-factfind.html">Open FactFind →</a>
+              <a class="btn" href="adv-05-case-detail.html">Open case</a>
+              <button class="btn btn-ghost">Reassign</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sarah Lee (collapsed) -->
+        <div class="card card-tight">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div class="avatar">SL</div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="bold">Sarah Lee</span>
+                <span class="muted" style="font-size:12px">· 42 · £150k LIFE · 06:42 Wed · MoneySuperMarket</span>
+                <span class="pill pill-stage-qualified" style="margin-left:auto">Qualified · 7.6</span>
+              </div>
+            </div>
+            <button class="btn btn-ghost">Triage →</button>
+          </div>
+        </div>
+
+        <!-- James Wong (vuln) -->
+        <div class="card card-tight" style="border-left:3px solid var(--stage-lost-fg)">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div class="avatar" style="background:var(--stage-lost-bg);color:var(--stage-lost-fg)">JW</div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="bold">James Wong</span>
+                <span class="muted" style="font-size:12px">· 35 · £80k IP · 23:48 Tue · Meta Ads</span>
+                <span class="pill pill-stage-lost" style="margin-left:auto">⚠ Vuln flag · 6.9</span>
+              </div>
+              <div style="font-size:12px;color:var(--stage-lost-fg);margin-top:4px">
+                C6 indicator: financial pressure language in F2 conversation — review before booking
+              </div>
+            </div>
+            <button class="btn btn-warning">Review →</button>
+          </div>
+        </div>
+
+        <!-- More leads -->
+        <div class="card card-tight">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div class="avatar">PS</div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="bold">Priya Shah</span>
+                <span class="muted" style="font-size:12px">· 39 · £180k LIFE · Mon 14:22 · Compare the Market</span>
+                <span class="pill pill-stage-qualified" style="margin-left:auto">Qualified · 8.1</span>
+              </div>
+            </div>
+            <button class="btn btn-ghost">Open</button>
+          </div>
+        </div>
+
+        <div class="card card-tight">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div class="avatar">DP</div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="bold">David Patel</span>
+                <span class="muted" style="font-size:12px">· 44 · £300k LIFE · Mon 11:15 · Bonkers.ie</span>
+                <span class="pill pill-stage-qualified" style="margin-left:auto">Qualified · 8.8</span>
+              </div>
+            </div>
+            <button class="btn btn-ghost">Open</button>
+          </div>
+        </div>
+
+        <div class="card card-tight muted" style="text-align:center;font-size:12px;justify-content:center">
+          + 7 more leads · 2 knocked out · 1 in re-engagement nurture
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    window.IVY_SCREEN = {
+      surface: "adviser",
+      activeNav: "leads",
+      breadcrumb: "Leads"
+    };
+  </script>
+  <script src="shared/chrome.js"></script>
+</body>
+</html>

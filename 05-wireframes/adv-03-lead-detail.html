@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WF · ADV-03 Lead Detail</title>
+<link rel="stylesheet" href="shared/wires.css">
+</head>
+<body>
+<div class="sheet" data-label="WIREFRAME · ADV-03 · /leads/:id · Mark Roberts">
+  <div class="app">
+    <aside class="nav">
+      <div class="logo"><span class="leaf"></span><span class="wm">Ivy</span><span class="role">Adviser</span></div>
+      <h6>Workspace</h6>
+      <ul>
+        <li><span class="ic circ"></span>Today</li>
+        <li class="active"><span class="ic"></span>Leads <span class="count">12</span></li>
+        <li><span class="ic"></span>Cases <span class="count">47</span></li>
+        <li><span class="ic circ"></span>Clients</li>
+        <li><span class="ic"></span>Pipeline</li>
+        <li><span class="ic"></span>Compliance <span class="count">3</span></li>
+        <li><span class="ic"></span>Reports</li>
+      </ul>
+      <div class="div"></div>
+      <ul><li><span class="ic circ"></span>Settings</li></ul>
+    </aside>
+
+    <main class="page">
+      <div class="pg-head">
+        <div>
+          <p class="pg-sub" style="margin-bottom:4px">← Lead inbox</p>
+          <h1 class="pg-title">Mark Roberts</h1>
+          <div style="display:flex;gap:8px;margin-top:4px">
+            <span class="pill green"><span class="dot"></span>Qualified · score 8.4</span>
+            <span class="pill">38 · Manchester M6</span>
+            <span class="pill">£245k LIFE+CI</span>
+            <span class="pill">FactFind booked Fri 14:00</span>
+          </div>
+        </div>
+        <div class="pg-actions">
+          <button class="btn">Reassign</button>
+          <button class="btn">Decline lead</button>
+          <button class="btn primary">Open FactFind →</button>
+        </div>
+      </div>
+
+      <!-- 2-column: conversation + lead summary -->
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:14px">
+
+        <!-- Left: F1+F2 conversation transcript -->
+        <div>
+          <div class="card">
+            <h3>
+              Conversation log
+              <span class="pill blue">WhatsApp · 11 msgs · 6 min</span>
+              <span style="margin-left:auto;font-family:'Kalam';font-size:11px;color:var(--ink-3)">21:14 Tue → 21:20 Tue</span>
+            </h3>
+            <div style="font-family:'Kalam';font-size:13px;line-height:1.7">
+              <div class="row" style="border:0;padding:4px 0"><b style="color:var(--green);min-width:50px">Ivy</b><span>Hi Mark, you enquired about life cover. Quick chat to see if we can help — OK?</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="min-width:50px">Mark</b><span>yeah</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="color:var(--green);min-width:50px">Ivy</b><span>You're looking at life cover — for a mortgage or family protection generally?</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="min-width:50px">Mark</b><span>mortgage mostly, just remortgaged</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="color:var(--green);min-width:50px">Ivy</b><span>Got it. £245k I see from Compare. Sole or joint?</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="min-width:50px">Mark</b><span>I'll check with Sophie but probably joint</span></div>
+              <div class="row" style="border:0;padding:4px 0;color:var(--ink-3)"><span style="min-width:50px"></span><span>… 5 more turns</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="color:var(--green);min-width:50px">Ivy</b><span>Perfect. Sarah's free Friday 14:00. That work?</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="min-width:50px">Mark</b><span>yeah</span></div>
+              <div class="row" style="border:0;padding:4px 0"><b style="color:var(--green);min-width:50px">Ivy</b><span>Booked. Confirmation coming through.</span></div>
+            </div>
+          </div>
+
+          <!-- Audit panel -->
+          <div class="card subtle">
+            <h3 style="font-size:18px">Audit trail</h3>
+            <ul style="margin:0;padding-left:20px;font-family:'Kalam';font-size:12.5px;color:var(--ink-2);line-height:1.7">
+              <li>F2 prompt template version: <b>v2.4</b> · firm: Northchart UK</li>
+              <li>All 8 knockout questions passed (age · residency · prior declines · etc.)</li>
+              <li>C6 vulnerability detector ran in parallel — <b>NONE</b></li>
+              <li>F4 booked into Sarah's Outlook · 90 min slot</li>
+              <li>F1 channel: Compare the Market · £18 lead price</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: lead summary + actions -->
+        <div>
+          <div class="card">
+            <h3>Captured</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px">
+              <div><span class="meta">Employment</span><br><b>Self-employed</b></div>
+              <div><span class="meta">Trade</span><br><b>Graphic design</b></div>
+              <div><span class="meta">Income</span><br><b>£62k (SA302)</b></div>
+              <div><span class="meta">Mortgage</span><br><b>£245k / 22yr</b></div>
+              <div><span class="meta">Partner</span><br><b>Sophie</b></div>
+              <div><span class="meta">Children</span><br><b>2 (ages 4, 7)</b></div>
+              <div><span class="meta">Budget</span><br><b>£40–60/mo</b></div>
+              <div><span class="meta">Timeline</span><br><b>8 weeks</b></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Trigger</h3>
+            <p style="font-family:'Kalam';font-size:13px;color:var(--ink-2);line-height:1.6;margin:0">Brother diagnosed with bowel cancer last month — driver behind looking at protection now.</p>
+            <p class="note">Probe at FactFind: client's own screening hx.</p>
+          </div>
+
+          <div class="card">
+            <h3>Enrichment</h3>
+            <div style="font-size:12.5px;line-height:1.7">
+              <div><span class="meta">Companies House:</span> Director · XYZ Design Ltd</div>
+              <div><span class="meta">Residency:</span> Owner-occupier</div>
+              <div><span class="meta">Region:</span> Manchester M6 4LP</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Lead score</h3>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="font-family:'Caveat';font-size:36px;font-weight:700;line-height:1">8.4</div>
+              <div class="bar"><i style="width:84%"></i></div>
+            </div>
+            <p class="meta" style="margin-top:6px">F1 dynamic score · sources: Companies House, electoral roll, conversation signal</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">Question: do we show the raw enrichment data, or just the score? Buyers may want transparency.</p>
+    </main>
+  </div>
+</div>
+
+<div class="copilot">
+  <div class="h"><span class="dot"></span>Ivy Co-pilot</div>
+  <div class="body">Want me to pre-fill Mark's FactFind sections 1–4 with what F2 captured?</div>
+  <input class="input" placeholder="Ask Ivy…">
+</div>
+
+</body>
+</html>
